@@ -5,7 +5,7 @@ const router = express.Router();
 const { registerWholesaler, loginWholesaler } = require('../controllers/wholesalerAuthController');
 
 // Import the authorization guard middleware
-const { protect } = require('../middleware/authmiddleware');
+const { protect } = require('../middleware/authMiddleware');
 
 // -----------------------------------------
 // PUBLIC ROUTES (Wholesaler Portal)
