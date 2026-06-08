@@ -1,0 +1,282 @@
+/* --- Global Style Variables & Resets --- */
+.landing-container {
+  min-height: 100vh;
+  background-color: #f8fafc;
+  color: #334155;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Custom Text Selection Highlight */
+.landing-container ::selection {
+  background-color: #a7f3d0;
+}
+
+/* --- Animated Ambient Background Blobs --- */
+.ambient-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(64px);
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: multiply;
+  animation: pulse 7s infinite ease-in-out;
+}
+
+.blob-one {
+  top: 0;
+  left: 25%;
+  width: 400px;
+  height: 400px;
+  background-color: #d1fae5;
+  opacity: 0.4;
+}
+
+.blob-two {
+  top: 33%;
+  right: 25%;
+  width: 400px;
+  height: 400px;
+  background-color: #dcfce7;
+  opacity: 0.3;
+  animation-delay: 2s;
+}
+
+/* --- Navigation Header --- */
+.landing-header {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+}
+
+.logo-area {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.logo-main {
+  color: #047857;
+}
+
+.logo-sub {
+  color: #475569;
+  font-weight: 500;
+}
+
+.nav-signin-btn {
+  background: none;
+  border: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #047857;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.nav-signin-btn:hover {
+  color: #065f46;
+}
+
+/* --- Hero Section --- */
+.hero-section {
+  position: relative;
+  max-w: 1000px;
+  margin: 0 auto;
+  padding: 80px 24px 64px 24px;
+  text-align: center;
+  z-index: 10;
+}
+
+.badge-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background-color: #ecfdf5;
+  color: #047857;
+  border: 1px solid rgba(167, 243, 208, 0.6);
+  margin-bottom: 24px;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: #0f172a;
+  max-width: 768px;
+  margin: 0 auto 24px auto;
+  line-height: 1.15;
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.25rem;
+  }
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: #64748b;
+  max-width: 640px;
+  margin: 0 auto 40px auto;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+/* --- Call To Action Button --- */
+.cta-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: #047857;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px -1px rgba(4, 120, 87, 0.1);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cta-button:hover {
+  background-color: #065f46;
+  box-shadow: 0 10px 15px -3px rgba(4, 120, 87, 0.2);
+  transform: translateY(-1px);
+}
+
+.cta-button:active {
+  transform: scale(0.98);
+}
+
+.cta-arrow {
+  width: 16px;
+  height: 16px;
+  margin-left: 8px;
+  transition: transform 0.2s ease;
+}
+
+.cta-button:hover .cta-arrow {
+  transform: translateX(4px);
+}
+
+/* --- Features Grid Showcase --- */
+.features-section {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 24px;
+  z-index: 10;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+}
+
+.feature-card {
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 32px;
+  border-radius: 24px;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature-card:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  border-color: rgba(203, 213, 225, 0.8);
+}
+
+.card-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  background-color: #ecfdf5;
+  color: #047857;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  transition: transform 0.3s ease;
+}
+
+.card-icon-box svg {
+  width: 24px;
+  height: 24px;
+}
+
+.feature-card:hover .card-icon-box {
+  transform: scale(1.1);
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #0f172a;
+  margin-bottom: 12px;
+}
+
+.card-description {
+  color: #64748b;
+  font-weight: 300;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* --- Footer --- */
+.landing-footer-element {
+  max-width: 1200px;
+  margin: 48px auto 0 auto;
+  padding: 48px 24px;
+  border-top: 1px solid #e2e8f0;
+  text-align: center;
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-weight: 300;
+}
+
+/* --- Native CSS Keyframe Animations --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.45;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}

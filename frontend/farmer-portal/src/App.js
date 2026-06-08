@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import LandingPage from './pages/landingpage';
+
+// Placeholder Auth Component (We will build the complete file next!)
+const AuthPlaceholder = () => (
+  <div className="min-h-screen flex items-center justify-center bg-slate-50">
+    <h2 className="text-xl font-medium text-slate-700">Authentication Portal Coming Soon...</h2>
+  </div>
+);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      {/* Landing Page layout */}
+      <Route path="/" element={<LandingPage />} />
+      
+      {/* Authentication Router Gateway */}
+      <Route path="/auth" element={<AuthPlaceholder />} />
+    </Routes>
   );
 }
 

@@ -1,9 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // 1. Imported router module
+import './landingpage.css'; // Importing your custom vanilla CSS file
 
 export default function LandingPage() {
-  // Simple navigation handler to simulate routing to your auth page
+  const navigate = useNavigate(); // 2. Initialized navigation engine
+
+  // Clean transition function
   const handleGetStarted = () => {
-    navigate('/auth'); // Smoothly transitions to your Auth page without a page refresh
+    navigate('/auth'); // 3. Changed from raw window.location to state router
   };
 
   return (
