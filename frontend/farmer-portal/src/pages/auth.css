@@ -22,6 +22,7 @@
   position: relative;
   width: min(100%, 500px);
   padding: 30px;
+  box-sizing: border-box;
   border-radius: 24px;
   background: linear-gradient(155deg, rgba(255, 255, 255, 0.72), rgba(235, 247, 241, 0.86));
   border: 1px solid rgba(148, 163, 184, 0.22);
@@ -114,6 +115,7 @@
   gap: 7px;
   font-size: 0.88rem;
   color: #334155;
+  min-width: 0;
 }
 
 .auth-form input[type="text"],
@@ -121,6 +123,9 @@
 .auth-form input[type="password"],
 .auth-form input:not([type]) {
   width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
   border: 1px solid rgba(148, 163, 184, 0.34);
   border-radius: 14px;
   background: rgba(255, 255, 255, 0.82);

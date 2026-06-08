@@ -28,14 +28,21 @@ const farmerSchema = new mongoose.Schema({
     ref: 'Crop'   // References the Crop model
   }],
   location: {
-    type: [Number], // Represents [longitude, latitude] or [x, y] coordinates
+    type: {
+      longitude: {
+        type: Number
+      },
+      latitude: {
+        type: Number
+      }
+    },
     default: undefined,
     validate: {
       validator: function(val) {
-        if (val == null || val.length === 0) return true;
-        return val.length === 2;
+        if (val == null) return true;
+        return Number.isFinite(val.longitude) && Number.isFinite(val.latitude);
       },
-      message: 'Location must strictly contain 2 coordinates (X and Y).'
+      message: 'Location must contain valid latitude and longitude coordinates.'
     }
   }
 }, { timestamps: true });

@@ -42,10 +42,14 @@ export default function Auth({ portal, apiBase, homePath }) {
       if (mode === 'login') {
         storage.setItem(`${portal}_token`, data.token);
         storage.setItem(`${portal}_user`, JSON.stringify(data.user));
-        navigate(homePath);
+        navigate(homePath, { replace: true });
       } else {
-        setMode('login');
-        setStatus('Account created. Please log in.');
+        storage.setItem(`${portal}_user`, JSON.stringify({
+          name: form.name,
+          user_id: form.user_id,
+          email: form.email,
+        }));
+        navigate(homePath, { replace: true });
       }
     } catch (err) {
       setStatus(err.message);
@@ -59,8 +63,8 @@ export default function Auth({ portal, apiBase, homePath }) {
       <div className="auth-backdrop"></div>
       <div className="auth-card">
         <div className="auth-toggle">
-          <button className={mode === 'login' ? 'auth-toggle-active' : ''} onClick={() => setMode('login')}>Login</button>
-          <button className={mode === 'signup' ? 'auth-toggle-active' : ''} onClick={() => setMode('signup')}>Sign up</button>
+          <button type="button" className={mode === 'login' ? 'auth-toggle-active' : ''} onClick={() => setMode('login')}>Login</button>
+          <button type="button" className={mode === 'signup' ? 'auth-toggle-active' : ''} onClick={() => setMode('signup')}>Sign up</button>
         </div>
         <div className="auth-header">
           <div className="auth-mark">Krishi<span>AI</span></div>

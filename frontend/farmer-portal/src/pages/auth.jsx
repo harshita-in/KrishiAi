@@ -52,11 +52,20 @@ export default function Auth({ portal, apiBase, homePath }) {
       if (mode === 'login') {
         storage.setItem(`${portal}_token`, data.token);
         storage.setItem(`${portal}_user`, JSON.stringify(data.user));
+        navigate(homePath, { replace: true });
+      } else {
+        if (data.token) {
+          storage.setItem(`${portal}_token`, data.token);
+        }
+        storage.setItem(`${portal}_user`, JSON.stringify({
+          ...(data.user || {}),
+          name: data.user?.name || form.name,
+          user_id: data.user?.user_id || form.user_id,
+          email: data.user?.email || form.email,
+        }));
+        navigate(homePath, { replace: true });
       }
 
-      setStatus(mode === 'signup' ? 'Account created. You can log in now.' : 'Signed in successfully.');
-      if (mode === 'login') navigate(homePath);
-      if (mode === 'signup') setMode('login');
     } catch (err) {
       setStatus(err.message);
     } finally {
@@ -71,10 +80,10 @@ export default function Auth({ portal, apiBase, homePath }) {
       <div className="auth-backdrop"></div>
       <div className="auth-card">
         <div className="auth-toggle" role="tablist" aria-label="Authentication mode">
-          <button className={mode === 'login' ? 'auth-toggle-active' : ''} onClick={() => setMode('login')}>
+          <button type="button" className={mode === 'login' ? 'auth-toggle-active' : ''} onClick={() => setMode('login')}>
             Login
           </button>
-          <button className={mode === 'signup' ? 'auth-toggle-active' : ''} onClick={() => setMode('signup')}>
+          <button type="button" className={mode === 'signup' ? 'auth-toggle-active' : ''} onClick={() => setMode('signup')}>
             Sign up
           </button>
         </div>
@@ -82,7 +91,7 @@ export default function Auth({ portal, apiBase, homePath }) {
         <div className="auth-header">
           <div className="auth-mark">Krishi<span>AI</span></div>
           <h1>{title}</h1>
-          <p>{portal === 'farmer' ? 'Farmer Portal' : 'Wholesaler Portal'} access, styled to stay calm and formal.</p>
+          <p>{portal === 'farmer' ? 'Farmer Portal' : 'Wholesaler Portal'} access</p>
         </div>
 
         <form className="auth-form" onSubmit={submit}>
