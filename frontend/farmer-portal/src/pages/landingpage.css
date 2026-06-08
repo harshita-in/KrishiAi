@@ -87,7 +87,7 @@
 /* --- Hero Section --- */
 .hero-section {
   position: relative;
-  max-w: 1000px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 80px 24px 64px 24px;
   text-align: center;

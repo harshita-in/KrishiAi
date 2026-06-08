@@ -1,22 +1,16 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import LandingPage from './pages/landingpage';
-
-// Placeholder Auth Component (We will build the complete file next!)
-const AuthPlaceholder = () => (
-  <div className="min-h-screen flex items-center justify-center bg-slate-50">
-    <h2 className="text-xl font-medium text-slate-700">Authentication Portal Coming Soon...</h2>
-  </div>
-);
+import Auth from './pages/auth';
+import Home from './pages/home';
 
 function App() {
   return (
     <Routes>
-      {/* Landing Page layout */}
       <Route path="/" element={<LandingPage />} />
-      
-      {/* Authentication Router Gateway */}
-      <Route path="/auth" element={<AuthPlaceholder />} />
+      <Route path="/auth" element={<Auth portal="farmer" apiBase="http://localhost:5000/api/farmer" homePath="/home" />} />
+      <Route path="/home" element={<Home portalLabel="Farmer" storageKeyPrefix="farmer" />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }
