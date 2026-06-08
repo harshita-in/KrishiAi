@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { registerFarmer, loginFarmer } = require('../controllers/farmerAuthController');
-const { protect } = require('../middleware/authMiddleware');
+const { protect } = require('../middleware/authmiddleware');
 
 // Public Auth Endpoints for Farmer Portal
 router.post('/signup', registerFarmer);

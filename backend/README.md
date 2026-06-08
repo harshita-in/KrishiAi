@@ -1,10 +1,10 @@
 ---
-title: KrishiAI Backend
-emoji: 👁
-colorFrom: gray
+title: KrishiAI
+emoji: 😻
+colorFrom: blue
 colorTo: purple
 sdk: docker
 pinned: false
 ---
 
-KrishiAI backend service for the farmer and wholesaler portals.
+Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
