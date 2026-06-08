@@ -1,0 +1,20 @@
+# Use the official Node.js long-term support (LTS) image as the base
+FROM node:20-alpine
+
+# Set the working directory inside the container
+WORKDIR /usr/src/app
+
+# Copy package.json and package-lock.json first to leverage Docker's cache layering
+COPY package*.json ./
+
+# Install only production dependencies (clean install)
+RUN npm ci --only=production
+
+# Copy the rest of the application files (models, index.js, etc.)
+COPY . .
+
+# Expose the port your Express app listens on
+EXPOSE 5000
+
+# Command to run your application
+CMD ["node", "index.js"]
