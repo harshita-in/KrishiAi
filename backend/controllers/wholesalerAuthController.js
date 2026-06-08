@@ -1,6 +1,7 @@
 const Wholesaler = require('../models/wholesaler');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { JWT_SECRET } = require('../config/jwt');
 
 // ==========================================
 // 1. WHOLESALER SIGNUP
@@ -56,7 +57,7 @@ exports.loginWholesaler = async (req, res) => {
     // Issue JWT with explicit "wholesaler" role configuration
     const token = jwt.sign(
       { id: wholesaler._id, role: 'wholesaler' }, 
-      process.env.JWT_SECRET, 
+      JWT_SECRET, 
       { expiresIn: '30d' }
     );
 

@@ -29,9 +29,10 @@ const farmerSchema = new mongoose.Schema({
   }],
   location: {
     type: [Number], // Represents [longitude, latitude] or [x, y] coordinates
-    required: true,
+    default: undefined,
     validate: {
       validator: function(val) {
+        if (val == null || val.length === 0) return true;
         return val.length === 2;
       },
       message: 'Location must strictly contain 2 coordinates (X and Y).'

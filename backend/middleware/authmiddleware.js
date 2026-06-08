@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const { JWT_SECRET } = require('../config/jwt');
 
 const protect = (requiredRole) => {
   return (req, res, next) => {
@@ -7,7 +8,7 @@ const protect = (requiredRole) => {
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
       try {
         token = req.headers.authorization.split(' ')[1];
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const decoded = jwt.verify(token, JWT_SECRET);
 
         if (requiredRole && decoded.role !== requiredRole) {
           return res.status(403).json({ error: `Access denied. Requires ${requiredRole} portal authorization.` });
