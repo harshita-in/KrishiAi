@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './landingpage.css';
 
 export default function LandingPage() {
+  const navigate = useNavigate();
+
   return (
     <div className="landing-container">
       <div className="ambient-blob blob-one"></div>
@@ -23,6 +26,33 @@ export default function LandingPage() {
         <p className="hero-subtitle">
           A calm, formal wholesale portal for managing supply with confidence, clarity, and a familiar KrishiAI visual language.
         </p>
+
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <button
+            onClick={() => navigate('/auth')}
+            style={{
+              border: '0',
+              borderRadius: '999px',
+              padding: '14px 28px',
+              background: 'linear-gradient(135deg, #a7f3d0, #047857)',
+              color: '#042f2e',
+              fontWeight: 700,
+              boxShadow: '0 10px 30px rgba(4, 120, 87, 0.22)',
+              cursor: 'pointer',
+              transition: 'transform 160ms ease, box-shadow 160ms ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-1px)';
+              e.currentTarget.style.boxShadow = '0 14px 34px rgba(4, 120, 87, 0.28)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 10px 30px rgba(4, 120, 87, 0.22)';
+            }}
+          >
+            Get Started
+          </button>
+        </div>
       </section>
 
       <section className="features-section">
