@@ -10,12 +10,13 @@ import Chat from './pages/chat';
 import Recommendation from './pages/recommendation';
 import Detection from './pages/detection';
 import Portal from './pages/portal';
+import { apiUrl } from './config';
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
-      <Route path="/auth" element={<Auth portal="farmer" apiBase="http://localhost:5000/api/farmer" homePath="/home" />} />
+      <Route path="/auth" element={<Auth portal="farmer" apiBase={apiUrl('/api/farmer')} homePath="/home" />} />
       <Route path="/home" element={<Home portalLabel="Farmer" storageKeyPrefix="farmer" />} />
       <Route path="/services" element={<Services />} />
       <Route path="/about-us" element={<AboutUs />} />

@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { apiUrl } from '../config';
 import './home.css';
 
 const navItems = [
@@ -21,7 +22,7 @@ export default function Home({ portalLabel, storageKeyPrefix }) {
   const rawUser = localStorage.getItem(`${storageKeyPrefix}_user`) || sessionStorage.getItem(`${storageKeyPrefix}_user`);
   const user = rawUser ? JSON.parse(rawUser) : null;
   const [locationStatus, setLocationStatus] = useState('');
-  const apiBase = `http://localhost:5000/api/${storageKeyPrefix}`;
+  const apiBase = apiUrl(`/api/${storageKeyPrefix}`);
 
   const welcomeName = useMemo(() => user?.name || 'Farmer', [user]);
 
