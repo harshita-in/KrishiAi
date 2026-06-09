@@ -274,6 +274,59 @@
   font-weight: 700;
 }
 
+.profile-form-card {
+  padding: 28px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.09);
+  backdrop-filter: blur(14px);
+}
+
+.profile-form {
+  display: grid;
+  gap: 16px;
+  max-width: 560px;
+}
+
+.profile-form label {
+  display: grid;
+  gap: 8px;
+  color: #334155;
+  font-weight: 600;
+}
+
+.profile-form input {
+  width: 100%;
+  border: 1px solid rgba(148, 163, 184, 0.34);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.86);
+  padding: 13px 14px;
+  color: #0f172a;
+  outline: none;
+}
+
+.profile-form input:focus {
+  border-color: rgba(4, 120, 87, 0.45);
+  box-shadow: 0 0 0 3px rgba(167, 243, 208, 0.22);
+}
+
+.profile-save {
+  margin-top: 4px;
+  border: 0;
+  border-radius: 16px;
+  padding: 13px 18px;
+  background: linear-gradient(135deg, #047857, #0f766e);
+  color: #f8fafc;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.profile-save:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
 .ud-main {
   min-height: calc(100vh - 92px);
   display: grid;

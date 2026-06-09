@@ -111,7 +111,81 @@ exports.saveFarmerLocation = async (req, res) => {
   }
 };
 
-// 3. FARMER LOGIN
+// 2. GET FARMER PROFILE
+exports.getFarmerProfile = async (req, res) => {
+  try {
+    const farmer = await Farmer.findById(req.user.id).select('name user_id email location createdAt updatedAt');
+
+    if (!farmer) {
+      return res.status(404).json({ error: 'Farmer not found' });
+    }
+
+    res.json({
+      user: {
+        name: farmer.name,
+        user_id: farmer.user_id,
+        email: farmer.email
+      }
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// 3. UPDATE FARMER PROFILE
+exports.updateFarmerProfile = async (req, res) => {
+  try {
+    const { name, user_id, email } = req.body;
+
+    const farmer = await Farmer.findById(req.user.id);
+    if (!farmer) {
+      return res.status(404).json({ error: 'Farmer not found' });
+    }
+
+    const nextUserId = typeof user_id === 'string' ? user_id.trim() : farmer.user_id;
+    const nextName = typeof name === 'string' ? name.trim() : farmer.name;
+    const nextEmail = typeof email === 'string' ? email.trim().toLowerCase() : farmer.email;
+
+    if (nextUserId && nextUserId !== farmer.user_id) {
+      const existingUser = await Farmer.findOne({ user_id: nextUserId, _id: { $ne: farmer._id } });
+      if (existingUser) {
+        return res.status(400).json({ error: 'User ID exists' });
+      }
+      farmer.user_id = nextUserId;
+    }
+
+    if (nextEmail && nextEmail !== farmer.email) {
+      const existingEmail = await Farmer.findOne({ email: nextEmail, _id: { $ne: farmer._id } });
+      if (existingEmail) {
+        return res.status(400).json({ error: 'Email exists' });
+      }
+      farmer.email = nextEmail;
+    }
+
+    farmer.name = nextName;
+
+    await farmer.save();
+
+    res.json({
+      message: 'Profile updated successfully',
+      user: {
+        name: farmer.name,
+        user_id: farmer.user_id,
+        email: farmer.email
+      }
+    });
+  } catch (error) {
+    if (error?.code === 11000) {
+      const duplicateField = Object.keys(error.keyValue || {})[0];
+      return res.status(400).json({
+        error: duplicateField === 'email' ? 'Email exists' : 'User ID exists'
+      });
+    }
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// 4. FARMER LOGIN
 exports.loginFarmer = async (req, res) => {
   try {
     const { user_id, password } = req.body;
@@ -129,7 +203,14 @@ exports.loginFarmer = async (req, res) => {
       { expiresIn: '30d' }
     );
 
-    res.json({ token, user: { name: farmer.name, user_id: farmer.user_id } });
+    res.json({
+      token,
+      user: {
+        name: farmer.name,
+        user_id: farmer.user_id,
+        email: farmer.email
+      }
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

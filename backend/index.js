@@ -5,12 +5,26 @@ require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const expectedApiKey = process.env.BACKEND_API_KEY || '';
 
 app.use(express.json());
 app.use(cors({
   origin: ['http://localhost:3000', 'http://localhost:3001'],
   credentials: true,
 }));
+
+app.use('/api', (req, res, next) => {
+  if (!expectedApiKey) {
+    return next();
+  }
+
+  const receivedApiKey = req.headers['x-api-key'];
+  if (receivedApiKey !== expectedApiKey) {
+    return res.status(401).json({ error: 'Invalid API key' });
+  }
+
+  next();
+});
 
 // Connect DB
 mongoose.connect(process.env.MONGO_URI)

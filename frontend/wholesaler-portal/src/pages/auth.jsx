@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { apiFetch } from '../config';
 import './auth.css';
 
 const initialForm = {
@@ -32,7 +33,7 @@ export default function Auth({ portal, apiBase, homePath }) {
       : { user_id: form.user_id, password: form.password };
 
     try {
-      const res = await fetch(`${apiBase}${endpoint}`, {
+      const res = await apiFetch(`${apiBase}${endpoint}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
