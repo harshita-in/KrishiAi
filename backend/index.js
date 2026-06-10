@@ -9,7 +9,11 @@ const expectedApiKey = process.env.BACKEND_API_KEY || '';
 
 app.use(express.json());
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:3001', 'https://krishi-ai-lyart.vercel.app'],
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:3001',
+    process.env.FRONTEND_URL
+  ],
   credentials: true,
 }));
 
