@@ -1,6 +1,8 @@
 import React, { useMemo, useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GROQ_CHATBOT_API } from '../config';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import './chat.css';
 
 const navItems = [
@@ -346,8 +348,12 @@ export default function Chat() {
                     </button>
                   )}
                 </div>
-                <p>{message.content}</p>
-              </div>
+                  <div className="markdown-content">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                      {message.content}
+                    </ReactMarkdown>
+                  </div>              
+                </div>
             ))}
             {loading && (
               <div className="chat-bubble chat-assistant">

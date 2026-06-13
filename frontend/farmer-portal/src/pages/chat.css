@@ -538,3 +538,58 @@
   }
 }
 
+.markdown-content {
+  line-height: 1.7;
+}
+
+.markdown-content p {
+  margin: 0.5rem 0;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  padding-left: 1.5rem;
+}
+
+.markdown-content code {
+  background: rgba(255,255,255,0.08);
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-family: monospace;
+}
+
+.markdown-content pre {
+  background: #111827;
+  padding: 1rem;
+  border-radius: 12px;
+  overflow-x: auto;
+}
+
+.markdown-content pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.markdown-content blockquote {
+  border-left: 4px solid #4ade80;
+  padding-left: 1rem;
+  opacity: 0.9;
+}
+
+.markdown-content table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.markdown-content th,
+.markdown-content td {
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 8px;
+}
