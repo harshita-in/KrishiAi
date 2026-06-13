@@ -3,8 +3,8 @@ const rawBackendUrl =
   'http://localhost:5000';
 
 export const BACKEND_URL = rawBackendUrl.replace(/\/$/, '');
-export const GROQ_CHATBOT_API =
-  process.env.REACT_APP_GROQ_CHATBOT_API ||
+export const OPENROUTER_API_KEY =
+  process.env.REACT_APP_OPENROUTER_API ||
   '';
 export const BACKEND_API_KEY =
   process.env.REACT_APP_BACKEND_API_KEY ||

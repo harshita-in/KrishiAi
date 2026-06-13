@@ -1,6 +1,6 @@
 import React, { useMemo, useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { GROQ_CHATBOT_API } from '../config';
+import { OPENROUTER_API_KEY } from '../config';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import './chat.css';
@@ -34,6 +34,28 @@ export default function Chat() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  // Image Upload State
+  const [selectedImage, setSelectedImage] = useState(null);
+  const fileInputRef = useRef(null);
+
+  const handleImageChange = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setSelectedImage(reader.result); // Base64 data URL
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const removeImage = () => {
+    setSelectedImage(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
+
   // Speech Recognition States
   const [isListening, setIsListening] = useState(false);
   const recognitionRef = useRef(null);
@@ -44,7 +66,8 @@ export default function Chat() {
   const [autoSpeak, setAutoSpeak] = useState(false);
   const [speakingIndex, setSpeakingIndex] = useState(null);
 
-  const canSend = useMemo(() => input.trim().length > 0 && !loading, [input, loading]);
+  const canSend = useMemo(() => (input.trim().length > 0 || selectedImage !== null) && !loading, [input, selectedImage, loading]);
+
 
   // Load and manage Speech Synthesis voices
   useEffect(() => {
@@ -168,18 +191,26 @@ export default function Chat() {
   const sendMessage = async (event) => {
     if (event) event.preventDefault();
 
-    const question = input.trim();
+    const question = input.trim() || (selectedImage ? "Please analyze this image." : "");
     if (!question || loading) return;
 
-    if (!GROQ_CHATBOT_API) {
-      setError('Missing Groq API key. Set REACT_APP_GROQ_CHATBOT_API in frontend/farmer-portal/.env and restart the app.');
+    if (!OPENROUTER_API_KEY) {
+      setError('Missing OpenRouter API key. Set REACT_APP_OPENROUTER_API in frontend/farmer-portal/.env and restart the app.');
       return;
     }
 
     const userMessage = { role: 'user', content: question };
+    if (selectedImage) {
+      userMessage.image = selectedImage;
+    }
+
     const nextMessages = [...messages, userMessage];
     setMessages(nextMessages);
     setInput('');
+    setSelectedImage(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
     setLoading(true);
     setError('');
 
@@ -190,18 +221,42 @@ export default function Chat() {
     }
 
     try {
-      const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      // Format messages into OpenRouter multimodal format
+      const formattedMessages = [
+        { role: 'system', content: systemPrompt.trim() },
+        ...nextMessages.map((msg) => {
+          if (msg.image) {
+            return {
+              role: msg.role,
+              content: [
+                { type: 'text', text: msg.content },
+                {
+                  type: 'image_url',
+                  image_url: {
+                    url: msg.image,
+                  },
+                },
+              ],
+            };
+          }
+          return {
+            role: msg.role,
+            content: msg.content,
+          };
+        }),
+      ];
+
+      const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${GROQ_CHATBOT_API}`,
+          Authorization: `Bearer ${OPENROUTER_API_KEY}`,
+          'HTTP-Referer': window.location.origin,
+          'X-Title': 'KrishiAI',
         },
         body: JSON.stringify({
-          model: 'llama-3.3-70b-versatile',
-          messages: [
-            { role: 'system', content: systemPrompt.trim() },
-            ...nextMessages,
-          ],
+          model: 'GPT-4o-mini',
+          messages: formattedMessages,
           temperature: 0.7,
         }),
       });
@@ -209,12 +264,12 @@ export default function Chat() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error?.message || data.error || 'Failed to get response from Groq');
+        throw new Error(data.error?.message || data.error || 'Failed to get response from OpenRouter');
       }
 
       const reply = data?.choices?.[0]?.message?.content?.trim();
       if (!reply) {
-        throw new Error('Groq returned an empty response.');
+        throw new Error('OpenRouter returned an empty response.');
       }
 
       const assistantMessageIndex = nextMessages.length;
@@ -348,6 +403,9 @@ export default function Chat() {
                     </button>
                   )}
                 </div>
+                  {message.image && (
+                    <img src={message.image} alt="Uploaded farm snippet" className="chat-bubble-img" />
+                  )}
                   <div className="markdown-content">
                     <ReactMarkdown remarkPlugins={[remarkGfm]}>
                       {message.content}
@@ -370,10 +428,37 @@ export default function Chat() {
           </div>
 
           <form className="chat-form" onSubmit={sendMessage}>
+            {selectedImage && (
+              <div className="image-preview-container">
+                <img src={selectedImage} alt="Selected crop" className="image-preview" />
+                <button type="button" className="image-preview-remove" onClick={removeImage}>×</button>
+              </div>
+            )}
             <div className="input-container">
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                ref={fileInputRef}
+                style={{ display: 'none' }}
+                id="chat-image-input"
+              />
+              <button
+                type="button"
+                className="chat-image-btn"
+                onClick={() => fileInputRef.current?.click()}
+                title="Upload image"
+              >
+                <svg className="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <polyline points="21 15 16 10 5 21" />
+                </svg>
+              </button>
               <textarea
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
+                className="has-image-btn"
                 placeholder="Ask about your crop, soil, disease symptoms, or farm planning..."
                 rows={2}
                 onKeyDown={(e) => {
