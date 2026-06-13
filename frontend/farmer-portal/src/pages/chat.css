@@ -597,29 +597,37 @@
 /* Image Upload & Preview Styles */
 .chat-image-btn {
   position: absolute;
-  left: 12px;
+  left: 14px;
   top: 50%;
   transform: translateY(-50%);
-  border: 0;
+  border: 1px solid rgba(16, 185, 129, 0.18);
   border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  background: transparent;
-  color: #64748b;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.8);
+  color: #047857;
   cursor: pointer;
   display: grid;
   place-items: center;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 5;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.08);
 }
 
 .chat-image-btn:hover {
-  background: rgba(148, 163, 184, 0.15);
-  color: #047857;
+  background: linear-gradient(135deg, #10b981, #047857);
+  color: #ffffff;
+  border-color: transparent;
+  transform: translateY(-50%) scale(1.1) rotate(12deg);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+}
+
+.chat-image-btn:active {
+  transform: translateY(-50%) scale(0.95);
 }
 
 .chat-form textarea.has-image-btn {
-  padding-left: 50px;
+  padding-left: 56px;
 }
 
 .image-preview-container {
