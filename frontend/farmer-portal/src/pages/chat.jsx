@@ -1,6 +1,6 @@
 import React, { useMemo, useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { OPENROUTER_API_KEY } from '../config';
+import { apiFetch, OPENROUTER_API_KEY } from '../config';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import './chat.css';
@@ -12,12 +12,26 @@ const navItems = [
   { label: 'Profile', to: '/profile' },
 ];
 
-const systemPrompt = `
+const baseSystemPrompt = `
 You are KrishiAI, a helpful farming assistant for farmers in India.
 Keep answers practical, concise, and friendly.
 Focus on crops, soil, irrigation, pest control, weather impact, fertilizer usage, and farm planning.
 If the user asks for medical, legal, or emergency advice, recommend a qualified professional.
 `;
+
+const buildSystemPrompt = (location) => {
+  if (!location) {
+    return `${baseSystemPrompt}
+The farmer's current location is not available in the database. Do not invent a location. If a location-specific answer is needed, ask the farmer to allow location access from the dashboard first.`;
+  }
+
+  return `${baseSystemPrompt}
+The farmer's current location is stored in the database and is provided below. Use it for location-dependent questions such as crop selection, seasonal planning, weather impact, and regional farming guidance. Do not ask the farmer for their location again unless they want to use a different location. Do not expose or repeat raw coordinates unless it helps answer the question. If exact local soil, weather, or market data is unavailable, say so clearly instead of guessing.
+
+Database location context:
+- Latitude: ${location.latitude}
+- Longitude: ${location.longitude}`;
+};
 
 export default function Chat() {
   const navigate = useNavigate();
@@ -33,6 +47,7 @@ export default function Chat() {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [farmerLocation, setFarmerLocation] = useState(null);
 
   // Image Upload State
   const [selectedImage, setSelectedImage] = useState(null);
@@ -67,6 +82,29 @@ export default function Chat() {
   const [speakingIndex, setSpeakingIndex] = useState(null);
 
   const canSend = useMemo(() => (input.trim().length > 0 || selectedImage !== null) && !loading, [input, selectedImage, loading]);
+
+  useEffect(() => {
+    const token = localStorage.getItem('farmer_token') || sessionStorage.getItem('farmer_token');
+    if (!token) return undefined;
+
+    let cancelled = false;
+    apiFetch('/api/farmer/profile', {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then(async (response) => {
+        if (!response.ok) throw new Error('Could not load farmer location');
+        const data = await response.json();
+        const location = data.user?.location;
+        if (!cancelled && Number.isFinite(location?.latitude) && Number.isFinite(location?.longitude)) {
+          setFarmerLocation({ latitude: location.latitude, longitude: location.longitude });
+        }
+      })
+      .catch(() => {
+        // The route guard handles authentication. Chat can still work without location context.
+      });
+
+    return () => { cancelled = true; };
+  }, []);
 
 
   // Load and manage Speech Synthesis voices
@@ -223,7 +261,7 @@ export default function Chat() {
     try {
       // Format messages into OpenRouter multimodal format
       const formattedMessages = [
-        { role: 'system', content: systemPrompt.trim() },
+        { role: 'system', content: buildSystemPrompt(farmerLocation).trim() },
         ...nextMessages.map((msg) => {
           if (msg.image) {
             return {

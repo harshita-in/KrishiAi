@@ -124,7 +124,8 @@ exports.getFarmerProfile = async (req, res) => {
       user: {
         name: farmer.name,
         user_id: farmer.user_id,
-        email: farmer.email
+        email: farmer.email,
+        location: farmer.location || null
       }
     });
   } catch (error) {
