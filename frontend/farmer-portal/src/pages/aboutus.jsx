@@ -14,7 +14,7 @@ const team = [
   {
     name: 'Ajeem',
     role: 'Frontend Developer',
-    image: '/Ajeem.jpeg',
+    image: '/Ajeem.jpg',
     email: 'ajeemgujjar276@gmail.com',
     roll: '2301430120016',
     phone: '7505589800',
