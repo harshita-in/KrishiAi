@@ -114,7 +114,7 @@ export default function AboutUs() {
                     <div><dt>Email</dt><dd>{member.email}</dd></div>
                     <div><dt>University roll no.</dt><dd>{member.roll}</dd></div>
                     <div><dt>Contact no.</dt><dd>{member.phone}</dd></div>
-                    {member.note && <div><dt>Additional ID</dt><dd>{member.note}</dd></div>}
+                    {member.note && <div><dt>Github ID</dt><dd>{member.note}</dd></div>}
                   </dl>
                 </div>
               </article>
