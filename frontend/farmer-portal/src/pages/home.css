@@ -176,6 +176,87 @@
   font-weight: 600;
 }
 
+/* Live Farm Location Card */
+.location-hero-card {
+  margin-top: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  border-radius: 20px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  box-shadow: 0 8px 24px rgba(4, 120, 87, 0.08);
+}
+
+.location-left-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.location-pin-circle {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(4, 120, 87, 0.12));
+  color: #047857;
+  display: grid;
+  place-items: center;
+  font-size: 1.4rem;
+  border: 1px solid rgba(4, 120, 87, 0.2);
+  flex-shrink: 0;
+}
+
+.location-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.location-meta-title {
+  font-size: 0.74rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #047857;
+}
+
+.location-meta-address {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #064e3b;
+  line-height: 1.25;
+  margin: 2px 0;
+}
+
+.location-meta-coords {
+  font-size: 0.82rem;
+  color: #64748b;
+  font-family: monospace;
+}
+
+.location-action-btn {
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: #f0fdf4;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #047857;
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 150ms ease;
+}
+
+.location-action-btn:hover {
+  background: #047857;
+  color: #ffffff;
+}
+
 .hero-stat-card {
   padding: 28px;
   display: grid;

@@ -56,12 +56,97 @@ export default function Home({ portalLabel, storageKeyPrefix }) {
   const navigate = useNavigate();
   const rawUser = localStorage.getItem(`${storageKeyPrefix}_user`) || sessionStorage.getItem(`${storageKeyPrefix}_user`);
   const user = rawUser ? JSON.parse(rawUser) : null;
-  const [locationStatus, setLocationStatus] = useState('');
   const welcomeName = useMemo(() => user?.name || 'Farmer', [user]);
 
   // Weather and Mandi State
   const [weatherData, setWeatherData] = useState(null);
   const [mandiRates, setMandiRates] = useState([]);
+
+  // Live Farm Location State
+  const [farmLocation, setFarmLocation] = useState({
+    latitude: null,
+    longitude: null,
+    placeName: '',
+    status: 'detecting', // 'detecting' | 'connected' | 'denied' | 'unsupported'
+  });
+
+  const requestLiveLocation = () => {
+    if (!navigator.geolocation) {
+      setFarmLocation(prev => ({ ...prev, status: 'unsupported' }));
+      return;
+    }
+
+    setFarmLocation(prev => ({ ...prev, status: 'detecting' }));
+
+    navigator.geolocation.getCurrentPosition(
+      async (pos) => {
+        const lat = pos.coords.latitude;
+        const lng = pos.coords.longitude;
+
+        let detectedPlace = '';
+        try {
+          const geoRes = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`,
+            { headers: { 'Accept-Language': 'en' } }
+          );
+          if (geoRes.ok) {
+            const geoData = await geoRes.json();
+            const addr = geoData.address || {};
+            const city = addr.city || addr.town || addr.village || addr.county || addr.state_district || '';
+            const state = addr.state || '';
+            detectedPlace = [city, state].filter(Boolean).join(', ');
+          }
+        } catch (err) {
+          // fallback
+        }
+
+        if (!detectedPlace) {
+          detectedPlace = lat > 24 ? 'Northern Farm Zone, India' : 'Central Agro Zone, India';
+        }
+
+        setFarmLocation({
+          latitude: lat,
+          longitude: lng,
+          placeName: detectedPlace,
+          status: 'connected'
+        });
+
+        // Update weather advisory for this exact location
+        apiFetch(`/api/agro/weather-advisory?lat=${lat}&lng=${lng}`)
+          .then(res => res.json())
+          .then(data => {
+            if (data.advisory) setWeatherData(data.advisory);
+          })
+          .catch(() => {});
+
+        // Save location to backend database
+        const token =
+          localStorage.getItem(`${storageKeyPrefix}_token`) ||
+          sessionStorage.getItem(`${storageKeyPrefix}_token`);
+
+        if (token) {
+          apiFetch(`/api/${storageKeyPrefix}/location`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({ latitude: lat, longitude: lng })
+          }).catch(() => {});
+        }
+      },
+      (err) => {
+        console.warn('Geolocation access denied or timed out:', err);
+        setFarmLocation(prev => {
+          if (prev.latitude && prev.longitude) {
+            return { ...prev, status: 'connected' };
+          }
+          return { ...prev, status: 'denied' };
+        });
+      },
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
+    );
+  };
 
   useEffect(() => {
     // 1. Fetch Mandi Rates
@@ -72,7 +157,7 @@ export default function Home({ portalLabel, storageKeyPrefix }) {
       })
       .catch(err => console.error('Mandi fetch error:', err));
 
-    // 2. Fetch Weather Advisory
+    // 2. Fetch initial Weather Advisory
     apiFetch('/api/agro/weather-advisory')
       .then(res => res.json())
       .then(data => {
@@ -80,44 +165,34 @@ export default function Home({ portalLabel, storageKeyPrefix }) {
       })
       .catch(err => console.error('Weather fetch error:', err));
 
-    // 3. Geolocation registration
-    if (storageKeyPrefix !== 'farmer') return;
-
+    // 3. Load saved location from DB profile
     const token =
       localStorage.getItem(`${storageKeyPrefix}_token`) ||
       sessionStorage.getItem(`${storageKeyPrefix}_token`);
 
-    if (!token) return;
-    if (!navigator.geolocation) return;
-
-    let cancelled = false;
-    navigator.geolocation.getCurrentPosition(
-      async (position) => {
-        try {
-          if (cancelled) return;
-          const response = await apiFetch(`/api/${storageKeyPrefix}/location`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify({
-              latitude: position.coords.latitude,
-              longitude: position.coords.longitude,
-            }),
-          });
-          if (response.ok && !cancelled) {
-            setLocationStatus('📍 Live Farm Coordinates Connected');
+    if (token) {
+      apiFetch(`/api/${storageKeyPrefix}/profile`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+        .then(res => res.json())
+        .then(data => {
+          const loc = data.user?.location;
+          if (loc && Number.isFinite(loc.latitude) && Number.isFinite(loc.longitude)) {
+            setFarmLocation(prev => ({
+              ...prev,
+              latitude: loc.latitude,
+              longitude: loc.longitude,
+              placeName: prev.placeName || 'Saved Farm Coordinates',
+              status: 'connected'
+            }));
           }
-        } catch (e) {
-          // non-critical
-        }
-      },
-      () => {},
-      { enableHighAccuracy: true, timeout: 8000, maximumAge: 60000 }
-    );
+        })
+        .catch(() => {});
+    }
 
-    return () => { cancelled = true; };
+    // 4. Request live GPS coordinates
+    requestLiveLocation();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [storageKeyPrefix]);
 
   const logout = () => {
@@ -201,11 +276,50 @@ export default function Home({ portalLabel, storageKeyPrefix }) {
               track live mandi rates, and trade directly with regional wholesalers without middlemen.
             </p>
 
-            {locationStatus && (
-              <div className="status-chip" style={{ background: '#dcfce7', color: '#047857' }}>
-                {locationStatus}
+            {/* Live Farm Location Display Card */}
+            <div className="location-hero-card">
+              <div className="location-left-group">
+                <div className="location-pin-circle">📍</div>
+                <div className="location-meta">
+                  <span className="location-meta-title">Live Farm Location (GPS)</span>
+                  <div className="location-meta-address">
+                    {farmLocation.status === 'connected' && (
+                      farmLocation.placeName || `${farmLocation.latitude?.toFixed(4)}° N, ${farmLocation.longitude?.toFixed(4)}° E`
+                    )}
+                    {farmLocation.status === 'detecting' && '📡 Detecting farm GPS coordinates...'}
+                    {farmLocation.status === 'denied' && '⚠️ Location Permission Needed for Localized Weather'}
+                    {farmLocation.status === 'unsupported' && 'Geolocation not supported by this browser'}
+                  </div>
+                  {farmLocation.status === 'connected' && farmLocation.latitude && (
+                    <span className="location-meta-coords">
+                      Lat: {farmLocation.latitude.toFixed(4)}° • Lng: {farmLocation.longitude.toFixed(4)}° (GPS Locked)
+                    </span>
+                  )}
+                </div>
               </div>
-            )}
+
+              <div>
+                {farmLocation.status === 'connected' ? (
+                  <button
+                    type="button"
+                    className="location-action-btn"
+                    onClick={requestLiveLocation}
+                    title="Refresh current GPS coordinates"
+                  >
+                    🔄 Update GPS
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    className="location-action-btn"
+                    style={{ background: '#047857', color: '#ffffff' }}
+                    onClick={requestLiveLocation}
+                  >
+                    📍 Enable Location
+                  </button>
+                )}
+              </div>
+            </div>
           </div>
 
           {/* Live Weather & Farm Advisory Card */}
