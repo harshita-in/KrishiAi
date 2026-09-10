@@ -17,7 +17,6 @@ export default function Home({ portalLabel, storageKeyPrefix }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCrop, setSelectedCrop] = useState('all');
   const [selectedDistrict, setSelectedDistrict] = useState('');
-  const [sortBy, setSortBy] = useState('newest');
 
   // Bids / Deals State
   const [myDeals, setMyDeals] = useState([]);
@@ -37,12 +36,14 @@ export default function Home({ portalLabel, storageKeyPrefix }) {
   useEffect(() => {
     fetchListings();
     fetchMandiRates();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (activeTab === 'deals') {
       fetchMyDeals();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTab]);
 
   const fetchListings = async () => {

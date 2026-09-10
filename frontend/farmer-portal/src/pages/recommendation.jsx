@@ -31,6 +31,7 @@ export default function Recommendation() {
   // Initial fetch on mount
   useEffect(() => {
     fetchRecommendations();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchRecommendations = async (customParams = null) => {

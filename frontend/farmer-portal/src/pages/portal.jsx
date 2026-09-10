@@ -40,6 +40,7 @@ export default function Portal() {
   useEffect(() => {
     if (activeTab === 'myListings') fetchMyListings();
     if (activeTab === 'offers') fetchOffers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTab]);
 
   const fetchMyListings = async () => {
