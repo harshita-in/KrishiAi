@@ -1,0 +1,310 @@
+/* =========================================================================
+   KRISHIAI - KISAN SERVICES & FINANCIAL SUITE (GREEN & WHITE LUXURY DESIGN)
+   ========================================================================= */
+
+.services-shell {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(167, 243, 208, 0.32), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(187, 247, 208, 0.22), transparent 28%),
+    linear-gradient(180deg, #f8fafc 0%, #eef8f2 100%);
+  color: #0f172a;
+  font-family: inherit;
+  padding-bottom: 60px;
+}
+
+.services-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 24px 40px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Header */
+.services-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.services-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.12);
+  color: #047857;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+  border: 1px solid rgba(4, 120, 87, 0.18);
+}
+
+.services-header h1 {
+  font-size: clamp(2rem, 3.8vw, 2.8rem);
+  font-weight: 800;
+  color: #064e3b;
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+}
+
+.services-header p {
+  color: #475569;
+  font-size: 1.05rem;
+  max-width: 680px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Tab Navigation */
+.services-tabs-nav {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.services-tab-btn {
+  padding: 12px 24px;
+  border-radius: 999px;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  color: #334155;
+  font-size: 0.96rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 180ms ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.services-tab-btn:hover {
+  transform: translateY(-2px);
+  background: #ffffff;
+  color: #047857;
+}
+
+.services-tab-btn.active {
+  background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+  color: #ffffff;
+  border-color: #047857;
+  box-shadow: 0 10px 22px rgba(4, 120, 87, 0.28);
+}
+
+/* Financial Ledger (Bahi Khata) */
+.bahi-khata-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 28px;
+}
+
+@media (max-width: 900px) {
+  .bahi-khata-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ledger-card {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  padding: 26px;
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.06);
+}
+
+.financial-summary-banner {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.fin-stat-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 14px;
+  border-radius: 16px;
+}
+
+.fin-stat-label {
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #64748b;
+  font-weight: 700;
+  display: block;
+}
+
+.fin-stat-val {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.profit-green {
+  color: #047857;
+}
+
+.expense-red {
+  color: #b91c1c;
+}
+
+.expense-row-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  margin-bottom: 8px;
+  font-size: 0.92rem;
+}
+
+/* Schemes Directory */
+.schemes-container {
+  display: grid;
+  gap: 20px;
+}
+
+.scheme-card {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  padding: 26px;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.05);
+  transition: all 180ms ease;
+}
+
+.scheme-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+.scheme-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.scheme-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #064e3b;
+  margin-bottom: 2px;
+}
+
+.scheme-ministry {
+  font-size: 0.82rem;
+  color: #64748b;
+}
+
+.scheme-badge {
+  background: #dcfce7;
+  color: #047857;
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+
+.scheme-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 14px;
+  font-size: 0.9rem;
+  background: #f8fafc;
+  padding: 16px;
+  border-radius: 16px;
+}
+
+@media (max-width: 768px) {
+  .scheme-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+.scheme-apply-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  padding: 10px 20px;
+  background: #047857;
+  color: #ffffff;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.88rem;
+  transition: all 150ms ease;
+}
+
+.scheme-apply-link:hover {
+  background: #065f46;
+  box-shadow: 0 4px 14px rgba(4, 120, 87, 0.3);
+}
+
+/* Fertilizer Calculator */
+.calc-card {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  padding: 32px;
+  max-width: 840px;
+  margin: 0 auto;
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.06);
+}
+
+.calc-results-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+}
+
+@media (max-width: 680px) {
+  .calc-results-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.calc-bag-box {
+  background: #f0fdf4;
+  border: 2px solid rgba(16, 185, 129, 0.3);
+  padding: 20px;
+  border-radius: 18px;
+  text-align: center;
+}
+
+.calc-bag-num {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #047857;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.calc-bag-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #064e3b;
+  margin-bottom: 4px;
+}
+
+.calc-bag-sub {
+  font-size: 0.78rem;
+  color: #64748b;
+}

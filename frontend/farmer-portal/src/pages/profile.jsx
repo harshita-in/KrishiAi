@@ -5,7 +5,11 @@ import './home.css';
 
 const navItems = [
   { label: 'Home', to: '/home', exact: true },
+  { label: 'Disease Detection', to: '/detection' },
+  { label: 'Crop Recommendation', to: '/recommendation' },
+  { label: 'Marketplace', to: '/portal' },
   { label: 'Services', to: '/services' },
+  { label: 'AI Chat', to: '/chat' },
   { label: 'About us', to: '/about-us' },
   { label: 'Profile', to: '/profile' },
 ];

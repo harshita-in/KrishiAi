@@ -1,0 +1,422 @@
+/* =========================================================================
+   KRISHIAI - FARMER PRODUCE MARKETPLACE HUB (GREEN & WHITE LUXURY DESIGN)
+   ========================================================================= */
+
+.portal-shell {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(167, 243, 208, 0.32), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(187, 247, 208, 0.22), transparent 28%),
+    linear-gradient(180deg, #f8fafc 0%, #eef8f2 100%);
+  color: #0f172a;
+  font-family: inherit;
+  padding-bottom: 60px;
+}
+
+.portal-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 24px 40px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Header */
+.portal-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.portal-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.12);
+  color: #047857;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+  border: 1px solid rgba(4, 120, 87, 0.18);
+}
+
+.portal-header h1 {
+  font-size: clamp(2rem, 3.8vw, 2.8rem);
+  font-weight: 800;
+  color: #064e3b;
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+}
+
+.portal-header p {
+  color: #475569;
+  font-size: 1.05rem;
+  max-width: 680px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Tabs Navigation */
+.portal-tabs-nav {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.portal-tab-btn {
+  padding: 12px 24px;
+  border-radius: 999px;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  color: #334155;
+  font-size: 0.96rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 180ms ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.portal-tab-btn:hover {
+  transform: translateY(-2px);
+  background: #ffffff;
+  color: #047857;
+}
+
+.portal-tab-btn.active {
+  background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+  color: #ffffff;
+  border-color: #047857;
+  box-shadow: 0 10px 22px rgba(4, 120, 87, 0.28);
+}
+
+.tab-badge {
+  background: #ffffff;
+  color: #047857;
+  font-size: 0.76rem;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 999px;
+}
+
+.portal-tab-btn.active .tab-badge {
+  background: #ffffff;
+  color: #047857;
+}
+
+/* Sell Produce Form Card */
+.sell-form-card {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  padding: 32px;
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.06);
+}
+
+.sell-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+@media (max-width: 680px) {
+  .sell-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sell-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sell-input-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.sell-input-group label {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #065f46;
+}
+
+.sell-input,
+.sell-select,
+.sell-textarea {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: #ffffff;
+  font-size: 0.95rem;
+  color: #0f172a;
+  outline: none;
+  font-family: inherit;
+}
+
+.sell-input:focus,
+.sell-select:focus,
+.sell-textarea:focus {
+  border-color: #047857;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+}
+
+.submit-listing-btn {
+  grid-column: 1 / -1;
+  padding: 15px 24px;
+  background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(4, 120, 87, 0.28);
+  transition: all 180ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.submit-listing-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(4, 120, 87, 0.35);
+}
+
+/* Listings Grid */
+.listings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 22px;
+}
+
+.listing-card {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 22px;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: all 180ms ease;
+}
+
+.listing-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 36px rgba(16, 185, 129, 0.12);
+}
+
+.listing-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.listing-crop-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #064e3b;
+  margin-bottom: 2px;
+}
+
+.listing-variety {
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.listing-status-tag {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.status-active {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.status-under_negotiation {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.status-sold {
+  background: #e2e8f0;
+  color: #475569;
+}
+
+.listing-info-grid {
+  background: #f8fafc;
+  padding: 12px;
+  border-radius: 14px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.listing-info-item span {
+  display: block;
+  font-size: 0.76rem;
+  color: #64748b;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.listing-info-item strong {
+  font-size: 1rem;
+  color: #0f172a;
+}
+
+.listing-footer {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid rgba(226, 232, 240, 0.8);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pending-bids-badge {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #047857;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.delete-listing-btn {
+  padding: 6px 12px;
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-radius: 999px;
+  color: #b91c1c;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Offers Grid */
+.offers-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.offer-card {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.05);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .offer-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+.offer-wholesaler-name {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #064e3b;
+  margin-bottom: 4px;
+}
+
+.offer-crop-subtitle {
+  font-size: 0.9rem;
+  color: #475569;
+  margin-bottom: 12px;
+}
+
+.offer-deal-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.offer-stat-box {
+  background: #f0fdf4;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  padding: 8px 14px;
+  border-radius: 12px;
+}
+
+.offer-stat-label {
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  color: #065f46;
+  font-weight: 700;
+  display: block;
+}
+
+.offer-stat-value {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #047857;
+}
+
+.offer-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.accept-bid-btn {
+  padding: 10px 20px;
+  background: #047857;
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.accept-bid-btn:hover {
+  background: #065f46;
+  box-shadow: 0 4px 14px rgba(4, 120, 87, 0.3);
+}
+
+.reject-bid-btn {
+  padding: 8px 16px;
+  background: #f1f5f9;
+  color: #64748b;
+  border: 1px solid #cbd5e1;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.86rem;
+  cursor: pointer;
+}
+
+.reject-bid-btn:hover {
+  background: #fee2e2;
+  color: #b91c1c;
+  border-color: #fca5a5;
+}

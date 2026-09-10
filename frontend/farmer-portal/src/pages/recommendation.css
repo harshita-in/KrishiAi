@@ -1,0 +1,336 @@
+/* =========================================================================
+   KRISHIAI - SMART CROP RECOMMENDATION SYSTEM (GREEN & WHITE LUXURY DESIGN)
+   ========================================================================= */
+
+.rec-shell {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(167, 243, 208, 0.32), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(187, 247, 208, 0.22), transparent 28%),
+    linear-gradient(180deg, #f8fafc 0%, #eef8f2 100%);
+  color: #0f172a;
+  font-family: inherit;
+  padding-bottom: 60px;
+}
+
+.rec-main {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 10px 24px 40px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Header */
+.rec-header {
+  text-align: center;
+  margin-bottom: 34px;
+}
+
+.rec-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.12);
+  color: #047857;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+  border: 1px solid rgba(4, 120, 87, 0.18);
+}
+
+.rec-header h1 {
+  font-size: clamp(2rem, 3.8vw, 2.8rem);
+  font-weight: 800;
+  color: #064e3b;
+  letter-spacing: -0.03em;
+  margin-bottom: 10px;
+}
+
+.rec-header p {
+  color: #475569;
+  font-size: 1.05rem;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Dual Column Layout */
+.rec-grid {
+  display: grid;
+  grid-template-columns: 440px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .rec-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Form Panel */
+.rec-form-card {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  padding: 26px;
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.06);
+}
+
+.rec-form-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #064e3b;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.autofill-btn {
+  font-size: 0.8rem;
+  padding: 6px 12px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(4, 120, 87, 0.2);
+  border-radius: 999px;
+  color: #047857;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.autofill-btn:hover {
+  background: #047857;
+  color: #ffffff;
+}
+
+.slider-group {
+  margin-bottom: 18px;
+}
+
+.slider-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 6px;
+}
+
+.slider-val {
+  color: #047857;
+  font-weight: 800;
+}
+
+.rec-range {
+  width: 100%;
+  accent-color: #047857;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  outline: none;
+  cursor: pointer;
+}
+
+.selector-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.selector-item label {
+  display: block;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #065f46;
+  margin-bottom: 6px;
+}
+
+.selector-select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: #ffffff;
+  font-size: 0.92rem;
+  color: #0f172a;
+  outline: none;
+}
+
+.selector-select:focus {
+  border-color: #047857;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+}
+
+.rec-submit-btn {
+  width: 100%;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(4, 120, 87, 0.28);
+  transition: all 180ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.rec-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(4, 120, 87, 0.35);
+}
+
+/* Results Section */
+.rec-results-area {
+  display: grid;
+  gap: 20px;
+}
+
+.crop-card {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.05);
+  transition: all 200ms ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.crop-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 40px rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+.crop-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.crop-title-box h3 {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #064e3b;
+  margin-bottom: 4px;
+}
+
+.crop-season-tag {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.14);
+  color: #047857;
+}
+
+.match-badge {
+  text-align: right;
+  background: linear-gradient(135deg, #059669, #047857);
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(4, 120, 87, 0.25);
+}
+
+.match-score {
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.match-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.9;
+}
+
+/* Key Metrics Grid */
+.crop-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+  background: #f8fafc;
+  padding: 14px;
+  border-radius: 16px;
+}
+
+.metric-box {
+  display: grid;
+  gap: 2px;
+}
+
+.metric-label {
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #64748b;
+  font-weight: 700;
+}
+
+.metric-value {
+  font-size: 0.96rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.metric-highlight {
+  color: #047857;
+}
+
+/* Crop Schedule & Fertilizers */
+.crop-details {
+  border-top: 1px solid rgba(226, 232, 240, 0.8);
+  padding-top: 14px;
+  display: grid;
+  gap: 8px;
+  font-size: 0.88rem;
+  color: #334155;
+  line-height: 1.5;
+}
+
+.crop-details strong {
+  color: #065f46;
+}
+
+.list-in-market-btn {
+  margin-top: 14px;
+  padding: 9px 16px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(4, 120, 87, 0.2);
+  border-radius: 999px;
+  color: #047857;
+  font-weight: 700;
+  font-size: 0.86rem;
+  cursor: pointer;
+  transition: all 150ms ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.list-in-market-btn:hover {
+  background: #047857;
+  color: #ffffff;
+}
