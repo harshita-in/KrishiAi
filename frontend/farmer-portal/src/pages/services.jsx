@@ -7,6 +7,8 @@ const navItems = [
   { label: 'Disease Detection', to: '/detection' },
   { label: 'Crop Recommendation', to: '/recommendation' },
   { label: 'Marketplace', to: '/portal' },
+  { label: 'Satellite NDVI', to: '/satellite' },
+  { label: 'Kisan Chopal', to: '/chopal' },
   { label: 'Services', to: '/services' },
   { label: 'AI Chat', to: '/chat' },
   { label: 'Profile', to: '/profile' },

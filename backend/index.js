@@ -51,6 +51,9 @@ app.use('/api/marketplace', require('./routes/marketplaceRoutes'));
 // Agro-Intelligence (Disease AI, Crop Recommendation, Mandi Rates, Weather)
 app.use('/api/agro', require('./routes/agroRoutes'));
 
+// Kisan Chopal (Community Discussion Forum)
+app.use('/api/community', require('./routes/communityRoutes'));
+
 app.get('/', (req, res) => {
   res.send('Backend is running');
 });

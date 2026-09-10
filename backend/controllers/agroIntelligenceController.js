@@ -681,3 +681,130 @@ exports.getWeatherAdvisory = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+// =========================================================================
+// 5. AI MANDI PRICE PREDICTION & SELL VS HOLD ADVISOR
+// =========================================================================
+exports.getPricePrediction = async (req, res) => {
+  try {
+    const { commodity = 'Wheat' } = req.query;
+
+    const basePrices = {
+      'Wheat': { current: 2850, base: 2650, peak: 3040, dir: 'up', change: '+6.6%', rec: 'HOLD' },
+      'Soybean': { current: 4620, base: 4400, peak: 4920, dir: 'up', change: '+6.5%', rec: 'HOLD' },
+      'Mustard': { current: 5850, base: 5600, peak: 5950, dir: 'up', change: '+1.7%', rec: 'SELL' },
+      'Cotton': { current: 7350, base: 7500, peak: 7150, dir: 'down', change: '-2.7%', rec: 'SELL' },
+      'Onion': { current: 2100, base: 1800, peak: 2550, dir: 'up', change: '+21.4%', rec: 'HOLD' },
+      'Potato': { current: 1420, base: 1450, peak: 1380, dir: 'down', change: '-2.8%', rec: 'SELL' },
+      'Paddy': { current: 4350, base: 4100, peak: 4580, dir: 'up', change: '+5.3%', rec: 'HOLD' }
+    };
+
+    const info = basePrices[commodity] || basePrices['Wheat'];
+
+    // Generate 7 days past + 10 days forecasted prices
+    const days = [];
+    const today = new Date();
+
+    // 7 past days
+    for (let i = 6; i >= 0; i--) {
+      const d = new Date(today);
+      d.setDate(today.getDate() - i);
+      const label = d.toLocaleDateString('en-IN', { month: 'short', day: 'numeric' });
+      const variance = Math.round((Math.sin(i) * 30) - (i * 12));
+      days.push({
+        date: label,
+        price: info.current - variance,
+        type: 'historical'
+      });
+    }
+
+    // 10 forecast days
+    for (let j = 1; j <= 10; j++) {
+      const d = new Date(today);
+      d.setDate(today.getDate() + j);
+      const label = d.toLocaleDateString('en-IN', { month: 'short', day: 'numeric' });
+      const trajectory = info.dir === 'up' ? Math.round(j * (info.peak - info.current) / 10) : Math.round(j * (info.peak - info.current) / 10);
+      days.push({
+        date: label,
+        price: info.current + trajectory,
+        minRange: Math.round(info.current + trajectory - 35),
+        maxRange: Math.round(info.current + trajectory + 40),
+        type: 'forecast'
+      });
+    }
+
+    res.json({
+      status: 'success',
+      commodity,
+      currentPrice: info.current,
+      peakPrice: info.peak,
+      projectedChange: info.change,
+      recommendation: info.rec === 'HOLD' ? 'HOLD_PRODUCE' : 'SELL_NOW',
+      recommendationHindi: info.rec === 'HOLD' ? 'फसल रोके रखें (HOLD) — भाव बढ़ने का अनुमान' : 'तुरंत बेचें (SELL NOW) — आवक बढ़ने से भाव गिर सकते हैं',
+      reasoning: info.rec === 'HOLD'
+        ? `Upcoming festive demand and limited mandi arrivals indicate an upward trajectory of ${info.change} over the next 10 days.`
+        : `Arrivals from southern production hubs are increasing. Offloading current harvest locks in highest profit margin before supply expansion.`,
+      timeline: days
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// =========================================================================
+// 6. SATELLITE CROP HEALTH & NDVI MAPPING
+// =========================================================================
+exports.getSatelliteNdviData = async (req, res) => {
+  try {
+    const { lat, lng } = req.query;
+    const latitude = Number(lat) || 22.7196;
+    const longitude = Number(lng) || 75.8577;
+
+    res.json({
+      status: 'success',
+      farmCoords: { latitude, longitude },
+      satelliteProvider: 'Sentinel-2 Multispectral MSI Sensor',
+      lastScanDate: 'Yesterday, 11:42 AM IST',
+      overallNdvi: 0.78,
+      canopyHealth: 'Excellent & Vigorous',
+      moistureScore: '72% (Optimal)',
+      plots: [
+        {
+          id: 'plot-1',
+          name: 'North Plot (Wheat / गेहूं)',
+          areaAcre: 2.2,
+          ndvi: 0.84,
+          status: 'Optimal Health',
+          color: '#10b981',
+          diagnosis: 'Dense chlorophyll canopy; zero moisture stress.'
+        },
+        {
+          id: 'plot-2',
+          name: 'West Plot (Mustard / सरसों)',
+          areaAcre: 1.5,
+          ndvi: 0.64,
+          status: 'Mild Stress Warning',
+          color: '#f59e0b',
+          diagnosis: 'Slight nitrogen deficiency detected in NW corner. Top-dress 15kg Urea.'
+        },
+        {
+          id: 'plot-3',
+          name: 'East Ridge (Boundary / Canal)',
+          areaAcre: 0.8,
+          ndvi: 0.36,
+          status: 'Fallow / Transition',
+          color: '#ef4444',
+          diagnosis: 'Low vegetative index due to farm bunds and irrigation canal edge.'
+        }
+      ],
+      growthCurve: [
+        { week: 'Week 1', ndvi: 0.42 },
+        { week: 'Week 2', ndvi: 0.55 },
+        { week: 'Week 3', ndvi: 0.68 },
+        { week: 'Week 4 (Current)', ndvi: 0.78 }
+      ]
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};

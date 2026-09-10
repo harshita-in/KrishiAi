@@ -1,0 +1,354 @@
+/* =========================================================================
+   KRISHIAI - KISAN CHOPAL COMMUNITY FORUM (GREEN & WHITE LUXURY PALETTE)
+   ========================================================================= */
+
+.chopal-shell {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(167, 243, 208, 0.3), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(187, 247, 208, 0.22), transparent 26%),
+    linear-gradient(180deg, #f8fafc 0%, #edf7f1 100%);
+  color: #0f172a;
+  padding-bottom: 60px;
+}
+
+.chopal-main {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 10px 20px 50px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Header */
+.chopal-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.chopal-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.12);
+  color: #047857;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+  border: 1px solid rgba(4, 120, 87, 0.18);
+}
+
+.chopal-header h1 {
+  font-size: clamp(2rem, 3.8vw, 2.7rem);
+  font-weight: 800;
+  color: #064e3b;
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+}
+
+.chopal-header p {
+  color: #475569;
+  font-size: 1.05rem;
+  max-width: 680px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Controls Bar */
+.chopal-controls-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 16px 20px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.chopal-search-box {
+  flex: 1;
+  min-width: 240px;
+  display: flex;
+  align-items: center;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 999px;
+  padding: 8px 16px;
+  gap: 8px;
+}
+
+.chopal-search-box input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  outline: none;
+  font-size: 0.92rem;
+  color: #0f172a;
+}
+
+.chopal-ask-btn {
+  background: linear-gradient(135deg, #047857, #065f46);
+  color: #ffffff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(4, 120, 87, 0.28);
+  transition: all 180ms ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chopal-ask-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(4, 120, 87, 0.35);
+}
+
+/* Category Filter Tabs */
+.chopal-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.category-tab {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  background: rgba(255, 255, 255, 0.8);
+  color: #475569;
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.category-tab:hover {
+  background: #ffffff;
+  color: #047857;
+  border-color: rgba(4, 120, 87, 0.3);
+}
+
+.category-tab.active {
+  background: #047857;
+  color: #ffffff;
+  border-color: #047857;
+  box-shadow: 0 4px 12px rgba(4, 120, 87, 0.25);
+}
+
+/* Thread Cards */
+.thread-card {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 22px 24px;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
+  margin-bottom: 18px;
+  transition: all 180ms ease;
+}
+
+.thread-card:hover {
+  box-shadow: 0 14px 34px rgba(16, 185, 129, 0.09);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.thread-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.author-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.author-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #10b981, #047857);
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 0.92rem;
+}
+
+.author-role-badge {
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.role-farmer {
+  background: #ecfdf5;
+  color: #047857;
+}
+
+.role-expert {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid rgba(29, 78, 216, 0.2);
+}
+
+.thread-title {
+  font-size: 1.18rem;
+  font-weight: 800;
+  color: #064e3b;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.thread-body {
+  font-size: 0.94rem;
+  color: #334155;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+/* Actions Row */
+.thread-actions-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 14px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.upvote-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  background: #ffffff;
+  color: #047857;
+  font-weight: 700;
+  font-size: 0.86rem;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.upvote-btn:hover {
+  background: #ecfdf5;
+  transform: translateY(-1px);
+}
+
+.reply-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  color: #475569;
+  font-weight: 700;
+  font-size: 0.86rem;
+  cursor: pointer;
+}
+
+.reply-toggle-btn:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+/* Replies List */
+.replies-container {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px dashed #e2e8f0;
+  background: #f8fafc;
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.single-reply {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+}
+
+.reply-author-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+/* Add Reply Form */
+.reply-input-box {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.reply-input-box input {
+  flex: 1;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 10px 14px;
+  outline: none;
+  font-size: 0.9rem;
+}
+
+.reply-input-box input:focus {
+  border-color: #047857;
+}
+
+.reply-input-box button {
+  background: #047857;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 0 18px;
+  font-weight: 700;
+  font-size: 0.86rem;
+  cursor: pointer;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(8px);
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.modal-card {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 28px;
+  width: min(100%, 580px);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}

@@ -11,6 +11,8 @@ import Chat from './pages/chat';
 import Recommendation from './pages/recommendation';
 import Detection from './pages/detection';
 import Portal from './pages/portal';
+import Satellite from './pages/satellite';
+import Chopal from './pages/chopal';
 
 function clearFarmerSession() {
   localStorage.removeItem('farmer_token');
@@ -76,6 +78,8 @@ function App() {
       <Route path="/recommendation" element={<RequireAuth><Recommendation /></RequireAuth>} />
       <Route path="/detection" element={<RequireAuth><Detection /></RequireAuth>} />
       <Route path="/portal" element={<RequireAuth><Portal /></RequireAuth>} />
+      <Route path="/satellite" element={<RequireAuth><Satellite /></RequireAuth>} />
+      <Route path="/chopal" element={<RequireAuth><Chopal /></RequireAuth>} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
