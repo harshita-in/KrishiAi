@@ -257,16 +257,76 @@ export default function Portal() {
             </p>
 
             <form onSubmit={handleSellSubmit} className="sell-form-grid">
-              <div className="sell-input-group">
-                <label htmlFor="cropInput">Crop Name</label>
+              <div className="sell-input-group" style={{ gridColumn: 'span 2' }}>
+                <label htmlFor="cropInput">Crop Name / फसल का नाम</label>
                 <input
                   id="cropInput"
                   className="sell-input"
-                  placeholder="e.g. Wheat, Soybean, Mustard, Potato"
+                  placeholder="e.g. Wheat, Soybean, Mustard, Cotton, Chana, Onion, Garlic..."
                   value={cropName}
                   onChange={(e) => setCropName(e.target.value)}
+                  list="indianCropsList"
                   required
                 />
+                <datalist id="indianCropsList">
+                  <option value="Wheat (गेहूं)" />
+                  <option value="Paddy / Basmati (धान)" />
+                  <option value="Paddy / Common (धान मोटा)" />
+                  <option value="Maize (मक्का)" />
+                  <option value="Bajra (बाजरा)" />
+                  <option value="Jowar (ज्वार)" />
+                  <option value="Barley (जौ)" />
+                  <option value="Ragi (रागी)" />
+                  <option value="Chana / Chickpea (चना)" />
+                  <option value="Tur / Arhar (तुअर / अरहर)" />
+                  <option value="Moong (मूंग)" />
+                  <option value="Urad (उड़द)" />
+                  <option value="Masoor (मसूर)" />
+                  <option value="Soybean (सोयाबीन)" />
+                  <option value="Mustard (सरसों / राई)" />
+                  <option value="Groundnut (मूंगफली)" />
+                  <option value="Sunflower (सूरजमुखी)" />
+                  <option value="Sesame / Til (तिल)" />
+                  <option value="Cotton (कपास)" />
+                  <option value="Sugarcane (गन्ना)" />
+                  <option value="Jute (पटसन / जूट)" />
+                  <option value="Onion (प्याज)" />
+                  <option value="Potato (आलू)" />
+                  <option value="Tomato (टमाटर)" />
+                  <option value="Garlic (लहसुन)" />
+                  <option value="Ginger (अदरक)" />
+                  <option value="Green Chilli (हरी मिर्च)" />
+                  <option value="Red Chilli (सूखी लाल मिर्च)" />
+                  <option value="Turmeric (हल्दी)" />
+                  <option value="Cumin / Jeera (जीरा)" />
+                  <option value="Coriander (धनिया)" />
+                  <option value="Apple (सेब)" />
+                  <option value="Mango (आम)" />
+                  <option value="Banana (केला)" />
+                </datalist>
+
+                {/* Quick-select pills */}
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 8 }}>
+                  {['Wheat (गेहूं)', 'Paddy / Basmati (धान)', 'Soybean (सोयाबीन)', 'Mustard (सरसों)', 'Cotton (कपास)', 'Chana (चना)', 'Onion (प्याज)', 'Potato (आलू)', 'Garlic (लहसुन)', 'Turmeric (हल्दी)'].map(c => (
+                    <button
+                      key={c}
+                      type="button"
+                      style={{
+                        padding: '3px 10px',
+                        fontSize: '0.74rem',
+                        borderRadius: 999,
+                        background: cropName === c ? '#047857' : '#f1f5f9',
+                        color: cropName === c ? '#ffffff' : '#334155',
+                        border: '1px solid #cbd5e1',
+                        cursor: 'pointer',
+                        fontWeight: 600
+                      }}
+                      onClick={() => setCropName(c)}
+                    >
+                      {c}
+                    </button>
+                  ))}
+                </div>
               </div>
 
               <div className="sell-input-group">

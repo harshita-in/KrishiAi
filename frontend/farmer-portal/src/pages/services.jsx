@@ -113,17 +113,37 @@ export default function Services() {
     const acres = Number(calcAcre) || 1;
     switch (calcCrop) {
       case 'Wheat':
-        return { urea: (acres * 2.5).toFixed(1), dap: (acres * 1.0).toFixed(1), mop: (acres * 0.5).toFixed(1), water: '4 - 5 Irrigations' };
+        return { urea: (acres * 2.5).toFixed(1), dap: (acres * 1.0).toFixed(1), mop: (acres * 0.5).toFixed(1), water: '4 - 5 Irrigations (CRI, Tillering, Flowering)' };
       case 'Paddy':
-        return { urea: (acres * 3.0).toFixed(1), dap: (acres * 1.2).toFixed(1), mop: (acres * 0.8).toFixed(1), water: 'Continuous Shallow Ponding' };
+        return { urea: (acres * 3.0).toFixed(1), dap: (acres * 1.2).toFixed(1), mop: (acres * 0.8).toFixed(1), water: 'Continuous Shallow Ponding (5 cm)' };
       case 'Soybean':
-        return { urea: (acres * 0.5).toFixed(1), dap: (acres * 1.5).toFixed(1), mop: (acres * 0.8).toFixed(1), water: 'Monsoon Dependent (1-2 protective)' };
+        return { urea: (acres * 0.5).toFixed(1), dap: (acres * 1.5).toFixed(1), mop: (acres * 0.8).toFixed(1), water: 'Monsoon Dependent (1-2 protective at pod fill)' };
       case 'Mustard':
-        return { urea: (acres * 1.8).toFixed(1), dap: (acres * 1.0).toFixed(1), mop: (acres * 0.4).toFixed(1), water: '2 - 3 Irrigations + Sulphur 15kg' };
+        return { urea: (acres * 1.8).toFixed(1), dap: (acres * 1.0).toFixed(1), mop: (acres * 0.4).toFixed(1), water: '2 - 3 Irrigations + Sulphur 15 kg/acre' };
       case 'Cotton':
-        return { urea: (acres * 3.2).toFixed(1), dap: (acres * 1.5).toFixed(1), mop: (acres * 1.0).toFixed(1), water: '5 - 6 Irrigations' };
+        return { urea: (acres * 3.2).toFixed(1), dap: (acres * 1.5).toFixed(1), mop: (acres * 1.0).toFixed(1), water: '5 - 6 Irrigations (Square & Boll formation)' };
+      case 'Maize':
+        return { urea: (acres * 2.8).toFixed(1), dap: (acres * 1.2).toFixed(1), mop: (acres * 0.6).toFixed(1), water: '4 - 5 Irrigations (Silking & Tasseling)' };
+      case 'Sugarcane':
+        return { urea: (acres * 5.0).toFixed(1), dap: (acres * 2.0).toFixed(1), mop: (acres * 1.5).toFixed(1), water: '8 - 10 Irrigations (High water requirement)' };
+      case 'Chana':
+        return { urea: (acres * 0.4).toFixed(1), dap: (acres * 1.2).toFixed(1), mop: (acres * 0.4).toFixed(1), water: '1 - 2 Light Irrigations (Pre-flowering)' };
+      case 'Potato':
+        return { urea: (acres * 3.5).toFixed(1), dap: (acres * 1.8).toFixed(1), mop: (acres * 1.2).toFixed(1), water: '6 - 7 Light Furrow Irrigations (Tuber formation)' };
+      case 'Onion':
+        return { urea: (acres * 2.2).toFixed(1), dap: (acres * 1.4).toFixed(1), mop: (acres * 1.0).toFixed(1), water: '8 - 10 Frequent Light Irrigations (Bulb sizing)' };
+      case 'Groundnut':
+        return { urea: (acres * 0.6).toFixed(1), dap: (acres * 1.4).toFixed(1), mop: (acres * 0.8).toFixed(1), water: '3 - 4 Irrigations + Gypsum 100 kg/acre at pegging' };
+      case 'Tomato':
+        return { urea: (acres * 2.6).toFixed(1), dap: (acres * 1.5).toFixed(1), mop: (acres * 1.0).toFixed(1), water: 'Drip / Furrow every 4-6 days' };
+      case 'Garlic':
+        return { urea: (acres * 2.4).toFixed(1), dap: (acres * 1.5).toFixed(1), mop: (acres * 0.9).toFixed(1), water: '7 - 9 Light Irrigations + Sulphur 20 kg/acre' };
+      case 'Turmeric':
+        return { urea: (acres * 2.5).toFixed(1), dap: (acres * 1.6).toFixed(1), mop: (acres * 1.2).toFixed(1), water: '15 - 20 Days interval (Moist soil required)' };
+      case 'Bajra':
+        return { urea: (acres * 1.8).toFixed(1), dap: (acres * 0.8).toFixed(1), mop: (acres * 0.4).toFixed(1), water: '1 - 2 Protective Irrigations (Drought hardy)' };
       default:
-        return { urea: (acres * 2.0).toFixed(1), dap: (acres * 1.0).toFixed(1), mop: (acres * 0.5).toFixed(1), water: 'Moderate' };
+        return { urea: (acres * 2.0).toFixed(1), dap: (acres * 1.0).toFixed(1), mop: (acres * 0.5).toFixed(1), water: 'Moderate 3 - 4 Irrigations' };
     }
   })();
 
@@ -398,11 +418,31 @@ export default function Services() {
                   value={calcCrop}
                   onChange={(e) => setCalcCrop(e.target.value)}
                 >
-                  <option value="Wheat">Wheat (गेहूं)</option>
-                  <option value="Paddy">Paddy / Rice (धान)</option>
-                  <option value="Soybean">Soybean (सोयाबीन)</option>
-                  <option value="Mustard">Mustard (सरसों)</option>
-                  <option value="Cotton">Cotton (कपास)</option>
+                  <optgroup label="Cereals & Grains (अनाज)">
+                    <option value="Wheat">Wheat (गेहूं)</option>
+                    <option value="Paddy">Paddy / Rice (धान)</option>
+                    <option value="Maize">Maize (मक्का)</option>
+                    <option value="Bajra">Bajra (बाजरा)</option>
+                  </optgroup>
+                  <optgroup label="Pulses (दालें / दलहन)">
+                    <option value="Chana">Chana (चना)</option>
+                  </optgroup>
+                  <optgroup label="Oilseeds (तिलहन)">
+                    <option value="Soybean">Soybean (सोयाबीन)</option>
+                    <option value="Mustard">Mustard (सरसों / राई)</option>
+                    <option value="Groundnut">Groundnut (मूंगफली)</option>
+                  </optgroup>
+                  <optgroup label="Cash Crops (नकदी फसलें)">
+                    <option value="Cotton">Cotton (कपास)</option>
+                    <option value="Sugarcane">Sugarcane (गन्ना)</option>
+                  </optgroup>
+                  <optgroup label="Vegetables & Spices (सब्जियां व मसाले)">
+                    <option value="Potato">Potato (आलू)</option>
+                    <option value="Onion">Onion (प्याज)</option>
+                    <option value="Tomato">Tomato (टमाटर)</option>
+                    <option value="Garlic">Garlic (लहसुन)</option>
+                    <option value="Turmeric">Turmeric (हल्दी)</option>
+                  </optgroup>
                 </select>
               </div>
             </div>

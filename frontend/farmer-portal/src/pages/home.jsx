@@ -46,15 +46,52 @@ const features = [
 ];
 
 export const DEFAULT_MANDI_RATES = [
+  // Cereals & Grains
   { commodity: 'Wheat (गेहूं)', market: 'Indore Mandi', modalPrice: 2850, changePercent: '+2.4%', isPositive: true },
   { commodity: 'Wheat (गेहूं)', market: 'Khanna Mandi', modalPrice: 2420, changePercent: '+0.8%', isPositive: true },
+  { commodity: 'Paddy / Basmati (धान)', market: 'Karnal Mandi', modalPrice: 4350, changePercent: '+1.9%', isPositive: true },
+  { commodity: 'Paddy / Common (धान मोटा)', market: 'Warangal Mandi', modalPrice: 2360, changePercent: '+0.7%', isPositive: true },
+  { commodity: 'Maize (मक्का)', market: 'Gulabbagh Mandi', modalPrice: 2280, changePercent: '+0.4%', isPositive: true },
+  { commodity: 'Bajra (बाजरा)', market: 'Jaipur Mandi', modalPrice: 2550, changePercent: '-0.8%', isPositive: false },
+  { commodity: 'Jowar (ज्वार)', market: 'Solapur Mandi', modalPrice: 3450, changePercent: '+1.6%', isPositive: true },
+  { commodity: 'Barley (जौ)', market: 'Aligarh Mandi', modalPrice: 2150, changePercent: '+1.1%', isPositive: true },
+  { commodity: 'Ragi (रागी)', market: 'Mysuru Mandi', modalPrice: 3890, changePercent: '-0.6%', isPositive: false },
+
+  // Pulses
+  { commodity: 'Chana (चना)', market: 'Neemuch Mandi', modalPrice: 5600, changePercent: '+1.2%', isPositive: true },
+  { commodity: 'Tur / Arhar (तुअर)', market: 'Latur Mandi', modalPrice: 9450, changePercent: '+2.8%', isPositive: true },
+  { commodity: 'Moong (मूंग)', market: 'Harda Mandi', modalPrice: 8200, changePercent: '-1.4%', isPositive: false },
+  { commodity: 'Urad (उड़द)', market: 'Lalitpur Mandi', modalPrice: 7850, changePercent: '+1.9%', isPositive: true },
+  { commodity: 'Masoor (मसूर)', market: 'Vidisha Mandi', modalPrice: 6300, changePercent: '+1.3%', isPositive: true },
+
+  // Oilseeds
   { commodity: 'Soybean (सोयाबीन)', market: 'Ujjain Mandi', modalPrice: 4620, changePercent: '+3.1%', isPositive: true },
   { commodity: 'Mustard (सरसों)', market: 'Alwar Mandi', modalPrice: 5850, changePercent: '+1.8%', isPositive: true },
+  { commodity: 'Groundnut (मूंगफली)', market: 'Junagadh Mandi', modalPrice: 6450, changePercent: '+2.1%', isPositive: true },
+  { commodity: 'Sunflower (सूरजमुखी)', market: 'Raichur Mandi', modalPrice: 5350, changePercent: '-1.2%', isPositive: false },
+  { commodity: 'Sesame / Til (तिल)', market: 'Amreli Mandi', modalPrice: 12800, changePercent: '+2.6%', isPositive: true },
+
+  // Cash Crops
   { commodity: 'Cotton (कपास)', market: 'Rajkot Mandi', modalPrice: 7350, changePercent: '-1.2%', isPositive: false },
-  { commodity: 'Onion (प्याज)', market: 'Lasalgaon Mandi', modalPrice: 2100, changePercent: '+4.5%', isPositive: true },
+  { commodity: 'Sugarcane (गन्ना)', market: 'Muzaffarnagar Mandi', modalPrice: 390, changePercent: '+1.5%', isPositive: true },
+  { commodity: 'Jute (पटसन / जूट)', market: 'Barrackpore Mandi', modalPrice: 5200, changePercent: '+1.8%', isPositive: true },
+
+  // Vegetables & Spices
+  { commodity: 'Onion (प्याज)', market: 'Lasalgaon Mandi', modalPrice: 2100, changePercent: '+4.8%', isPositive: true },
   { commodity: 'Potato (आलू)', market: 'Agra Mandi', modalPrice: 1420, changePercent: '-0.9%', isPositive: false },
-  { commodity: 'Paddy / Basmati (धान)', market: 'Karnal Mandi', modalPrice: 4350, changePercent: '+2.1%', isPositive: true },
-  { commodity: 'Gram / Chana (चना)', market: 'Bhopal Mandi', modalPrice: 5440, changePercent: '+1.5%', isPositive: true },
+  { commodity: 'Tomato (टमाटर)', market: 'Kolar Mandi', modalPrice: 1650, changePercent: '+5.5%', isPositive: true },
+  { commodity: 'Garlic (लहसुन)', market: 'Mandsaur Mandi', modalPrice: 14500, changePercent: '+3.8%', isPositive: true },
+  { commodity: 'Ginger (अदरक)', market: 'Wayanad Mandi', modalPrice: 8900, changePercent: '-1.5%', isPositive: false },
+  { commodity: 'Green Chilli (हरी मिर्च)', market: 'Guntur Mandi', modalPrice: 3800, changePercent: '+4.2%', isPositive: true },
+  { commodity: 'Red Chilli (लाल मिर्च)', market: 'Guntur Mandi', modalPrice: 18400, changePercent: '-1.8%', isPositive: false },
+  { commodity: 'Turmeric (हल्दी)', market: 'Erode Mandi', modalPrice: 13200, changePercent: '+3.5%', isPositive: true },
+  { commodity: 'Cumin (जीरा)', market: 'Unjha Mandi', modalPrice: 26800, changePercent: '+2.9%', isPositive: true },
+  { commodity: 'Coriander (धनिया)', market: 'Kota Mandi', modalPrice: 7400, changePercent: '+1.7%', isPositive: true },
+
+  // Fruits
+  { commodity: 'Apple (सेब)', market: 'Shimla Mandi', modalPrice: 7800, changePercent: '+2.8%', isPositive: true },
+  { commodity: 'Mango (आम)', market: 'Lucknow Mandi', modalPrice: 4800, changePercent: '+3.2%', isPositive: true },
+  { commodity: 'Banana (केला)', market: 'Jalgaon Mandi', modalPrice: 1850, changePercent: '-1.6%', isPositive: false },
 ];
 
 export const DEFAULT_WEATHER_DATA = {
@@ -75,18 +112,134 @@ export const DEFAULT_WEATHER_DATA = {
   ]
 };
 
+export const INDIAN_CROP_CATEGORIES = [
+  {
+    category: 'Cereals & Grains (अनाज)',
+    crops: [
+      { id: 'Wheat', label: 'Wheat (गेहूं)' },
+      { id: 'Paddy', label: 'Paddy / Basmati (धान)' },
+      { id: 'Paddy Common', label: 'Paddy / Common (धान मोटा)' },
+      { id: 'Maize', label: 'Maize (मक्का)' },
+      { id: 'Bajra', label: 'Bajra (बाजरा)' },
+      { id: 'Jowar', label: 'Jowar (ज्वार)' },
+      { id: 'Barley', label: 'Barley (जौ)' },
+      { id: 'Ragi', label: 'Ragi (रागी)' },
+    ]
+  },
+  {
+    category: 'Pulses (दालें / दलहन)',
+    crops: [
+      { id: 'Chana', label: 'Chana (चना)' },
+      { id: 'Arhar', label: 'Tur / Arhar (तुअर / अरहर)' },
+      { id: 'Moong', label: 'Moong (मूंग)' },
+      { id: 'Urad', label: 'Urad (उड़द)' },
+      { id: 'Masoor', label: 'Masoor (मसूर)' },
+    ]
+  },
+  {
+    category: 'Oilseeds (तिलहन)',
+    crops: [
+      { id: 'Soybean', label: 'Soybean (सोयाबीन)' },
+      { id: 'Mustard', label: 'Mustard (सरसों / राई)' },
+      { id: 'Groundnut', label: 'Groundnut (मूंगफली)' },
+      { id: 'Sunflower', label: 'Sunflower (सूरजमुखी)' },
+      { id: 'Sesame', label: 'Sesame / Til (तिल)' },
+    ]
+  },
+  {
+    category: 'Cash Crops (नकदी फसलें)',
+    crops: [
+      { id: 'Cotton', label: 'Cotton (कपास)' },
+      { id: 'Sugarcane', label: 'Sugarcane (गन्ना)' },
+      { id: 'Jute', label: 'Jute (पटसन / जूट)' },
+    ]
+  },
+  {
+    category: 'Vegetables (सब्जियां)',
+    crops: [
+      { id: 'Onion', label: 'Onion (प्याज)' },
+      { id: 'Potato', label: 'Potato (आलू)' },
+      { id: 'Tomato', label: 'Tomato (टमाटर)' },
+      { id: 'Garlic', label: 'Garlic (लहसुन)' },
+      { id: 'Ginger', label: 'Ginger (अदरक)' },
+      { id: 'Green Chilli', label: 'Green Chilli (हरी मिर्च)' },
+    ]
+  },
+  {
+    category: 'Spices (मसाले)',
+    crops: [
+      { id: 'Cumin', label: 'Cumin / Jeera (जीरा)' },
+      { id: 'Turmeric', label: 'Turmeric / Haldi (हल्दी)' },
+      { id: 'Coriander', label: 'Coriander / Dhaniya (धनिया)' },
+      { id: 'Red Chilli', label: 'Red Chilli (सूखी लाल मिर्च)' },
+    ]
+  },
+  {
+    category: 'Fruits (फल)',
+    crops: [
+      { id: 'Apple', label: 'Apple (सेब)' },
+      { id: 'Mango', label: 'Mango (आम)' },
+      { id: 'Banana', label: 'Banana (केला)' },
+    ]
+  }
+];
+
 export function getFallbackPricePrediction(commodity = 'Wheat') {
   const basePrices = {
-    'Wheat': { current: 2850, peak: 3040, change: '+6.6%', rec: 'HOLD_PRODUCE', recHindi: 'फसल रोके रखें (HOLD) — भाव बढ़ने का अनुमान' },
-    'Soybean': { current: 4620, peak: 4920, change: '+6.5%', rec: 'HOLD_PRODUCE', recHindi: 'फसल रोके रखें (HOLD) — भाव बढ़ने का अनुमान' },
-    'Mustard': { current: 5850, peak: 5950, change: '+1.7%', rec: 'SELL_NOW', recHindi: 'तुरंत बेचें (SELL NOW) — आवक बढ़ने से भाव गिर सकते हैं' },
-    'Cotton': { current: 7350, peak: 7150, change: '-2.7%', rec: 'SELL_NOW', recHindi: 'तुरंत बेचें (SELL NOW) — नई आवक से दाम गिर सकते हैं' },
-    'Onion': { current: 2100, peak: 2550, change: '+21.4%', rec: 'HOLD_PRODUCE', recHindi: 'फसल रोके रखें (HOLD) — त्योहारी मांग बढ़ने का अनुमान' },
-    'Potato': { current: 1420, peak: 1380, change: '-2.8%', rec: 'SELL_NOW', recHindi: 'तुरंत बेचें (SELL NOW) — कोल्ड स्टोरेज निकासी तेज है' },
-    'Paddy': { current: 4350, peak: 4580, change: '+5.3%', rec: 'HOLD_PRODUCE', recHindi: 'फसल रोके रखें (HOLD) — बासमती निर्यात मांग मजबूत' }
+    // Cereals & Grains
+    'Wheat': { current: 2850, peak: 3040, change: '+6.6%', rec: 'HOLD_PRODUCE', recHindi: 'फसल रोके रखें (HOLD) — भाव बढ़ने का अनुमान', reason: 'त्योहारी मांग और सीमित मंडी आवक के कारण अगले 10 दिनों में भाव में मजबूती के संकेत हैं।' },
+    'Paddy': { current: 4350, peak: 4580, change: '+5.3%', rec: 'HOLD_PRODUCE', recHindi: 'फसल रोके रखें (HOLD) — बासमती निर्यात मांग मजबूत', reason: 'बासमती चावल के अंतरराष्ट्रीय निर्यात ऑर्डर्स में वृद्धि से मंडियों में प्रीमियम बना रहेगा।' },
+    'Paddy Common': { current: 2360, peak: 2440, change: '+3.4%', rec: 'HOLD_PRODUCE', recHindi: 'फसल रोके रखें (HOLD) — MSP समर्थन जारी', reason: 'सरकारी खरीद केंद्र सक्रिय होने से न्यूनतम समर्थन मूल्य (MSP) से ऊपर लिवाली जारी है।' },
+    'Maize': { current: 2280, peak: 2420, change: '+6.1%', rec: 'HOLD_PRODUCE', recHindi: 'फसल रोके रखें (HOLD) — औद्योगिक मांग मजबूत', reason: 'एथेनॉल और पोल्ट्री फीड इंडस्ट्री की भारी मांग से मक्के के भाव में तेजी के आसार हैं।' },
+    'Bajra': { current: 2550, peak: 2480, change: '-2.7%', rec: 'SELL_NOW', recHindi: 'तुरंत बेचें (SELL NOW) — आवक से नरमी संभव', reason: 'राजस्थान और हरियाणा की मंडियों में नई फसल की भारी आवक से भाव थोड़ा नरम हो सकते हैं।' },
+    'Jowar': { current: 3450, peak: 3620, change: '+4.9%', rec: 'HOLD_PRODUCE', recHindi: 'फसल रोके रखें (HOLD) — श्रीअन्न मांग मजबूत', reason: 'मिल्ट्स (श्रीअन्न) की स्वास्थ्य मांग बढ़ने से मालवा और दक्कन मंडियों में भाव मजबूत हैं।' },
+    'Barley': { current: 2150, peak: 2260, change: '+5.1%', rec: 'HOLD_PRODUCE', recHindi: 'फसल रोके रखें (HOLD) — माल्ट इंडस्ट्री लिवाली', reason: 'माल्ट व बेवरेज कंपनियों की सतत खरीदारी से जौ के भाव स्थिर व ऊपर की ओर हैं।' },
+    'Ragi': { current: 3890, peak: 3780, change: '-2.8%', rec: 'SELL_NOW', recHindi: 'तुरंत बेचें (SELL NOW) — स्थानीय आवक तेज', reason: 'कर्नाटक के प्रमुख उत्पादक क्षेत्रों से आवक बढ़ने के कारण मौजूदा स्तर पर बिकवाली उचित है।' },
+
+    // Pulses
+    'Chana': { current: 5600, peak: 5880, change: '+5.0%', rec: 'HOLD_PRODUCE', recHindi: 'फसल रोके रखें (HOLD) — दाल मिल मांग मजबूत', reason: 'दाल मिलों की सक्रिय मांग व त्योहारी खपत के चलते देशी चने में मजबूती बनी रहेगी।' },
+    'Arhar': { current: 9450, peak: 9950, change: '+5.3%', rec: 'HOLD_PRODUCE', recHindi: 'फसल रोके रखें (HOLD) — कम स्टॉक का लाभ', reason: 'तुअर दाल की घरेलू मांग व कम स्टॉक के चलते भाव ₹10,000 प्रति क्विंटल के करीब पहुंचने का अनुमान है।' },
+    'Moong': { current: 8200, peak: 7980, change: '-2.7%', rec: 'SELL_NOW', recHindi: 'तुरंत बेचें (SELL NOW) — समर आवक से दबाव', reason: 'मध्य प्रदेश व राजस्थान से समर मूंग की ताजा आवक बढ़ने से भाव पर दबाव संभव है।' },
+    'Urad': { current: 7850, peak: 8200, change: '+4.5%', rec: 'HOLD_PRODUCE', recHindi: 'फसल रोके रखें (HOLD) — दाल मिलर्स सक्रिय', reason: 'साउथ इंडियन व स्थानीय दाल मिलर्स की लगातार पूछपरख से उड़द में उछाल देखा जा रहा है।' },
+    'Masoor': { current: 6300, peak: 6520, change: '+3.5%', rec: 'HOLD_PRODUCE', recHindi: 'फसल रोके रखें (HOLD) — आयात भाव ऊंचे', reason: 'आयातित मसूर के ऊंचे भाव और स्थानीय मंडी में अच्छी मांग से भाव सुधर रहे हैं।' },
+
+    // Oilseeds
+    'Soybean': { current: 4620, peak: 4920, change: '+6.5%', rec: 'HOLD_PRODUCE', recHindi: 'फसल रोके रखें (HOLD) — क्रशिंग प्लांट लिवाली', reason: 'सोयामील निर्यात में तेजी व क्रशिंग प्लांटों की मजबूत लिवाली से भाव में सुधार जारी है।' },
+    'Mustard': { current: 5850, peak: 5950, change: '+1.7%', rec: 'SELL_NOW', recHindi: 'तुरंत बेचें (SELL NOW) — पीक सीजन मुनाफावसूली', reason: 'सरसों के भाव अपने मौसमी शिखर पर हैं, तेल मिलों की आवक बढ़ने से पहले बिकवाली फायदेमंद है।' },
+    'Groundnut': { current: 6450, peak: 6780, change: '+5.1%', rec: 'HOLD_PRODUCE', recHindi: 'फसल रोके रखें (HOLD) — दाना निर्यात ऑर्डर्स', reason: 'सौराष्ट्र व गुजरात से मूंगफली दाना निर्यात मांग मजबूत रहने से भाव तेज रहने के संकेत हैं।' },
+    'Sunflower': { current: 5350, peak: 5180, change: '-3.2%', rec: 'SELL_NOW', recHindi: 'तुरंत बेचें (SELL NOW) — तेल आयात दबाव', reason: 'खाद्य तेल आयात में रियायतों के चलते सूरजमुखी के घरेलू भाव में नरमी का रुख है।' },
+    'Sesame': { current: 12800, peak: 13600, change: '+6.2%', rec: 'HOLD_PRODUCE', recHindi: 'फसल रोके रखें (HOLD) — बेकरी व एक्सपोर्ट मांग', reason: 'सफेद तिल की निर्यात मांग व बेकरी सेक्टर से ऑर्डर्स बढ़ने से भाव ₹13,500 पार करने के आसार हैं।' },
+
+    // Cash Crops
+    'Cotton': { current: 7350, peak: 7150, change: '-2.7%', rec: 'SELL_NOW', recHindi: 'तुरंत बेचें (SELL NOW) — कताई मिलों की सुस्त खरीद', reason: 'वैश्विक कॉटन वायदा में नरमी व कताई मिलों की सीमित खरीद से मौजूदा भाव पर बिक्री उचित है।' },
+    'Sugarcane': { current: 390, peak: 405, change: '+3.8%', rec: 'HOLD_PRODUCE', recHindi: 'फसल रोके रखें (HOLD) — SAP मूल्य स्थिरता', reason: 'चीनी मिलों द्वारा पेराई सत्र के दौरान समय पर भुगतान व राज्य परामर्शित मूल्य (SAP) का समर्थन।' },
+    'Jute': { current: 5200, peak: 5450, change: '+4.8%', rec: 'HOLD_PRODUCE', recHindi: 'फसल रोके रखें (HOLD) — पैकेजिंग मांग', reason: 'खाद्यान्न पैकेजिंग के लिए सरकारी गनी बैग्स ऑर्डर्स से जूट के भाव में मजबूती है।' },
+
+    // Vegetables & Spices
+    'Onion': { current: 2100, peak: 2550, change: '+21.4%', rec: 'HOLD_PRODUCE', recHindi: 'फसल रोके रखें (HOLD) — त्योहारी मांग बढ़ने का अनुमान', reason: 'आने वाले त्योहारी सीजन और नासिक/लासलगांव में सीमित आवक से प्याज में भारी उछाल का अनुमान है।' },
+    'Potato': { current: 1420, peak: 1380, change: '-2.8%', rec: 'SELL_NOW', recHindi: 'तुरंत बेचें (SELL NOW) — कोल्ड स्टोरेज निकासी तेज है', reason: 'कोल्ड स्टोरेज से निकासी तेज होने और नई फसल की बुवाई शुरू होने से तुरंत बेचना लाभकारी रहेगा।' },
+    'Tomato': { current: 1650, peak: 2050, change: '+24.2%', rec: 'HOLD_PRODUCE', recHindi: 'फसल रोके रखें (HOLD) — कम आवक से दाम चढ़ेंगे', reason: 'दक्षिण भारत में बारिश के चलते मंडियों में टमाटर की आवक घटी है, जिससे भाव तेजी से बढ़ रहे हैं।' },
+    'Garlic': { current: 14500, peak: 15800, change: '+9.0%', rec: 'HOLD_PRODUCE', recHindi: 'फसल रोके रखें (HOLD) — ऊंटी लहसुन प्रीमियम', reason: 'मंसौर व कोटा मंडियों में ऊंटी व देशी लहसुन की भारी मांग के चलते भाव ₹15,500 के पार पहुंच सकते हैं।' },
+    'Ginger': { current: 8900, peak: 8550, change: '-3.9%', rec: 'SELL_NOW', recHindi: 'तुरंत बेचें (SELL NOW) — नई अदरक आवक शुरू', reason: 'केरल व पूर्वोत्तर से ताजा अदरक की आवक बढ़ने से बाजार भाव में गिरावट संभव है।' },
+    'Green Chilli': { current: 3800, peak: 4250, change: '+11.8%', rec: 'HOLD_PRODUCE', recHindi: 'फसल रोके रखें (HOLD) — स्थानीय खपत में तेजी', reason: 'स्थानीय सब्जियों की मांग मजबूत रहने और उत्पादन लागत अधिक होने से भाव में बढ़त कायम रहेगी।' },
+    'Red Chilli': { current: 18400, peak: 17800, change: '-3.3%', rec: 'SELL_NOW', recHindi: 'तुरंत बेचें (SELL NOW) — कोल्ड स्टोरेज बिक्री', reason: 'गुंटूर मंडी में कोल्ड स्टोरेज से माल की निरंतर निकासी के कारण वर्तमान उच्च भाव पर मुनाफावसूली करें।' },
+    'Turmeric': { current: 13200, peak: 14400, change: '+9.1%', rec: 'HOLD_PRODUCE', recHindi: 'फसल रोके रखें (HOLD) — मसाला कंपनियां सक्रिय', reason: 'इरोड व निजामाबाद में मसाला कंपनियों की आक्रामक लिवाली से हल्दी में दीर्घकालिक तेजी का दौर है।' },
+    'Cumin': { current: 26800, peak: 28900, change: '+7.8%', rec: 'HOLD_PRODUCE', recHindi: 'फसल रोके रखें (HOLD) — निर्यात मांग मजबूत', reason: 'उंझा मंडी में खाड़ी देशों से निर्यात ऑर्डर्स मिलने से जीरे के भाव में आगामी दिनों में उछाल तय है।' },
+    'Coriander': { current: 7400, peak: 7850, change: '+6.1%', rec: 'HOLD_PRODUCE', recHindi: 'फसल रोके रखें (HOLD) — ईगल क्वालिटी प्रीमियम', reason: 'मसाला पिसाई मिलों द्वारा बदामी व ईगल क्वालिटी धनिए की भारी खरीद से भाव ऊपर जा रहे हैं।' },
+
+    // Fruits
+    'Apple': { current: 7800, peak: 8400, change: '+7.7%', rec: 'HOLD_PRODUCE', recHindi: 'फसल रोके रखें (HOLD) — रॉयल डिलीशियस मांग', reason: 'शिमला व कश्मीर से प्रीमियम रॉयल डिलीशियस की आवक नियंत्रित होने से महानगरों में भाव तेज हैं।' },
+    'Mango': { current: 4800, peak: 5250, change: '+9.4%', rec: 'HOLD_PRODUCE', recHindi: 'फसल रोके रखें (HOLD) — दशहरी/चौसा प्रीमियम', reason: 'दशहरी व चौसा किस्मों की देशव्यापी मांग व प्रोसेसिंग यूनिट्स द्वारा खरीद से मजबूती बनी है।' },
+    'Banana': { current: 1850, peak: 1780, change: '-3.8%', rec: 'SELL_NOW', recHindi: 'तुरंत बेचें (SELL NOW) — बंपर आवक से नरमी', reason: 'जलगांव व बुरहानपुर मंडियों में बंपर कटाई के चलते आवक अधिक है, अतः तुरंत बेचना हितकर है।' }
   };
 
-  const info = basePrices[commodity] || basePrices['Wheat'];
+  const reqLower = (commodity || 'Wheat').trim().toLowerCase();
+  const matchedKey = Object.keys(basePrices).find(k => {
+    const kLower = k.toLowerCase();
+    return kLower === reqLower || reqLower.includes(kLower);
+  }) || 'Wheat';
+
+  const info = basePrices[matchedKey] || basePrices['Wheat'];
   const today = new Date();
   const timeline = [];
 
@@ -112,15 +265,15 @@ export function getFallbackPricePrediction(commodity = 'Wheat') {
 
   return {
     status: 'success',
-    commodity,
+    commodity: matchedKey,
     currentPrice: info.current,
     peakPrice: info.peak,
     projectedChange: info.change,
     recommendation: info.rec,
     recommendationHindi: info.recHindi,
-    reasoning: info.rec === 'HOLD_PRODUCE'
+    reasoning: info.reason || (info.rec === 'HOLD_PRODUCE'
       ? `Upcoming market demand and limited APMC mandi arrivals indicate an upward trajectory of ${info.change} over the next 10 days.`
-      : `Arrivals from southern production hubs are rising. Offloading current harvest locks in highest profit margin before supply expansion.`,
+      : `Arrivals from major production hubs are rising. Offloading current harvest locks in highest profit margin before supply expansion.`),
     timeline
   };
 }
@@ -449,8 +602,8 @@ export default function Home({ portalLabel, storageKeyPrefix }) {
                 </p>
               </div>
 
-              <div className="commodity-selector">
-                {['Wheat', 'Soybean', 'Mustard', 'Cotton', 'Onion', 'Potato', 'Paddy'].map(c => (
+              <div className="commodity-selector" style={{ alignItems: 'center' }}>
+                {['Wheat', 'Paddy', 'Soybean', 'Mustard', 'Cotton', 'Chana', 'Onion', 'Potato'].map(c => (
                   <button
                     key={c}
                     type="button"
@@ -460,6 +613,36 @@ export default function Home({ portalLabel, storageKeyPrefix }) {
                     {c}
                   </button>
                 ))}
+
+                <select
+                  value={selectedCommodity}
+                  onChange={(e) => setSelectedCommodity(e.target.value)}
+                  className="commodity-dropdown"
+                  style={{
+                    padding: '8px 14px',
+                    borderRadius: 999,
+                    border: '1.5px solid #047857',
+                    background: '#f0fdf4',
+                    color: '#065f46',
+                    fontSize: '0.84rem',
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                    outline: 'none',
+                    boxShadow: '0 2px 6px rgba(4, 120, 87, 0.1)'
+                  }}
+                  title="Choose from all major Indian agricultural commodities"
+                >
+                  <option value="" disabled>🌾 All Indian Crops (30+)...</option>
+                  {INDIAN_CROP_CATEGORIES.map(group => (
+                    <optgroup key={group.category} label={group.category}>
+                      {group.crops.map(crop => (
+                        <option key={crop.id} value={crop.id}>
+                          {crop.label}
+                        </option>
+                      ))}
+                    </optgroup>
+                  ))}
+                </select>
               </div>
             </div>
 

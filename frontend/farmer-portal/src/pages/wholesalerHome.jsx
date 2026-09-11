@@ -4,15 +4,52 @@ import { apiFetch } from '../config';
 import './wholesalerHome.css';
 
 const DEFAULT_MANDI_RATES = [
+  // Cereals & Grains
   { commodity: 'Wheat (गेहूं)', market: 'Indore Mandi', modalPrice: 2850, changePercent: '+2.4%', isPositive: true },
   { commodity: 'Wheat (गेहूं)', market: 'Khanna Mandi', modalPrice: 2420, changePercent: '+0.8%', isPositive: true },
+  { commodity: 'Paddy / Basmati (धान)', market: 'Karnal Mandi', modalPrice: 4350, changePercent: '+1.9%', isPositive: true },
+  { commodity: 'Paddy / Common (धान मोटा)', market: 'Warangal Mandi', modalPrice: 2360, changePercent: '+0.7%', isPositive: true },
+  { commodity: 'Maize (मक्का)', market: 'Gulabbagh Mandi', modalPrice: 2280, changePercent: '+0.4%', isPositive: true },
+  { commodity: 'Bajra (बाजरा)', market: 'Jaipur Mandi', modalPrice: 2550, changePercent: '-0.8%', isPositive: false },
+  { commodity: 'Jowar (ज्वार)', market: 'Solapur Mandi', modalPrice: 3450, changePercent: '+1.6%', isPositive: true },
+  { commodity: 'Barley (जौ)', market: 'Aligarh Mandi', modalPrice: 2150, changePercent: '+1.1%', isPositive: true },
+  { commodity: 'Ragi (रागी)', market: 'Mysuru Mandi', modalPrice: 3890, changePercent: '-0.6%', isPositive: false },
+
+  // Pulses
+  { commodity: 'Chana (चना)', market: 'Neemuch Mandi', modalPrice: 5600, changePercent: '+1.2%', isPositive: true },
+  { commodity: 'Tur / Arhar (तुअर)', market: 'Latur Mandi', modalPrice: 9450, changePercent: '+2.8%', isPositive: true },
+  { commodity: 'Moong (मूंग)', market: 'Harda Mandi', modalPrice: 8200, changePercent: '-1.4%', isPositive: false },
+  { commodity: 'Urad (उड़द)', market: 'Lalitpur Mandi', modalPrice: 7850, changePercent: '+1.9%', isPositive: true },
+  { commodity: 'Masoor (मसूर)', market: 'Vidisha Mandi', modalPrice: 6300, changePercent: '+1.3%', isPositive: true },
+
+  // Oilseeds
   { commodity: 'Soybean (सोयाबीन)', market: 'Ujjain Mandi', modalPrice: 4620, changePercent: '+3.1%', isPositive: true },
   { commodity: 'Mustard (सरसों)', market: 'Alwar Mandi', modalPrice: 5850, changePercent: '+1.8%', isPositive: true },
+  { commodity: 'Groundnut (मूंगफली)', market: 'Junagadh Mandi', modalPrice: 6450, changePercent: '+2.1%', isPositive: true },
+  { commodity: 'Sunflower (सूरजमुखी)', market: 'Raichur Mandi', modalPrice: 5350, changePercent: '-1.2%', isPositive: false },
+  { commodity: 'Sesame / Til (तिल)', market: 'Amreli Mandi', modalPrice: 12800, changePercent: '+2.6%', isPositive: true },
+
+  // Cash Crops
   { commodity: 'Cotton (कपास)', market: 'Rajkot Mandi', modalPrice: 7350, changePercent: '-1.2%', isPositive: false },
-  { commodity: 'Onion (प्याज)', market: 'Lasalgaon Mandi', modalPrice: 2100, changePercent: '+4.5%', isPositive: true },
+  { commodity: 'Sugarcane (गन्ना)', market: 'Muzaffarnagar Mandi', modalPrice: 390, changePercent: '+1.5%', isPositive: true },
+  { commodity: 'Jute (पटसन / जूट)', market: 'Barrackpore Mandi', modalPrice: 5200, changePercent: '+1.8%', isPositive: true },
+
+  // Vegetables & Spices
+  { commodity: 'Onion (प्याज)', market: 'Lasalgaon Mandi', modalPrice: 2100, changePercent: '+4.8%', isPositive: true },
   { commodity: 'Potato (आलू)', market: 'Agra Mandi', modalPrice: 1420, changePercent: '-0.9%', isPositive: false },
-  { commodity: 'Paddy / Basmati (धान)', market: 'Karnal Mandi', modalPrice: 4350, changePercent: '+2.1%', isPositive: true },
-  { commodity: 'Gram / Chana (चना)', market: 'Bhopal Mandi', modalPrice: 5440, changePercent: '+1.5%', isPositive: true },
+  { commodity: 'Tomato (टमाटर)', market: 'Kolar Mandi', modalPrice: 1650, changePercent: '+5.5%', isPositive: true },
+  { commodity: 'Garlic (लहसुन)', market: 'Mandsaur Mandi', modalPrice: 14500, changePercent: '+3.8%', isPositive: true },
+  { commodity: 'Ginger (अदरक)', market: 'Wayanad Mandi', modalPrice: 8900, changePercent: '-1.5%', isPositive: false },
+  { commodity: 'Green Chilli (हरी मिर्च)', market: 'Guntur Mandi', modalPrice: 3800, changePercent: '+4.2%', isPositive: true },
+  { commodity: 'Red Chilli (लाल मिर्च)', market: 'Guntur Mandi', modalPrice: 18400, changePercent: '-1.8%', isPositive: false },
+  { commodity: 'Turmeric (हल्दी)', market: 'Erode Mandi', modalPrice: 13200, changePercent: '+3.5%', isPositive: true },
+  { commodity: 'Cumin (जीरा)', market: 'Unjha Mandi', modalPrice: 26800, changePercent: '+2.9%', isPositive: true },
+  { commodity: 'Coriander (धनिया)', market: 'Kota Mandi', modalPrice: 7400, changePercent: '+1.7%', isPositive: true },
+
+  // Fruits
+  { commodity: 'Apple (सेब)', market: 'Shimla Mandi', modalPrice: 7800, changePercent: '+2.8%', isPositive: true },
+  { commodity: 'Mango (आम)', market: 'Lucknow Mandi', modalPrice: 4800, changePercent: '+3.2%', isPositive: true },
+  { commodity: 'Banana (केला)', market: 'Jalgaon Mandi', modalPrice: 1850, changePercent: '-1.6%', isPositive: false },
 ];
 
 export default function Home({ portalLabel, storageKeyPrefix }) {
@@ -264,14 +301,54 @@ export default function Home({ portalLabel, storageKeyPrefix }) {
                 value={selectedCrop}
                 onChange={(e) => setSelectedCrop(e.target.value)}
               >
-                <option value="all">All Crops</option>
-                <option value="Wheat">Wheat (गेहूं)</option>
-                <option value="Soybean">Soybean (सोयाबीन)</option>
-                <option value="Mustard">Mustard (सरसों)</option>
-                <option value="Cotton">Cotton (कपास)</option>
-                <option value="Paddy">Paddy / Rice (धान)</option>
-                <option value="Onion">Onion (प्याज)</option>
-                <option value="Potato">Potato (आलू)</option>
+                <option value="all">🌾 All Indian Crops (सभी फसलें)</option>
+                <optgroup label="Cereals & Grains (अनाज)">
+                  <option value="Wheat">Wheat (गेहूं)</option>
+                  <option value="Paddy">Paddy / Basmati (धान)</option>
+                  <option value="Maize">Maize (मक्का)</option>
+                  <option value="Bajra">Bajra (बाजरा)</option>
+                  <option value="Jowar">Jowar (ज्वार)</option>
+                  <option value="Barley">Barley (जौ)</option>
+                  <option value="Ragi">Ragi (रागी)</option>
+                </optgroup>
+                <optgroup label="Pulses (दालें / दलहन)">
+                  <option value="Chana">Chana (चना)</option>
+                  <option value="Tur">Tur / Arhar (तुअर / अरहर)</option>
+                  <option value="Moong">Moong (मूंग)</option>
+                  <option value="Urad">Urad (उड़द)</option>
+                  <option value="Masoor">Masoor (मसूर)</option>
+                </optgroup>
+                <optgroup label="Oilseeds (तिलहन)">
+                  <option value="Soybean">Soybean (सोयाबीन)</option>
+                  <option value="Mustard">Mustard (सरसों / राई)</option>
+                  <option value="Groundnut">Groundnut (मूंगफली)</option>
+                  <option value="Sunflower">Sunflower (सूरजमुखी)</option>
+                  <option value="Sesame">Sesame / Til (तिल)</option>
+                </optgroup>
+                <optgroup label="Cash Crops (नकदी फसलें)">
+                  <option value="Cotton">Cotton (कपास)</option>
+                  <option value="Sugarcane">Sugarcane (गन्ना)</option>
+                  <option value="Jute">Jute (पटसन / जूट)</option>
+                </optgroup>
+                <optgroup label="Vegetables (सब्जियां)">
+                  <option value="Onion">Onion (प्याज)</option>
+                  <option value="Potato">Potato (आलू)</option>
+                  <option value="Tomato">Tomato (टमाटर)</option>
+                  <option value="Garlic">Garlic (लहसुन)</option>
+                  <option value="Ginger">Ginger (अदरक)</option>
+                  <option value="Green Chilli">Green Chilli (हरी मिर्च)</option>
+                </optgroup>
+                <optgroup label="Spices (मसाले)">
+                  <option value="Cumin">Cumin / Jeera (जीरा)</option>
+                  <option value="Turmeric">Turmeric / Haldi (हल्दी)</option>
+                  <option value="Coriander">Coriander / Dhaniya (धनिया)</option>
+                  <option value="Red Chilli">Red Chilli (सूखी लाल मिर्च)</option>
+                </optgroup>
+                <optgroup label="Fruits (फल)">
+                  <option value="Apple">Apple (सेब)</option>
+                  <option value="Mango">Mango (आम)</option>
+                  <option value="Banana">Banana (केला)</option>
+                </optgroup>
               </select>
 
               <input

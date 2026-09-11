@@ -299,8 +299,9 @@ const CROPS_AGRONOMIC_DB = [
   }
 ];
 
-// LIVE MANDI BHAV DATASET (Refreshed regularly)
+// LIVE MANDI BHAV DATASET - Comprehensive All-India Agricultural Commodities (Refreshed regularly)
 const MANDI_RATES_DATA = [
+  // --- Cereals & Grains (अनाज) ---
   {
     commodity: 'Wheat (गेहूं)',
     state: 'Madhya Pradesh',
@@ -330,48 +331,6 @@ const MANDI_RATES_DATA = [
     arrivalDate: 'Today'
   },
   {
-    commodity: 'Soybean (सोयाबीन)',
-    state: 'Madhya Pradesh',
-    market: 'Ujjain Mandi',
-    variety: 'Yellow Soybean',
-    minPrice: 4200,
-    maxPrice: 4850,
-    modalPrice: 4620,
-    unit: '₹ / Quintal',
-    changePercent: '+3.1%',
-    isPositive: true,
-    msp: 4600,
-    arrivalDate: 'Today'
-  },
-  {
-    commodity: 'Mustard (सरसों)',
-    state: 'Rajasthan',
-    market: 'Alwar Mandi',
-    variety: '42% Oil Grade',
-    minPrice: 5400,
-    maxPrice: 6150,
-    modalPrice: 5850,
-    unit: '₹ / Quintal',
-    changePercent: '+1.5%',
-    isPositive: true,
-    msp: 5650,
-    arrivalDate: 'Today'
-  },
-  {
-    commodity: 'Cotton (कपास)',
-    state: 'Gujarat',
-    market: 'Rajkot Mandi',
-    variety: 'Shankar-6 Bt',
-    minPrice: 6800,
-    maxPrice: 7650,
-    modalPrice: 7350,
-    unit: '₹ / Quintal',
-    changePercent: '-1.1%',
-    isPositive: false,
-    msp: 7020,
-    arrivalDate: 'Today'
-  },
-  {
     commodity: 'Paddy / Basmati (धान)',
     state: 'Haryana',
     market: 'Karnal Mandi',
@@ -385,6 +344,280 @@ const MANDI_RATES_DATA = [
     msp: 2300,
     arrivalDate: 'Today'
   },
+  {
+    commodity: 'Paddy / Common (धान मोटा)',
+    state: 'Telangana',
+    market: 'Warangal Mandi',
+    variety: 'BPT-5204 (Sona Masuri)',
+    minPrice: 2250,
+    maxPrice: 2480,
+    modalPrice: 2360,
+    unit: '₹ / Quintal',
+    changePercent: '+0.7%',
+    isPositive: true,
+    msp: 2300,
+    arrivalDate: 'Today'
+  },
+  {
+    commodity: 'Maize (मक्का)',
+    state: 'Bihar',
+    market: 'Gulabbagh Mandi',
+    variety: 'Yellow Hybrid',
+    minPrice: 2050,
+    maxPrice: 2450,
+    modalPrice: 2280,
+    unit: '₹ / Quintal',
+    changePercent: '+0.4%',
+    isPositive: true,
+    msp: 2090,
+    arrivalDate: 'Today'
+  },
+  {
+    commodity: 'Bajra / Pearl Millet (बाजरा)',
+    state: 'Rajasthan',
+    market: 'Jaipur Mandi',
+    variety: 'Desi Hybrid',
+    minPrice: 2380,
+    maxPrice: 2680,
+    modalPrice: 2550,
+    unit: '₹ / Quintal',
+    changePercent: '-0.8%',
+    isPositive: false,
+    msp: 2625,
+    arrivalDate: 'Today'
+  },
+  {
+    commodity: 'Jowar / Sorghum (ज्वार)',
+    state: 'Maharashtra',
+    market: 'Solapur Mandi',
+    variety: 'Maldandi (White)',
+    minPrice: 3100,
+    maxPrice: 3800,
+    modalPrice: 3450,
+    unit: '₹ / Quintal',
+    changePercent: '+1.6%',
+    isPositive: true,
+    msp: 3371,
+    arrivalDate: 'Today'
+  },
+  {
+    commodity: 'Barley (जौ)',
+    state: 'Uttar Pradesh',
+    market: 'Aligarh Mandi',
+    variety: 'Malt Grade',
+    minPrice: 1980,
+    maxPrice: 2300,
+    modalPrice: 2150,
+    unit: '₹ / Quintal',
+    changePercent: '+1.1%',
+    isPositive: true,
+    msp: 1850,
+    arrivalDate: 'Today'
+  },
+  {
+    commodity: 'Ragi / Finger Millet (रागी)',
+    state: 'Karnataka',
+    market: 'Mysuru Mandi',
+    variety: 'GPU-28',
+    minPrice: 3600,
+    maxPrice: 4100,
+    modalPrice: 3890,
+    unit: '₹ / Quintal',
+    changePercent: '-0.6%',
+    isPositive: false,
+    msp: 4290,
+    arrivalDate: 'Today'
+  },
+
+  // --- Pulses (दालें / दलहन) ---
+  {
+    commodity: 'Chana / Chickpea (चना)',
+    state: 'Madhya Pradesh',
+    market: 'Neemuch Mandi',
+    variety: 'Desi Chana (Vishal)',
+    minPrice: 5250,
+    maxPrice: 5850,
+    modalPrice: 5600,
+    unit: '₹ / Quintal',
+    changePercent: '+1.2%',
+    isPositive: true,
+    msp: 5440,
+    arrivalDate: 'Today'
+  },
+  {
+    commodity: 'Tur / Arhar (तुअर / अरहर)',
+    state: 'Maharashtra',
+    market: 'Latur Mandi',
+    variety: 'Maruti Red',
+    minPrice: 8800,
+    maxPrice: 10200,
+    modalPrice: 9450,
+    unit: '₹ / Quintal',
+    changePercent: '+2.8%',
+    isPositive: true,
+    msp: 7550,
+    arrivalDate: 'Today'
+  },
+  {
+    commodity: 'Moong / Green Gram (मूंग)',
+    state: 'Madhya Pradesh',
+    market: 'Harda Mandi',
+    variety: 'Shiny Green Pusa',
+    minPrice: 7600,
+    maxPrice: 8700,
+    modalPrice: 8200,
+    unit: '₹ / Quintal',
+    changePercent: '-1.4%',
+    isPositive: false,
+    msp: 8682,
+    arrivalDate: 'Today'
+  },
+  {
+    commodity: 'Urad / Black Gram (उड़द)',
+    state: 'Uttar Pradesh',
+    market: 'Lalitpur Mandi',
+    variety: 'Black Bold (Shekhar)',
+    minPrice: 7200,
+    maxPrice: 8350,
+    modalPrice: 7850,
+    unit: '₹ / Quintal',
+    changePercent: '+1.9%',
+    isPositive: true,
+    msp: 7400,
+    arrivalDate: 'Today'
+  },
+  {
+    commodity: 'Masoor / Red Lentil (मसूर)',
+    state: 'Madhya Pradesh',
+    market: 'Vidisha Mandi',
+    variety: 'Small Bold Grade',
+    minPrice: 5900,
+    maxPrice: 6650,
+    modalPrice: 6300,
+    unit: '₹ / Quintal',
+    changePercent: '+1.3%',
+    isPositive: true,
+    msp: 6425,
+    arrivalDate: 'Today'
+  },
+
+  // --- Oilseeds (तिलहन) ---
+  {
+    commodity: 'Soybean (सोयाबीन)',
+    state: 'Madhya Pradesh',
+    market: 'Ujjain Mandi',
+    variety: 'Yellow Soybean (JS-9560)',
+    minPrice: 4200,
+    maxPrice: 4850,
+    modalPrice: 4620,
+    unit: '₹ / Quintal',
+    changePercent: '+3.1%',
+    isPositive: true,
+    msp: 4892,
+    arrivalDate: 'Today'
+  },
+  {
+    commodity: 'Mustard (सरसों / राई)',
+    state: 'Rajasthan',
+    market: 'Alwar Mandi',
+    variety: '42% Oil Grade',
+    minPrice: 5400,
+    maxPrice: 6150,
+    modalPrice: 5850,
+    unit: '₹ / Quintal',
+    changePercent: '+1.5%',
+    isPositive: true,
+    msp: 5650,
+    arrivalDate: 'Today'
+  },
+  {
+    commodity: 'Groundnut (मूंगफली)',
+    state: 'Gujarat',
+    market: 'Junagadh Mandi',
+    variety: 'GG-20 Bold Pods',
+    minPrice: 5900,
+    maxPrice: 6850,
+    modalPrice: 6450,
+    unit: '₹ / Quintal',
+    changePercent: '+2.1%',
+    isPositive: true,
+    msp: 6783,
+    arrivalDate: 'Today'
+  },
+  {
+    commodity: 'Sunflower (सूरजमुखी)',
+    state: 'Karnataka',
+    market: 'Raichur Mandi',
+    variety: 'KBSH-44 Hybrid',
+    minPrice: 4900,
+    maxPrice: 5650,
+    modalPrice: 5350,
+    unit: '₹ / Quintal',
+    changePercent: '-1.2%',
+    isPositive: false,
+    msp: 7280,
+    arrivalDate: 'Today'
+  },
+  {
+    commodity: 'Sesame / Til (सफेद तिल)',
+    state: 'Gujarat',
+    market: 'Amreli Mandi',
+    variety: 'White Export Quality',
+    minPrice: 11800,
+    maxPrice: 13900,
+    modalPrice: 12800,
+    unit: '₹ / Quintal',
+    changePercent: '+2.6%',
+    isPositive: true,
+    msp: 9267,
+    arrivalDate: 'Today'
+  },
+
+  // --- Commercial & Cash Crops (नकदी फसलें) ---
+  {
+    commodity: 'Cotton (कपास)',
+    state: 'Gujarat',
+    market: 'Rajkot Mandi',
+    variety: 'Shankar-6 Bt Medium',
+    minPrice: 6800,
+    maxPrice: 7650,
+    modalPrice: 7350,
+    unit: '₹ / Quintal',
+    changePercent: '-1.1%',
+    isPositive: false,
+    msp: 7121,
+    arrivalDate: 'Today'
+  },
+  {
+    commodity: 'Sugarcane (गन्ना)',
+    state: 'Uttar Pradesh',
+    market: 'Muzaffarnagar Mandi',
+    variety: 'Co-0238 High Sugar',
+    minPrice: 360,
+    maxPrice: 410,
+    modalPrice: 390,
+    unit: '₹ / Quintal',
+    changePercent: '+1.5%',
+    isPositive: true,
+    msp: 370,
+    arrivalDate: 'Today'
+  },
+  {
+    commodity: 'Jute (पटसन / जूट)',
+    state: 'West Bengal',
+    market: 'Barrackpore Mandi',
+    variety: 'TD-5 Grade',
+    minPrice: 4800,
+    maxPrice: 5500,
+    modalPrice: 5200,
+    unit: '₹ / Quintal',
+    changePercent: '+1.8%',
+    isPositive: true,
+    msp: 5335,
+    arrivalDate: 'Today'
+  },
+
+  // --- Vegetables & Spices (सब्जियां व मसाले) ---
   {
     commodity: 'Onion (प्याज)',
     state: 'Maharashtra',
@@ -403,7 +636,7 @@ const MANDI_RATES_DATA = [
     commodity: 'Potato (आलू)',
     state: 'Uttar Pradesh',
     market: 'Agra Mandi',
-    variety: 'Kufri Bahar',
+    variety: 'Kufri Bahar (Chips Grade)',
     minPrice: 1100,
     maxPrice: 1650,
     modalPrice: 1420,
@@ -414,31 +647,159 @@ const MANDI_RATES_DATA = [
     arrivalDate: 'Today'
   },
   {
-    commodity: 'Chana / Chickpea (चना)',
-    state: 'Madhya Pradesh',
-    market: 'Neemuch Mandi',
-    variety: 'Desi Chana',
-    minPrice: 5250,
-    maxPrice: 5850,
-    modalPrice: 5600,
+    commodity: 'Tomato (टमाटर)',
+    state: 'Karnataka',
+    market: 'Kolar Mandi',
+    variety: 'Hybrid Red Firm',
+    minPrice: 1200,
+    maxPrice: 2100,
+    modalPrice: 1650,
     unit: '₹ / Quintal',
-    changePercent: '+1.2%',
+    changePercent: '+5.5%',
     isPositive: true,
-    msp: 5440,
+    msp: null,
     arrivalDate: 'Today'
   },
   {
-    commodity: 'Maize (मक्का)',
-    state: 'Bihar',
-    market: 'Gulabbagh Mandi',
-    variety: 'Yellow Hybrid',
-    minPrice: 2050,
-    maxPrice: 2450,
-    modalPrice: 2280,
+    commodity: 'Garlic (लहसुन)',
+    state: 'Madhya Pradesh',
+    market: 'Mandsaur Mandi',
+    variety: 'G2 / Ooty Desi Bold',
+    minPrice: 12000,
+    maxPrice: 16800,
+    modalPrice: 14500,
     unit: '₹ / Quintal',
-    changePercent: '+0.4%',
+    changePercent: '+3.8%',
     isPositive: true,
-    msp: 2090,
+    msp: null,
+    arrivalDate: 'Today'
+  },
+  {
+    commodity: 'Ginger (अदरक)',
+    state: 'Kerala',
+    market: 'Wayanad Mandi',
+    variety: 'Fresh Green Rhizome',
+    minPrice: 7800,
+    maxPrice: 9800,
+    modalPrice: 8900,
+    unit: '₹ / Quintal',
+    changePercent: '-1.5%',
+    isPositive: false,
+    msp: null,
+    arrivalDate: 'Today'
+  },
+  {
+    commodity: 'Green Chilli (हरी मिर्च)',
+    state: 'Andhra Pradesh',
+    market: 'Guntur Mandi',
+    variety: 'Teja Green Spicy',
+    minPrice: 3200,
+    maxPrice: 4400,
+    modalPrice: 3800,
+    unit: '₹ / Quintal',
+    changePercent: '+4.2%',
+    isPositive: true,
+    msp: null,
+    arrivalDate: 'Today'
+  },
+  {
+    commodity: 'Red Chilli (सूखी लाल मिर्च)',
+    state: 'Andhra Pradesh',
+    market: 'Guntur Mandi',
+    variety: 'Guntur Sannam (S4)',
+    minPrice: 16500,
+    maxPrice: 20500,
+    modalPrice: 18400,
+    unit: '₹ / Quintal',
+    changePercent: '-1.8%',
+    isPositive: false,
+    msp: null,
+    arrivalDate: 'Today'
+  },
+  {
+    commodity: 'Turmeric (हल्दी)',
+    state: 'Tamil Nadu',
+    market: 'Erode Mandi',
+    variety: 'Salem Finger Double Polish',
+    minPrice: 11800,
+    maxPrice: 14600,
+    modalPrice: 13200,
+    unit: '₹ / Quintal',
+    changePercent: '+3.5%',
+    isPositive: true,
+    msp: null,
+    arrivalDate: 'Today'
+  },
+  {
+    commodity: 'Cumin / Jeera (जीरा)',
+    state: 'Gujarat',
+    market: 'Unjha Mandi',
+    variety: 'Machine Clean 99%',
+    minPrice: 24200,
+    maxPrice: 29500,
+    modalPrice: 26800,
+    unit: '₹ / Quintal',
+    changePercent: '+2.9%',
+    isPositive: true,
+    msp: null,
+    arrivalDate: 'Today'
+  },
+  {
+    commodity: 'Coriander / Dhaniya (धनिया)',
+    state: 'Rajasthan',
+    market: 'Kota Mandi',
+    variety: 'Eagle / Badami Round',
+    minPrice: 6800,
+    maxPrice: 8100,
+    modalPrice: 7400,
+    unit: '₹ / Quintal',
+    changePercent: '+1.7%',
+    isPositive: true,
+    msp: null,
+    arrivalDate: 'Today'
+  },
+
+  // --- Horticulture & Fruits (फल) ---
+  {
+    commodity: 'Apple (सेब)',
+    state: 'Himachal Pradesh',
+    market: 'Shimla Mandi',
+    variety: 'Royal Delicious (A-Grade)',
+    minPrice: 6500,
+    maxPrice: 9200,
+    modalPrice: 7800,
+    unit: '₹ / Quintal',
+    changePercent: '+2.8%',
+    isPositive: true,
+    msp: null,
+    arrivalDate: 'Today'
+  },
+  {
+    commodity: 'Mango (आम)',
+    state: 'Uttar Pradesh',
+    market: 'Lucknow Mandi',
+    variety: 'Malihabadi Dasheri',
+    minPrice: 3900,
+    maxPrice: 5600,
+    modalPrice: 4800,
+    unit: '₹ / Quintal',
+    changePercent: '+3.2%',
+    isPositive: true,
+    msp: null,
+    arrivalDate: 'Today'
+  },
+  {
+    commodity: 'Banana (केला)',
+    state: 'Maharashtra',
+    market: 'Jalgaon Mandi',
+    variety: 'Grand Naine (Robusta)',
+    minPrice: 1550,
+    maxPrice: 2150,
+    modalPrice: 1850,
+    unit: '₹ / Quintal',
+    changePercent: '-1.6%',
+    isPositive: false,
+    msp: null,
     arrivalDate: 'Today'
   }
 ];
@@ -690,16 +1051,62 @@ exports.getPricePrediction = async (req, res) => {
     const { commodity = 'Wheat' } = req.query;
 
     const basePrices = {
-      'Wheat': { current: 2850, base: 2650, peak: 3040, dir: 'up', change: '+6.6%', rec: 'HOLD' },
-      'Soybean': { current: 4620, base: 4400, peak: 4920, dir: 'up', change: '+6.5%', rec: 'HOLD' },
-      'Mustard': { current: 5850, base: 5600, peak: 5950, dir: 'up', change: '+1.7%', rec: 'SELL' },
-      'Cotton': { current: 7350, base: 7500, peak: 7150, dir: 'down', change: '-2.7%', rec: 'SELL' },
-      'Onion': { current: 2100, base: 1800, peak: 2550, dir: 'up', change: '+21.4%', rec: 'HOLD' },
-      'Potato': { current: 1420, base: 1450, peak: 1380, dir: 'down', change: '-2.8%', rec: 'SELL' },
-      'Paddy': { current: 4350, base: 4100, peak: 4580, dir: 'up', change: '+5.3%', rec: 'HOLD' }
+      // --- Cereals & Grains ---
+      'Wheat': { current: 2850, base: 2650, peak: 3040, dir: 'up', change: '+6.6%', rec: 'HOLD', hindi: 'गेहूं', reason: 'त्योहारी मांग और सीमित मंडी आवक के कारण अगले 10 दिनों में भाव में मजबूती के संकेत हैं।' },
+      'Paddy': { current: 4350, base: 4100, peak: 4580, dir: 'up', change: '+5.3%', rec: 'HOLD', hindi: 'धान / बासमती', reason: 'बासमती चावल के अंतरराष्ट्रीय निर्यात ऑर्डर्स में वृद्धि से मंडियों में प्रीमियम बना रहेगा।' },
+      'Paddy Common': { current: 2360, base: 2280, peak: 2440, dir: 'up', change: '+3.4%', rec: 'HOLD', hindi: 'धान (सामान्य)', reason: 'सरकारी खरीद केंद्र सक्रिय होने से न्यूनतम समर्थन मूल्य (MSP) से ऊपर लिवाली जारी है।' },
+      'Maize': { current: 2280, base: 2150, peak: 2420, dir: 'up', change: '+6.1%', rec: 'HOLD', hindi: 'मक्का', reason: 'एथेनॉल और पोल्ट्री फीड इंडस्ट्री की भारी मांग से मक्के के भाव में तेजी के आसार हैं।' },
+      'Bajra': { current: 2550, base: 2650, peak: 2480, dir: 'down', change: '-2.7%', rec: 'SELL', hindi: 'बाजरा', reason: 'राजस्थान और हरियाणा की मंडियों में नई फसल की भारी आवक से भाव थोड़ा नरम हो सकते हैं।' },
+      'Jowar': { current: 3450, base: 3300, peak: 3620, dir: 'up', change: '+4.9%', rec: 'HOLD', hindi: 'ज्वार', reason: 'मिल्ट्स (श्रीअन्न) की स्वास्थ्य मांग बढ़ने से मालवा और दक्कन मंडियों में भाव मजबूत हैं।' },
+      'Barley': { current: 2150, base: 2050, peak: 2260, dir: 'up', change: '+5.1%', rec: 'HOLD', hindi: 'जौ', reason: 'माल्ट व बेवरेज कंपनियों की सतत खरीदारी से जौ के भाव स्थिर व ऊपर की ओर हैं।' },
+      'Ragi': { current: 3890, base: 4000, peak: 3780, dir: 'down', change: '-2.8%', rec: 'SELL', hindi: 'रागी', reason: 'कर्नाटक के प्रमुख उत्पादक क्षेत्रों से आवक बढ़ने के कारण मौजूदा स्तर पर बिकवाली उचित है।' },
+
+      // --- Pulses (दलहन) ---
+      'Chana': { current: 5600, base: 5400, peak: 5880, dir: 'up', change: '+5.0%', rec: 'HOLD', hindi: 'चना', reason: 'दाल मिलों की सक्रिय मांग व त्योहारी खपत के चलते देशी चने में मजबूती बनी रहेगी।' },
+      'Arhar': { current: 9450, base: 9100, peak: 9950, dir: 'up', change: '+5.3%', rec: 'HOLD', hindi: 'तुअर / अरहर', reason: 'तुअर दाल की घरेलू मांग व कम स्टॉक के चलते भाव ₹10,000 प्रति क्विंटल के करीब पहुंचने का अनुमान है।' },
+      'Moong': { current: 8200, base: 8450, peak: 7980, dir: 'down', change: '-2.7%', rec: 'SELL', hindi: 'मूंग', reason: 'मध्य प्रदेश व राजस्थान से समर मूंग की ताजा आवक बढ़ने से भाव पर दबाव संभव है।' },
+      'Urad': { current: 7850, base: 7600, peak: 8200, dir: 'up', change: '+4.5%', rec: 'HOLD', hindi: 'उड़द', reason: 'साउथ इंडियन व स्थानीय दाल मिलर्स की लगातार पूछपरख से उड़द में उछाल देखा जा रहा है।' },
+      'Masoor': { current: 6300, base: 6150, peak: 6520, dir: 'up', change: '+3.5%', rec: 'HOLD', hindi: 'मसूर', reason: 'आयातित मसूर के ऊंचे भाव और स्थानीय मंडी में अच्छी मांग से भाव सुधर रहे हैं।' },
+
+      // --- Oilseeds (तिलहन) ---
+      'Soybean': { current: 4620, base: 4400, peak: 4920, dir: 'up', change: '+6.5%', rec: 'HOLD', hindi: 'सोयाबीन', reason: 'सोयामील निर्यात में तेजी व क्रशिंग प्लांटों की मजबूत लिवाली से भाव में सुधार जारी है।' },
+      'Mustard': { current: 5850, base: 5600, peak: 5950, dir: 'up', change: '+1.7%', rec: 'SELL', hindi: 'सरसों', reason: 'सरसों के भाव अपने मौसमी शिखर पर हैं, तेल मिलों की आवक बढ़ने से पहले बिकवाली फायदेमंद है।' },
+      'Groundnut': { current: 6450, base: 6300, peak: 6780, dir: 'up', change: '+5.1%', rec: 'HOLD', hindi: 'मूंगफली', reason: 'सौराष्ट्र व गुजरात से मूंगफली दाना निर्यात मांग मजबूत रहने से भाव तेज रहने के संकेत हैं।' },
+      'Sunflower': { current: 5350, base: 5500, peak: 5180, dir: 'down', change: '-3.2%', rec: 'SELL', hindi: 'सूरजमुखी', reason: 'खाद्य तेल आयात में रियायतों के चलते सूरजमुखी के घरेलू भाव में नरमी का रुख है।' },
+      'Sesame': { current: 12800, base: 12200, peak: 13600, dir: 'up', change: '+6.2%', rec: 'HOLD', hindi: 'तिल', reason: 'सफेद तिल की निर्यात मांग व बेकरी सेक्टर से ऑर्डर्स बढ़ने से भाव ₹13,500 पार करने के आसार हैं।' },
+
+      // --- Cash Crops (नकदी) ---
+      'Cotton': { current: 7350, base: 7500, peak: 7150, dir: 'down', change: '-2.7%', rec: 'SELL', hindi: 'कपास', reason: 'वैश्विक कॉटन वायदा में नरमी व कताई मिलों की सीमित खरीद से मौजूदा भाव पर बिक्री उचित है।' },
+      'Sugarcane': { current: 390, base: 375, peak: 405, dir: 'up', change: '+3.8%', rec: 'HOLD', hindi: 'गन्ना', reason: 'चीनी मिलों द्वारा पेराई सत्र के दौरान समय पर भुगतान व राज्य परामर्शित मूल्य (SAP) का समर्थन।' },
+      'Jute': { current: 5200, base: 5050, peak: 5450, dir: 'up', change: '+4.8%', rec: 'HOLD', hindi: 'जूट / पटसन', reason: 'खाद्यान्न पैकेजिंग के लिए सरकारी गनी बैग्स ऑर्डर्स से जूट के भाव में मजबूती है।' },
+
+      // --- Vegetables & Spices (सब्जियां व मसाले) ---
+      'Onion': { current: 2100, base: 1800, peak: 2550, dir: 'up', change: '+21.4%', rec: 'HOLD', hindi: 'प्याज', reason: 'आने वाले त्योहारी सीजन और नासिक/लासलगांव में सीमित आवक से प्याज में भारी उछाल का अनुमान है।' },
+      'Potato': { current: 1420, base: 1450, peak: 1380, dir: 'down', change: '-2.8%', rec: 'SELL', hindi: 'आलू', reason: 'कोल्ड स्टोरेज से निकासी तेज होने और नई फसल की बुवाई शुरू होने से तुरंत बेचना लाभकारी रहेगा।' },
+      'Tomato': { current: 1650, base: 1400, peak: 2050, dir: 'up', change: '+24.2%', rec: 'HOLD', hindi: 'टमाटर', reason: 'दक्षिण भारत में बारिश के चलते मंडियों में टमाटर की आवक घटी है, जिससे भाव तेजी से बढ़ रहे हैं।' },
+      'Garlic': { current: 14500, base: 13800, peak: 15800, dir: 'up', change: '+9.0%', rec: 'HOLD', hindi: 'लहसुन', reason: 'मंसौर व कोटा मंडियों में ऊंटी व देशी लहसुन की भारी मांग के चलते भाव ₹15,500 के पार पहुंच सकते हैं।' },
+      'Ginger': { current: 8900, base: 9200, peak: 8550, dir: 'down', change: '-3.9%', rec: 'SELL', hindi: 'अदरक', reason: 'केरल व पूर्वोत्तर से ताजा अदरक की आवक बढ़ने से बाजार भाव में गिरावट संभव है।' },
+      'Green Chilli': { current: 3800, base: 3500, peak: 4250, dir: 'up', change: '+11.8%', rec: 'HOLD', hindi: 'हरी मिर्च', reason: 'स्थानीय सब्जियों की मांग मजबूत रहने और उत्पादन लागत अधिक होने से भाव में बढ़त कायम रहेगी।' },
+      'Red Chilli': { current: 18400, base: 18900, peak: 17800, dir: 'down', change: '-3.3%', rec: 'SELL', hindi: 'सूखी लाल मिर्च', reason: 'गुंटूर मंडी में कोल्ड स्टोरेज से माल की निरंतर निकासी के कारण वर्तमान उच्च भाव पर मुनाफावसूली करें।' },
+      'Turmeric': { current: 13200, base: 12500, peak: 14400, dir: 'up', change: '+9.1%', rec: 'HOLD', hindi: 'हल्दी', reason: 'इरोड व निजामाबाद में मसाला कंपनियों की आक्रामक लिवाली से हल्दी में दीर्घकालिक तेजी का दौर है।' },
+      'Cumin': { current: 26800, base: 25500, peak: 28900, dir: 'up', change: '+7.8%', rec: 'HOLD', hindi: 'जीरा', reason: 'उंझा मंडी में खाड़ी देशों से निर्यात ऑर्डर्स मिलने से जीरे के भाव में आगामी दिनों में उछाल तय है।' },
+      'Coriander': { current: 7400, base: 7200, peak: 7850, dir: 'up', change: '+6.1%', rec: 'HOLD', hindi: 'धनिया', reason: 'मसाला पिसाई मिलों द्वारा बदामी व ईगल क्वालिटी धनिए की भारी खरीद से भाव ऊपर जा रहे हैं।' },
+
+      // --- Fruits (फल) ---
+      'Apple': { current: 7800, base: 7400, peak: 8400, dir: 'up', change: '+7.7%', rec: 'HOLD', hindi: 'सेब', reason: 'शिमला व कश्मीर से प्रीमियम रॉयल डिलीशियस की आवक नियंत्रित होने से महानगरों में भाव तेज हैं।' },
+      'Mango': { current: 4800, base: 4500, peak: 5250, dir: 'up', change: '+9.4%', rec: 'HOLD', hindi: 'आम', reason: 'दशहरी व चौसा किस्मों की देशव्यापी मांग व प्रोसेसिंग यूनिट्स द्वारा खरीद से मजबूती बनी है।' },
+      'Banana': { current: 1850, base: 1920, peak: 1780, dir: 'down', change: '-3.8%', rec: 'SELL', hindi: 'केला', reason: 'जलगांव व बुरहानपुर मंडियों में बंपर कटाई के चलते आवक अधिक है, अतः तुरंत बेचना हितकर है।' }
     };
 
-    const info = basePrices[commodity] || basePrices['Wheat'];
+    // Smart case-insensitive / partial match for requested commodity
+    const reqLower = (commodity || 'Wheat').trim().toLowerCase();
+    const matchedKey = Object.keys(basePrices).find(k => {
+      const kLower = k.toLowerCase();
+      const hindi = (basePrices[k].hindi || '').toLowerCase();
+      return kLower === reqLower || reqLower.includes(kLower) || (hindi && reqLower.includes(hindi));
+    }) || 'Wheat';
+
+    const info = basePrices[matchedKey] || basePrices['Wheat'];
 
     // Generate 7 days past + 10 days forecasted prices
     const days = [];
@@ -741,9 +1148,9 @@ exports.getPricePrediction = async (req, res) => {
       projectedChange: info.change,
       recommendation: info.rec === 'HOLD' ? 'HOLD_PRODUCE' : 'SELL_NOW',
       recommendationHindi: info.rec === 'HOLD' ? 'फसल रोके रखें (HOLD) — भाव बढ़ने का अनुमान' : 'तुरंत बेचें (SELL NOW) — आवक बढ़ने से भाव गिर सकते हैं',
-      reasoning: info.rec === 'HOLD'
+      reasoning: info.reason || (info.rec === 'HOLD'
         ? `Upcoming festive demand and limited mandi arrivals indicate an upward trajectory of ${info.change} over the next 10 days.`
-        : `Arrivals from southern production hubs are increasing. Offloading current harvest locks in highest profit margin before supply expansion.`,
+        : `Arrivals from major production hubs are increasing. Offloading current harvest locks in highest profit margin before supply expansion.`),
       timeline: days
     });
   } catch (error) {

@@ -521,15 +521,49 @@ export default function Chopal() {
                       background: '#ffffff'
                     }}
                   >
-                    <option value="Wheat (गेहूं)">Wheat (गेहूं)</option>
-                    <option value="Mustard (सरसों)">Mustard (सरसों)</option>
-                    <option value="Soybean (सोयाबीन)">Soybean (सोयाबीन)</option>
-                    <option value="Cotton (कपास)">Cotton (कपास)</option>
-                    <option value="Paddy / Rice (धान)">Paddy / Rice (धान)</option>
-                    <option value="Tomato (टमाटर)">Tomato (टमाटर)</option>
-                    <option value="Potato (आलू)">Potato (आलू)</option>
-                    <option value="Onion (प्याज)">Onion (प्याज)</option>
-                    <option value="General Agriculture">General Agriculture</option>
+                    <option value="General Agriculture">🌾 General Agriculture (सामान्य कृषि)</option>
+                    <optgroup label="Cereals & Grains (अनाज)">
+                      <option value="Wheat (गेहूं)">Wheat (गेहूं)</option>
+                      <option value="Paddy / Rice (धान)">Paddy / Rice (धान)</option>
+                      <option value="Maize (मक्का)">Maize (मक्का)</option>
+                      <option value="Bajra (बाजरा)">Bajra (बाजरा)</option>
+                      <option value="Jowar (ज्वार)">Jowar (ज्वार)</option>
+                      <option value="Barley (जौ)">Barley (जौ)</option>
+                    </optgroup>
+                    <optgroup label="Pulses (दालें / दलहन)">
+                      <option value="Chana (चना)">Chana (चना)</option>
+                      <option value="Tur / Arhar (तुअर / अरहर)">Tur / Arhar (तुअर / अरहर)</option>
+                      <option value="Moong (मूंग)">Moong (मूंग)</option>
+                      <option value="Urad (उड़द)">Urad (उड़द)</option>
+                      <option value="Masoor (मसूर)">Masoor (मसूर)</option>
+                    </optgroup>
+                    <optgroup label="Oilseeds (तिलहन)">
+                      <option value="Soybean (सोयाबीन)">Soybean (सोयाबीन)</option>
+                      <option value="Mustard (सरसों)">Mustard (सरसों)</option>
+                      <option value="Groundnut (मूंगफली)">Groundnut (मूंगफली)</option>
+                      <option value="Sunflower (सूरजमुखी)">Sunflower (सूरजमुखी)</option>
+                      <option value="Sesame (तिल)">Sesame (तिल)</option>
+                    </optgroup>
+                    <optgroup label="Cash Crops (नकदी फसलें)">
+                      <option value="Cotton (कपास)">Cotton (कपास)</option>
+                      <option value="Sugarcane (गन्ना)">Sugarcane (गन्ना)</option>
+                      <option value="Jute (पटसन / जूट)">Jute (पटसन / जूट)</option>
+                    </optgroup>
+                    <optgroup label="Vegetables & Spices (सब्जियां व मसाले)">
+                      <option value="Onion (प्याज)">Onion (प्याज)</option>
+                      <option value="Potato (आलू)">Potato (आलू)</option>
+                      <option value="Tomato (टमाटर)">Tomato (टमाटर)</option>
+                      <option value="Garlic (लहसुन)">Garlic (लहसुन)</option>
+                      <option value="Ginger (अदरक)">Ginger (अदरक)</option>
+                      <option value="Chilli (मिर्च)">Chilli (मिर्च)</option>
+                      <option value="Turmeric (हल्दी)">Turmeric (हल्दी)</option>
+                      <option value="Cumin / Jeera (जीरा)">Cumin / Jeera (जीरा)</option>
+                    </optgroup>
+                    <optgroup label="Fruits (फल)">
+                      <option value="Apple (सेब)">Apple (सेब)</option>
+                      <option value="Mango (आम)">Mango (आम)</option>
+                      <option value="Banana (केला)">Banana (केला)</option>
+                    </optgroup>
                   </select>
                 </div>
 
