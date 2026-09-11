@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const ProduceListing = require('../models/produceListing');
 const DealOffer = require('../models/dealOffer');
 const Farmer = require('../models/farmer');
@@ -85,19 +86,34 @@ exports.getMyListings = async (req, res) => {
 // 3. Delete or cancel a listing
 exports.deleteProduceListing = async (req, res) => {
   try {
-    const farmerId = req.user.id;
+    const farmerId = req.user?.id || req.user?._id;
     const { id } = req.params;
 
-    const listing = await ProduceListing.findOneAndDelete({ _id: id, farmer: farmerId });
-    if (!listing) {
-      return res.status(404).json({ error: 'Listing not found or unauthorized' });
+    if (!id || !mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ error: 'Invalid listing ID format (अमान्य लिस्टिंग पहचान)' });
     }
 
-    // Cancel any pending offers for this listing
-    await DealOffer.updateMany({ listing: id, status: 'pending' }, { status: 'rejected', farmerRemark: 'Listing was removed by farmer' });
+    const listing = await ProduceListing.findById(id);
+    if (!listing) {
+      return res.status(404).json({ error: 'Listing not found or already removed (लिस्टिंग नहीं मिली या पहले ही हट चुकी है)' });
+    }
 
-    res.json({ message: 'Listing removed successfully' });
+    // Verify ownership: listing must belong to current farmer
+    if (listing.farmer && farmerId && listing.farmer.toString() !== farmerId.toString()) {
+      return res.status(403).json({ error: 'Unauthorized: You can only remove your own listings (आप केवल अपनी फसल लिस्टिंग हटा सकते हैं)' });
+    }
+
+    await ProduceListing.findByIdAndDelete(id);
+
+    // Cancel any pending offers for this listing
+    await DealOffer.updateMany(
+      { listing: id, status: 'pending' },
+      { status: 'rejected', farmerRemark: 'Listing was removed by farmer' }
+    );
+
+    res.json({ message: 'Listing removed successfully (लिस्टिंग सफलतापूर्वक हटा दी गई)' });
   } catch (error) {
+    console.error('Delete produce listing error:', error);
     res.status(500).json({ error: error.message });
   }
 };

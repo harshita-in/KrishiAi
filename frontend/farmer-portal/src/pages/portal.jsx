@@ -33,8 +33,12 @@ export default function Portal() {
   const [myListings, setMyListings] = useState([]);
   const [offers, setOffers] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [deletingId, setDeletingId] = useState(null);
   const [msg, setMsg] = useState('');
   const [err, setErr] = useState('');
+
+  const getActiveToken = () =>
+    localStorage.getItem('farmer_token') || sessionStorage.getItem('farmer_token') || token;
 
   useEffect(() => {
     if (activeTab === 'myListings') fetchMyListings();
@@ -43,27 +47,38 @@ export default function Portal() {
   }, [activeTab]);
 
   const fetchMyListings = async () => {
-    if (!token) return;
+    const activeToken = getActiveToken();
+    if (!activeToken) {
+      setErr('Please log in to view your listings. (अपनी लिस्टिंग देखने के लिए कृपया लॉगिन करें)');
+      return;
+    }
     setLoading(true);
+    setErr('');
     try {
       const res = await apiFetch('/api/marketplace/farmer/my-listings', {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${activeToken}` }
       });
       const data = await res.json();
-      if (res.ok) setMyListings(data.listings || []);
+      if (res.ok) {
+        setMyListings(data.listings || []);
+      } else {
+        setErr(data.error || 'Failed to load your listings. (आपकी लिस्टिंग लोड नहीं हो पाई)');
+      }
     } catch (e) {
-      console.error(e);
+      console.error('Fetch listings error:', e);
+      setErr('Could not connect to marketplace server. (बाजार सर्वर से संपर्क नहीं हो सका)');
     } finally {
       setLoading(false);
     }
   };
 
   const fetchOffers = async () => {
-    if (!token) return;
+    const activeToken = getActiveToken();
+    if (!activeToken) return;
     setLoading(true);
     try {
       const res = await apiFetch('/api/marketplace/farmer/offers', {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${activeToken}` }
       });
       const data = await res.json();
       if (res.ok) setOffers(data.offers || []);
@@ -81,6 +96,12 @@ export default function Portal() {
       return;
     }
 
+    const activeToken = getActiveToken();
+    if (!activeToken) {
+      setErr('Please log in first to list produce. (फसल लिस्ट करने के लिए पहले लॉगिन करें)');
+      return;
+    }
+
     setSubmitting(true);
     setErr('');
     setMsg('');
@@ -90,7 +111,7 @@ export default function Portal() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${activeToken}`
         },
         body: JSON.stringify({
           cropName,
@@ -121,28 +142,73 @@ export default function Portal() {
     }
   };
 
-  const handleDeleteListing = async (id) => {
-    if (!window.confirm('Are you sure you want to remove this listing? (क्या आप इस फसल लिस्टिंग को हटाना चाहते हैं?)')) return;
+  const handleDeleteListing = async (listingId) => {
+    if (!listingId) {
+      setErr('Invalid listing ID. (अमान्य लिस्टिंग पहचान)');
+      return;
+    }
+
+    if (!window.confirm('Are you sure you want to remove this listing? (क्या आप इस फसल लिस्टिंग को हटाना चाहते हैं?)')) {
+      return;
+    }
+
+    const activeToken = getActiveToken();
+    if (!activeToken) {
+      setErr('Authentication required. Please log in again. (लॉगिन आवश्यक है। कृपया पुनः लॉगिन करें)');
+      return;
+    }
+
+    setErr('');
+    setMsg('');
+    setDeletingId(listingId);
+
+    // Save previous state in case server rejects
+    const previousListings = [...myListings];
+
+    // Optimistically update UI so the farmer gets instant response
+    setMyListings((prev) => prev.filter((item) => (item._id || item.id) !== listingId));
+
     try {
-      const res = await apiFetch(`/api/marketplace/farmer/listings/${id}`, {
+      const res = await apiFetch(`/api/marketplace/farmer/listings/${listingId}`, {
         method: 'DELETE',
-        headers: { Authorization: `Bearer ${token}` }
+        headers: {
+          Authorization: `Bearer ${activeToken}`,
+          'Content-Type': 'application/json'
+        }
       });
+
+      const data = await res.json().catch(() => ({}));
+
       if (res.ok) {
-        fetchMyListings();
+        setMsg('Produce listing removed successfully! (फसल लिस्टिंग सफलतापूर्वक हटा दी गई)');
+        setTimeout(() => setMsg(''), 4000);
+      } else if (res.status === 404) {
+        // If not found or already deleted on server, keep it removed from UI
+        setMsg('Listing removed from your active list. (लिस्टिंग आपकी सूची से हटा दी गई)');
+        setTimeout(() => setMsg(''), 4000);
+      } else {
+        // Rollback optimistic update on error
+        setMyListings(previousListings);
+        setErr(data.error || 'Failed to remove listing from server. (सर्वर से लिस्टिंग हटाने में त्रुटि आई)');
       }
     } catch (e) {
-      console.error(e);
+      console.error('Delete error:', e);
+      setMyListings(previousListings);
+      setErr('Network error: Unable to reach server. (नेटवर्क त्रुटि: सर्वर से संपर्क नहीं हो सका)');
+    } finally {
+      setDeletingId(null);
     }
   };
 
   const handleOfferResponse = async (offerId, action) => {
+    const activeToken = getActiveToken();
+    if (!activeToken) return;
     try {
       const res = await apiFetch(`/api/marketplace/farmer/offers/${offerId}/respond`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${activeToken}`
         },
         body: JSON.stringify({ action })
       });
@@ -429,57 +495,62 @@ export default function Portal() {
               </div>
             ) : (
               <div className="listings-grid">
-                {myListings.map((item) => (
-                  <div key={item._id} className="listing-card">
-                    <div className="listing-card-header">
-                      <div>
-                        <div className="listing-crop-title">{item.cropName}</div>
-                        <div className="listing-variety">{item.variety}</div>
+                {myListings.map((item) => {
+                  const listingId = item._id || item.id;
+                  const isDeleting = deletingId === listingId;
+                  return (
+                    <div key={listingId} className="listing-card">
+                      <div className="listing-card-header">
+                        <div>
+                          <div className="listing-crop-title">{item.cropName}</div>
+                          <div className="listing-variety">{item.variety}</div>
+                        </div>
+                        <span className={`listing-status-tag status-${item.status}`}>
+                          {item.status === 'available' ? 'Available (उपलब्ध)' : item.status === 'in_deal' ? 'In Deal (सौदा जारी)' : item.status === 'sold' ? 'Sold (बिक चुका)' : item.status.replace('_', ' ')}
+                        </span>
                       </div>
-                      <span className={`listing-status-tag status-${item.status}`}>
-                        {item.status === 'available' ? 'Available (उपलब्ध)' : item.status === 'in_deal' ? 'In Deal (सौदा जारी)' : item.status === 'sold' ? 'Sold (बिक चुका)' : item.status.replace('_', ' ')}
-                      </span>
-                    </div>
 
-                    <div className="listing-info-grid">
-                      <div className="listing-info-item">
-                        <span>Quantity (मात्रा)</span>
-                        <strong>{item.quantityQuintals} Quintals (क्विंटल)</strong>
+                      <div className="listing-info-grid">
+                        <div className="listing-info-item">
+                          <span>Quantity (मात्रा)</span>
+                          <strong>{item.quantityQuintals} Quintals (क्विंटल)</strong>
+                        </div>
+                        <div className="listing-info-item">
+                          <span>Asking Price (मांग भाव)</span>
+                          <strong style={{ color: '#047857' }}>₹{item.expectedPricePerQuintal} / Qtl</strong>
+                        </div>
+                        <div className="listing-info-item">
+                          <span>Location (स्थान)</span>
+                          <strong>{item.location?.district || 'Local'}</strong>
+                        </div>
+                        <div className="listing-info-item">
+                          <span>Readiness (उपलब्धता)</span>
+                          <strong>{item.harvestDate}</strong>
+                        </div>
                       </div>
-                      <div className="listing-info-item">
-                        <span>Asking Price (मांग भाव)</span>
-                        <strong style={{ color: '#047857' }}>₹{item.expectedPricePerQuintal} / Qtl</strong>
-                      </div>
-                      <div className="listing-info-item">
-                        <span>Location (स्थान)</span>
-                        <strong>{item.location?.district || 'Local'}</strong>
-                      </div>
-                      <div className="listing-info-item">
-                        <span>Readiness (उपलब्धता)</span>
-                        <strong>{item.harvestDate}</strong>
+
+                      {item.description && (
+                        <p style={{ fontSize: '0.86rem', color: '#475569', marginBottom: 12 }}>
+                          {item.description}
+                        </p>
+                      )}
+
+                      <div className="listing-footer">
+                        <span className="pending-bids-badge">
+                          💬 {item.pendingOffersCount || 0} Offers received (ऑफर प्राप्त हुए)
+                        </span>
+                        <button
+                          type="button"
+                          className="delete-listing-btn"
+                          disabled={isDeleting}
+                          onClick={() => handleDeleteListing(listingId)}
+                        >
+                          {isDeleting ? 'Removing... (हटाया जा रहा है...)' : 'Remove (हटाएं)'}
+                        </button>
                       </div>
                     </div>
-
-                    {item.description && (
-                      <p style={{ fontSize: '0.86rem', color: '#475569', marginBottom: 12 }}>
-                        {item.description}
-                      </p>
-                    )}
-
-                    <div className="listing-footer">
-                      <span className="pending-bids-badge">
-                        💬 {item.pendingOffersCount || 0} Offers received (ऑफर प्राप्त हुए)
-                      </span>
-                      <button
-                        type="button"
-                        className="delete-listing-btn"
-                        onClick={() => handleDeleteListing(item._id)}
-                      >
-                        Remove (हटाएं)
-                      </button>
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             )}
           </div>

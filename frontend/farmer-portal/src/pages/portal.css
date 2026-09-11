@@ -313,6 +313,17 @@
   font-size: 0.8rem;
   font-weight: 700;
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.delete-listing-btn:hover:not(:disabled) {
+  background: #fecaca;
+  transform: translateY(-1px);
+}
+
+.delete-listing-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
 }
 
 /* Offers Grid */
