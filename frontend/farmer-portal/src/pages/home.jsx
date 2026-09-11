@@ -5,7 +5,6 @@ import './home.css';
 
 const navItems = [
   { label: 'Home', to: '/home', exact: true },
-  { label: 'Crop Recommendation', to: '/recommendation' },
   { label: 'Marketplace', to: '/portal' },
   { label: 'Satellite NDVI', to: '/satellite' },
   { label: 'Kisan Chopal', to: '/chopal' },
@@ -20,12 +19,6 @@ const features = [
     description: 'Upload leaf photos for instant crop disease detection & doctor advice. Speak in Hindi or English for voice assistance.',
     to: '/chat',
     badge: 'Vision Doctor + Voice'
-  },
-  {
-    title: 'Crop Recommendation',
-    description: 'Precision agronomic matching using Soil NPK values, pH level, season, yield forecasts & profit per acre.',
-    to: '/recommendation',
-    badge: 'Precision Agri'
   },
   {
     title: 'Satellite NDVI Farm Mapping',
@@ -376,8 +369,8 @@ export default function Home({ portalLabel, storageKeyPrefix }) {
             <span className="hero-badge">Welcome back, {welcomeName} 👋</span>
             <h1>Grow smarter with KrishiAI Precision Agricultural Suite</h1>
             <p>
-              Consult our AI Crop Doctor with leaf photos for instant diagnosis, match optimal crops to your soil fertility,
-              track live mandi rates, and trade directly with regional wholesalers without middlemen.
+              Consult our AI Crop Doctor with leaf photos for instant diagnosis, track live mandi rates,
+              and trade directly with regional wholesalers without middlemen.
             </p>
 
             {/* Live Farm Location Display Card */}

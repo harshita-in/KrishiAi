@@ -4,7 +4,6 @@ import './services.css';
 
 const navItems = [
   { label: 'Home', to: '/home', exact: true },
-  { label: 'Crop Recommendation', to: '/recommendation' },
   { label: 'Marketplace', to: '/portal' },
   { label: 'Satellite NDVI', to: '/satellite' },
   { label: 'Kisan Chopal', to: '/chopal' },
