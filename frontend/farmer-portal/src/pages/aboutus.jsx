@@ -4,13 +4,13 @@ import './home.css';
 import './aboutus.css';
 
 const navItems = [
-  { label: 'Home', to: '/home', exact: true },
-  { label: 'Marketplace', to: '/portal' },
-  { label: 'Kisan Chopal', to: '/chopal' },
-  { label: 'Services', to: '/services' },
-  { label: 'AI Chat', to: '/chat' },
-  { label: 'About us', to: '/about-us' },
-  { label: 'Profile', to: '/profile' },
+  { label: 'Home (होम)', to: '/home', exact: true },
+  { label: 'Marketplace (बाजार / फसल बेचें)', to: '/portal' },
+  { label: 'Kisan Chopal (किसान चौपाल)', to: '/chopal' },
+  { label: 'Services (सेवाएं व योजनाएं)', to: '/services' },
+  { label: 'AI Crop Doctor (फसल डॉक्टर)', to: '/chat' },
+  { label: 'About us (हमारे बारे में)', to: '/about-us' },
+  { label: 'Profile (प्रोफाइल)', to: '/profile' },
 ];
 
 const team = [
@@ -59,8 +59,8 @@ export default function AboutUs() {
 
       <header className="ud-nav">
         <div className="brand-lockup">
-          <span className="brand-kicker">KrishiAI</span>
-          <span className="brand-title">Farmer Portal</span>
+          <span className="brand-kicker">KrishiAI (कृषि एआई)</span>
+          <span className="brand-title">About Us (हमारे बारे में)</span>
         </div>
 
         <nav className="nav-links" aria-label="Farmer navigation">
@@ -77,24 +77,24 @@ export default function AboutUs() {
         </nav>
 
         <button className="nav-logout" type="button" onClick={() => navigate('/home')}>
-          Back to Home
+          Back to Home (होम पर लौटें)
         </button>
       </header>
 
       <main className="about-main">
         <section className="about-intro">
-          <span className="about-eyebrow">The people behind KrishiAI</span>
-          <h1>Built with purpose. Designed for better harvests.</h1>
+          <span className="about-eyebrow">The people behind KrishiAI (कृषि एआई की टीम)</span>
+          <h1>Built with purpose. Designed for better harvests. (समर्पण के साथ निर्मित, बेहतर पैदावार के लिए संकल्पित)</h1>
           <p>
             Meet the team bringing dependable technology, thoughtful design, and practical farming
-            intelligence together in one helpful platform.
+            intelligence together in one helpful platform. (कृषि एआई की तकनीकी टीम, जो उन्नत विज्ञान और भारतीय किसानों को एक साथ ला रही है।)
           </p>
         </section>
 
         <section className="team-section" aria-labelledby="team-heading">
           <div className="section-heading team-heading">
-            <span>Our team</span>
-            <h2 id="team-heading">The minds growing KrishiAI</h2>
+            <span>Our Team (हमारी टीम)</span>
+            <h2 id="team-heading">The minds growing KrishiAI (कृषि एआई के निर्माता)</h2>
           </div>
 
           <div className="team-list">
@@ -114,10 +114,10 @@ export default function AboutUs() {
                   </div>
 
                   <dl className="team-meta">
-                    <div><dt>Email</dt><dd>{member.email}</dd></div>
-                    <div><dt>University roll no.</dt><dd>{member.roll}</dd></div>
-                    <div><dt>Contact no.</dt><dd>{member.phone}</dd></div>
-                    {member.note && <div><dt>Github ID</dt><dd>{member.note}</dd></div>}
+                    <div><dt>Email (ईमेल)</dt><dd>{member.email}</dd></div>
+                    <div><dt>University Roll No. (रोल नंबर)</dt><dd>{member.roll}</dd></div>
+                    <div><dt>Contact No. (मोबाइल)</dt><dd>{member.phone}</dd></div>
+                    {member.note && <div><dt>GitHub ID (गिटहब आईडी)</dt><dd>{member.note}</dd></div>}
                   </dl>
                 </div>
               </article>

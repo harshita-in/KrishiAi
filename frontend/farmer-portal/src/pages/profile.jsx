@@ -4,13 +4,12 @@ import { apiFetch } from '../config';
 import './home.css';
 
 const navItems = [
-  { label: 'Home', to: '/home', exact: true },
-  { label: 'Marketplace', to: '/portal' },
-  { label: 'Kisan Chopal', to: '/chopal' },
-  { label: 'Services', to: '/services' },
-  { label: 'AI Chat', to: '/chat' },
-  { label: 'About us', to: '/about-us' },
-  { label: 'Profile', to: '/profile' },
+  { label: 'Home (होम)', to: '/home', exact: true },
+  { label: 'Marketplace (बाजार / फसल बेचें)', to: '/portal' },
+  { label: 'Kisan Chopal (किसान चौपाल)', to: '/chopal' },
+  { label: 'Services (सेवाएं व योजनाएं)', to: '/services' },
+  { label: 'AI Crop Doctor (फसल डॉक्टर)', to: '/chat' },
+  { label: 'Profile (प्रोफाइल)', to: '/profile' },
 ];
 
 export default function Profile() {
@@ -20,7 +19,7 @@ export default function Profile() {
 
   const [currentUser, setCurrentUser] = useState({ name: '', user_id: '', email: '' });
   const [form, setForm] = useState({ name: '', user_id: '', email: '' });
-  const [status, setStatus] = useState('Loading profile...');
+  const [status, setStatus] = useState('Loading profile... (प्रोफाइल लोड हो रही है...)');
   const [loading, setLoading] = useState(false);
   const [hydrated, setHydrated] = useState(false);
 
@@ -37,7 +36,7 @@ export default function Profile() {
   useEffect(() => {
     const fetchProfile = async () => {
       if (!rawToken) {
-        setStatus('No active farmer session found.');
+        setStatus('No active farmer session found. (कोई सक्रिय सत्र नहीं मिला)');
         return;
       }
 
@@ -51,7 +50,7 @@ export default function Profile() {
         const data = await readResponseBody(response);
 
         if (!response.ok) {
-          throw new Error(data.error || 'Failed to load profile');
+          throw new Error(data.error || 'Failed to load profile (प्रोफाइल लोड नहीं हो सकी)');
         }
 
         const nextUser = {
@@ -109,7 +108,7 @@ export default function Profile() {
       const data = await readResponseBody(response);
 
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to update profile');
+        throw new Error(data.error || 'Failed to update profile (प्रोफाइल अपडेट विफल)');
       }
 
       const updatedUser = {
@@ -121,7 +120,7 @@ export default function Profile() {
       setCurrentUser(updatedUser);
       setForm(updatedUser);
       storage.setItem('farmer_user', JSON.stringify(updatedUser));
-      setStatus('Profile updated successfully.');
+      setStatus('Profile updated successfully! (प्रोफाइल सफलतापूर्वक अपडेट हो गई!)');
     } catch (error) {
       setStatus(error.message);
     } finally {
@@ -136,8 +135,8 @@ export default function Profile() {
 
       <header className="farmer-nav">
         <div className="brand-lockup">
-          <span className="brand-kicker">KrishiAI</span>
-          <span className="brand-title">Farmer Portal</span>
+          <span className="brand-kicker">KrishiAI (कृषि एआई)</span>
+          <span className="brand-title">Farmer Profile (किसान प्रोफाइल)</span>
         </div>
 
         <nav className="nav-links" aria-label="Farmer navigation">
@@ -154,26 +153,26 @@ export default function Profile() {
         </nav>
 
         <button className="nav-logout" type="button" onClick={logout}>
-          Logout
+          Logout (लॉगआउट)
         </button>
       </header>
 
       <main className="farmer-main">
         <section className="hero-panel">
           <div className="hero-copy">
-            <span className="hero-badge">Profile settings</span>
-            <h1>Edit your farmer account details.</h1>
+            <span className="hero-badge">Profile Settings (प्रोफाइल सेटिंग्स)</span>
+            <h1>Edit Your Farmer Account Details (किसान खाता विवरण)</h1>
             <p>
               Your saved name, user ID, and email are loaded from MongoDB. You can replace any of
-              them here if needed. Password changes are intentionally not available from this screen.
+              them here if needed. (आपका नाम, यूजर आईडी व ईमेल यहां सुरक्षित हैं। आप अपनी प्रोफाइल जानकारी कभी भी बदल सकते हैं।)
             </p>
             {status && <div className="status-chip">{status}</div>}
           </div>
 
           <div className="hero-stat-card">
-            <span className="stat-label">Current login</span>
+            <span className="stat-label">Current Login (वर्तमान यूजर आईडी)</span>
             <strong>{currentUser.user_id || 'No ID found'}</strong>
-            <p>{currentUser.email || 'No email saved yet'}</p>
+            <p>{currentUser.email || 'No email saved yet (कोई ईमेल दर्ज नहीं)'}</p>
           </div>
         </section>
 
@@ -181,22 +180,22 @@ export default function Profile() {
           <div className="profile-form-card">
             <form className="profile-form" onSubmit={submit}>
               <label>
-                Name
+                Name (किसान का नाम)
                 <input name="name" value={form.name} onChange={onChange} required disabled={!hydrated || loading} />
               </label>
 
               <label>
-                User ID
+                User ID / Mobile (यूजर आईडी / मोबाइल)
                 <input name="user_id" value={form.user_id} onChange={onChange} required disabled={!hydrated || loading} />
               </label>
 
               <label>
-                Email
+                Email (ईमेल आईडी)
                 <input name="email" type="email" value={form.email} onChange={onChange} required disabled={!hydrated || loading} />
               </label>
 
               <button type="submit" className="profile-save" disabled={loading || !hydrated}>
-                {loading ? 'Saving...' : 'Save changes'}
+                {loading ? 'Saving... (सहेज रहे हैं...)' : 'Save Changes (बदलाव सहेजें)'}
               </button>
             </form>
           </div>

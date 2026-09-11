@@ -5,20 +5,20 @@ import './home.css';
 import './chopal.css';
 
 const navItems = [
-  { label: 'Home', to: '/home', exact: true },
-  { label: 'Marketplace', to: '/portal' },
-  { label: 'Kisan Chopal', to: '/chopal' },
-  { label: 'Services', to: '/services' },
-  { label: 'AI Chat', to: '/chat' },
-  { label: 'Profile', to: '/profile' },
+  { label: 'Home (होम)', to: '/home', exact: true },
+  { label: 'Marketplace (बाजार / फसल बेचें)', to: '/portal' },
+  { label: 'Kisan Chopal (किसान चौपाल)', to: '/chopal' },
+  { label: 'Services (सेवाएं व योजनाएं)', to: '/services' },
+  { label: 'AI Crop Doctor (फसल डॉक्टर)', to: '/chat' },
+  { label: 'Profile (प्रोफाइल)', to: '/profile' },
 ];
 
 const categories = [
-  'All',
-  'Pest & Disease',
-  'Organic Farming',
-  'Mandi & Pricing',
-  'General'
+  { id: 'All', label: '🌾 All Discussions (सभी चर्चाएं)' },
+  { id: 'Pest & Disease', label: '🐛 Pest & Disease (कीट व रोग)' },
+  { id: 'Organic Farming', label: '🌿 Organic Farming (जैविक खेती)' },
+  { id: 'Mandi & Pricing', label: '📊 Mandi & Pricing (मंडी भाव चर्चा)' },
+  { id: 'General', label: '🚜 General (सामान्य सलाह)' }
 ];
 
 export default function Chopal() {
@@ -174,8 +174,8 @@ export default function Chopal() {
       {/* Navigation */}
       <header className="farmer-nav">
         <div className="brand-lockup">
-          <span className="brand-kicker">KrishiAI Community</span>
-          <span className="brand-title">Kisan Chopal Forum</span>
+          <span className="brand-kicker">KrishiAI Community (कृषि एआई समुदाय)</span>
+          <span className="brand-title">Kisan Chopal Forum (किसान चौपाल मंच)</span>
         </div>
 
         <nav className="nav-links" aria-label="Farmer Navigation">
@@ -200,7 +200,7 @@ export default function Chopal() {
             navigate('/');
           }}
         >
-          Logout
+          Logout (लॉगआउट)
         </button>
       </header>
 
@@ -208,12 +208,12 @@ export default function Chopal() {
         {/* Header */}
         <div className="chopal-header">
           <span className="chopal-kicker">
-            👥 Krishak Samvaad • Certified KVK & Peer Agri-Forum
+            👥 Krishak Samvaad • Certified KVK & Peer Agri-Forum (कृषक संवाद • किसान व वैज्ञानिक चर्चा मंच)
           </span>
-          <h1>Kisan Chopal (किसान चौपाल)</h1>
+          <h1>Kisan Chopal (किसान चौपाल - आपस में पूछें और सीखें)</h1>
           <p>
             Collaborate with progressive farmers and Krishi Vigyan Kendra agronomists.
-            Ask crop disease remedies, share verified local desi formulations, and discuss mandi prices.
+            Ask crop disease remedies, share verified local desi formulations, and discuss mandi prices. (साथी किसानों व कृषि वैज्ञानिकों से जुड़ें। फसल रोगों का देशी व वैज्ञानिक समाधान पूछें और मंडी भावों पर चर्चा करें।)
           </p>
         </div>
 
@@ -223,7 +223,7 @@ export default function Chopal() {
             <span role="img" aria-label="search">🔍</span>
             <input
               type="text"
-              placeholder="Search discussions (e.g. Gehu, Aphid, Urea dosage, Mustard)..."
+              placeholder="Search discussions (e.g. Gehu, Aphid, Urea dosage, Mustard)... (चर्चा खोजें जैसे गेहूं, माहू, यूरिया, सरसों...)"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -243,7 +243,7 @@ export default function Chopal() {
             className="chopal-ask-btn"
             onClick={() => setShowModal(true)}
           >
-            <span>✍️</span> Ask Question / चौपाल में पूछें
+            <span>✍️</span> Ask Question (चौपाल में पूछें)
           </button>
         </div>
 
@@ -251,12 +251,12 @@ export default function Chopal() {
         <div className="chopal-categories">
           {categories.map((cat) => (
             <button
-              key={cat}
+              key={cat.id}
               type="button"
-              className={`category-tab ${selectedCategory === cat ? 'active' : ''}`}
-              onClick={() => setSelectedCategory(cat)}
+              className={`category-tab ${selectedCategory === cat.id ? 'active' : ''}`}
+              onClick={() => setSelectedCategory(cat.id)}
             >
-              {cat === 'All' ? '🌾 All Discussions' : cat}
+              {cat.label}
             </button>
           ))}
         </div>
@@ -264,7 +264,7 @@ export default function Chopal() {
         {/* Threads List */}
         {loading && posts.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '50px 0', color: '#64748b' }}>
-            Loading Kisan Chopal discussions...
+            Loading Kisan Chopal discussions... (किसान चौपाल चर्चा लोड हो रही है...)
           </div>
         ) : posts.length === 0 ? (
           <div style={{
@@ -274,9 +274,9 @@ export default function Chopal() {
             borderRadius: 24,
             border: '1px dashed #cbd5e1'
           }}>
-            <h3 style={{ color: '#064e3b', marginBottom: 6 }}>No discussions found</h3>
+            <h3 style={{ color: '#064e3b', marginBottom: 6 }}>No discussions found (कोई चर्चा नहीं मिली)</h3>
             <p style={{ color: '#64748b', fontSize: '0.92rem' }}>
-              Be the first progressive farmer to start a conversation on this topic!
+              Be the first progressive farmer to start a conversation on this topic! (इस विषय पर सवाल पूछने वाले पहले किसान बनें!)
             </p>
             <button
               type="button"
@@ -284,7 +284,7 @@ export default function Chopal() {
               style={{ marginTop: 12 }}
               onClick={() => setShowModal(true)}
             >
-              Ask First Question &rarr;
+              Ask First Question (पहला सवाल पूछें) &rarr;
             </button>
           </div>
         ) : (
@@ -304,11 +304,11 @@ export default function Chopal() {
                       <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                         <strong style={{ fontSize: '0.94rem', color: '#0f172a' }}>{post.authorName}</strong>
                         <span className={`author-role-badge ${isExpert ? 'role-expert' : 'role-farmer'}`}>
-                          {post.authorRole || 'Farmer'}
+                          {isExpert ? 'Expert / वैज्ञानिक' : post.authorRole || 'Farmer / किसान'}
                         </span>
                       </div>
                       <span style={{ fontSize: '0.74rem', color: '#64748b' }}>
-                        {post.createdAt ? new Date(post.createdAt).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : 'Recently'}
+                        {post.createdAt ? new Date(post.createdAt).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : 'Recently (हाल ही में)'}
                       </span>
                     </div>
                   </div>
@@ -349,9 +349,9 @@ export default function Chopal() {
                       type="button"
                       className="upvote-btn"
                       onClick={() => handleUpvote(post._id)}
-                      title="Upvote helpful question"
+                      title="Upvote helpful question (मददगार सवाल को वोट दें)"
                     >
-                      <span>👍 Helpful</span>
+                      <span>👍 Helpful (मददगार)</span>
                       <strong>{post.upvotes || 0}</strong>
                     </button>
 
@@ -360,7 +360,7 @@ export default function Chopal() {
                       className="reply-toggle-btn"
                       onClick={() => toggleReplies(post._id)}
                     >
-                      <span>💬 {repliesCount} {repliesCount === 1 ? 'Answer' : 'Answers'}</span>
+                      <span>💬 {repliesCount} {repliesCount === 1 ? 'Answer (जवाब)' : 'Answers (जवाब)'}</span>
                       <span>{isExpanded ? '▲' : '▼'}</span>
                     </button>
                   </div>
@@ -383,7 +383,7 @@ export default function Chopal() {
                       gap: 4
                     }}
                   >
-                    Ask AI Agri-Doctor &rarr;
+                    Ask AI Agri-Doctor (एआई डॉक्टर से पूछें) &rarr;
                   </button>
                 </div>
 
@@ -391,12 +391,12 @@ export default function Chopal() {
                 {isExpanded && (
                   <div className="replies-container">
                     <h4 style={{ margin: '0 0 12px', fontSize: '0.88rem', color: '#064e3b', fontWeight: 800 }}>
-                      Responses & Recommendations ({repliesCount})
+                      Responses & Recommendations (जवाब व सलाह) ({repliesCount})
                     </h4>
 
                     {repliesCount === 0 ? (
                       <p style={{ fontSize: '0.84rem', color: '#64748b', fontStyle: 'italic', margin: '0 0 10px' }}>
-                        No replies yet. Be the first to share your experience!
+                        No replies yet. Be the first to share your experience! (अभी कोई जवाब नहीं है। अपनी सलाह या अनुभव साझा करें!)
                       </p>
                     ) : (
                       post.replies.map((rep, idx) => {
@@ -418,11 +418,11 @@ export default function Chopal() {
                                     background: '#047857',
                                     color: '#ffffff'
                                   }}>
-                                    ✓ Verified Expert
+                                    ✓ Verified Expert (प्रमाणित विशेषज्ञ)
                                   </span>
                                 )}
                                 <span style={{ fontSize: '0.74rem', color: '#64748b' }}>
-                                  ({rep.authorRole || 'Farmer'})
+                                  ({repIsExpert ? 'Scientist / विशेषज्ञ' : rep.authorRole || 'Farmer / किसान'})
                                 </span>
                               </div>
                               <span style={{ fontSize: '0.72rem', color: '#94a3b8' }}>
@@ -441,7 +441,7 @@ export default function Chopal() {
                     <div className="reply-input-box">
                       <input
                         type="text"
-                        placeholder="Write your advice or answer..."
+                        placeholder="Write your advice or answer... (अपनी सलाह या जवाब लिखें...)"
                         value={replyInputs[post._id] || ''}
                         onChange={(e) => setReplyInputs({ ...replyInputs, [post._id]: e.target.value })}
                         onKeyDown={(e) => {
@@ -453,7 +453,7 @@ export default function Chopal() {
                         onClick={() => handleAddReply(post._id)}
                         disabled={submittingReply}
                       >
-                        {submittingReply ? 'Posting...' : 'Post Reply'}
+                        {submittingReply ? 'Posting... (भेज रहे हैं...)' : 'Post Reply (जवाब भेजें)'}
                       </button>
                     </div>
                   </div>
@@ -470,7 +470,7 @@ export default function Chopal() {
           <div className="modal-card" onClick={(e) => e.stopPropagation()}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 18 }}>
               <h2 style={{ margin: 0, fontSize: '1.35rem', color: '#064e3b', fontWeight: 800 }}>
-                Ask Kisan Chopal Community
+                Ask Kisan Chopal Community (किसान चौपाल में सवाल पूछें)
               </h2>
               <button
                 type="button"
@@ -484,12 +484,12 @@ export default function Chopal() {
             <form onSubmit={handleCreatePost}>
               <div style={{ marginBottom: 14 }}>
                 <label style={{ display: 'block', fontSize: '0.84rem', fontWeight: 700, color: '#334155', marginBottom: 6 }}>
-                  Question Title / समस्या का शीर्षक *
+                  Question Title (समस्या का शीर्षक) *
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder="e.g. Gehu me peela ratua rog lagne par kiska spray karein?"
+                  placeholder="e.g. Gehu me peela ratua rog lagne par kiska spray karein? (जैसे गेहूं में पीला रतुआ लगने पर किसका स्प्रे करें?)"
                   value={newPost.title}
                   onChange={(e) => setNewPost({ ...newPost, title: e.target.value })}
                   style={{
@@ -506,7 +506,7 @@ export default function Chopal() {
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 14 }}>
                 <div>
                   <label style={{ display: 'block', fontSize: '0.84rem', fontWeight: 700, color: '#334155', marginBottom: 6 }}>
-                    Crop / फसल *
+                    Crop (फसल) *
                   </label>
                   <select
                     value={newPost.cropTag}
@@ -569,7 +569,7 @@ export default function Chopal() {
 
                 <div>
                   <label style={{ display: 'block', fontSize: '0.84rem', fontWeight: 700, color: '#334155', marginBottom: 6 }}>
-                    Category / श्रेणी *
+                    Category (श्रेणी) *
                   </label>
                   <select
                     value={newPost.category}
@@ -584,22 +584,22 @@ export default function Chopal() {
                       background: '#ffffff'
                     }}
                   >
-                    <option value="Pest & Disease">Pest & Disease</option>
-                    <option value="Organic Farming">Organic Farming</option>
-                    <option value="Mandi & Pricing">Mandi & Pricing</option>
-                    <option value="General">General</option>
+                    <option value="Pest & Disease">Pest & Disease (कीट व रोग)</option>
+                    <option value="Organic Farming">Organic Farming (जैविक खेती)</option>
+                    <option value="Mandi & Pricing">Mandi & Pricing (मंडी भाव चर्चा)</option>
+                    <option value="General">General (सामान्य सलाह)</option>
                   </select>
                 </div>
               </div>
 
               <div style={{ marginBottom: 18 }}>
                 <label style={{ display: 'block', fontSize: '0.84rem', fontWeight: 700, color: '#334155', marginBottom: 6 }}>
-                  Detailed Description / विवरण *
+                  Detailed Description (समस्या का पूरा विवरण) *
                 </label>
                 <textarea
                   required
                   rows={4}
-                  placeholder="Describe the crop age, symptoms, dosage questions, or soil conditions so scientists and farmers can advise accurately..."
+                  placeholder="Describe the crop age, symptoms, dosage questions, or soil conditions so scientists and farmers can advise accurately... (फसल की उम्र, पत्ती के लक्षण, दवा की मात्रा आदि विस्तार से लिखें ताकि वैज्ञानिक व किसान सटीक सलाह दे सकें...)"
                   value={newPost.content}
                   onChange={(e) => setNewPost({ ...newPost, content: e.target.value })}
                   style={{
@@ -628,7 +628,7 @@ export default function Chopal() {
                     cursor: 'pointer'
                   }}
                 >
-                  Cancel
+                  Cancel (रद्द करें)
                 </button>
                 <button
                   type="submit"
@@ -644,7 +644,7 @@ export default function Chopal() {
                     boxShadow: '0 4px 12px rgba(4, 120, 87, 0.28)'
                   }}
                 >
-                  {posting ? 'Publishing...' : 'Publish to Chopal'}
+                  {posting ? 'Publishing... (पोस्ट हो रहा है...)' : 'Publish to Chopal (चौपाल में पोस्ट करें)'}
                 </button>
               </div>
             </form>

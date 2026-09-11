@@ -6,17 +6,17 @@ import remarkGfm from 'remark-gfm';
 import './chat.css';
 
 const navItems = [
-  { label: 'Home', to: '/home', exact: true },
-  { label: 'Marketplace', to: '/portal' },
-  { label: 'Kisan Chopal', to: '/chopal' },
-  { label: 'Services', to: '/services' },
-  { label: 'AI Chat', to: '/chat' },
-  { label: 'Profile', to: '/profile' },
+  { label: 'Home (होम)', to: '/home', exact: true },
+  { label: 'Marketplace (बाजार / फसल बेचें)', to: '/portal' },
+  { label: 'Kisan Chopal (किसान चौपाल)', to: '/chopal' },
+  { label: 'Services (सेवाएं व योजनाएं)', to: '/services' },
+  { label: 'AI Crop Doctor (फसल डॉक्टर)', to: '/chat' },
+  { label: 'Profile (प्रोफाइल)', to: '/profile' },
 ];
 
 const baseSystemPrompt = `
 You are KrishiAI, a helpful AI farming assistant & crop doctor for farmers in India.
-Keep answers practical, concise, and friendly.
+Keep answers practical, concise, and friendly. Always provide responses in clear bilingual (Hindi & English) or in simple Hindi so rural farmers can easily understand.
 When provided with crop leaf photos, identify any fungal, bacterial, viral diseases or pest damage, and give immediate organic remedies and chemical treatment dosages.
 Focus on crops, soil, irrigation, pest control, weather impact, fertilizer usage, and farm planning.
 If the user asks for human medical, legal, or emergency advice, recommend a qualified professional.
@@ -45,7 +45,7 @@ export default function Chat() {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: `Hello ${currentUser.name || 'Farmer'}! Ask me anything about crops, soil, pests, or irrigation. You can also tap the microphone to speak in Hindi or English!`,
+      content: `Hello (नमस्ते) ${currentUser.name || 'Kisan Mitra'}! Ask me anything about crops, soil, pests, or irrigation. You can also tap the microphone to speak in Hindi or English, or attach leaf photos for disease diagnosis. (फसल, मिट्टी, खाद या कीट के बारे में कुछ भी पूछें। बोलकर पूछने के लिए माइक दबाएं या रोग पहचानने के लिए पत्ती का फोटो भेजें!)`,
     },
   ]);
   const [input, setInput] = useState(location.state?.prefillQuery || '');
@@ -367,8 +367,8 @@ export default function Chat() {
 
       <header className="chat-nav">
         <div className="brand-lockup">
-          <span className="brand-kicker">KrishiAI</span>
-          <span className="brand-title">Farmer Portal</span>
+          <span className="brand-kicker">KrishiAI Vision & Advisory (कृषि एआई सलाह)</span>
+          <span className="brand-title">AI Crop Doctor (फसल डॉक्टर)</span>
         </div>
 
         <nav className="nav-links" aria-label="Farmer navigation">
@@ -376,7 +376,7 @@ export default function Chat() {
             <button
               key={item.to}
               type="button"
-              className={item.to === '/home' ? 'nav-pill nav-pill-active' : 'nav-pill'}
+              className={item.to === '/chat' ? 'nav-pill nav-pill-active' : 'nav-pill'}
               onClick={() => navigate(item.to)}
             >
               {item.label}
@@ -385,17 +385,17 @@ export default function Chat() {
         </nav>
 
         <button className="nav-logout" type="button" onClick={logout}>
-          Logout
+          Logout (लॉगआउट)
         </button>
       </header>
 
       <main className="chat-main">
         <section className="chat-panel">
           <div className="chat-header-card">
-            <span className="hero-badge">🌱 AI Assistant & Crop Doctor</span>
-            <h1>Ask farming questions & diagnose crop diseases.</h1>
+            <span className="hero-badge">🌱 AI Assistant & Crop Doctor (एआई फसल डॉक्टर)</span>
+            <h1>Ask farming questions & diagnose crop diseases (कृषि प्रश्न पूछें व फसल रोग पहचानें)</h1>
             <p>
-              Upload diseased leaf photos for instant AI disease detection & treatment, or ask anything about soil, pests, irrigation, and mandi rates.
+              Upload diseased leaf photos for instant AI disease detection & treatment, or ask anything about soil, pests, irrigation, and mandi rates. (पत्ती का फोटो अपलोड कर तुरंत बीमारी व उपचार जानें, अथवा खाद, मौसम व मंडी भाव पर सलाह लें।)
             </p>
             {error && <div className="status-chip status-chip-error">{error}</div>}
           </div>
@@ -403,7 +403,7 @@ export default function Chat() {
           {/* Voice Settings Controls */}
           <div className="voice-controls-card">
             <div className="control-group">
-              <label htmlFor="voice-select" className="control-label">Vocal Output Voice</label>
+              <label htmlFor="voice-select" className="control-label">Vocal Output Voice (आवाज चयन)</label>
               <select
                 id="voice-select"
                 className="voice-select"
@@ -415,7 +415,7 @@ export default function Chat() {
                 }}
               >
                 {voices.length === 0 ? (
-                  <option>Loading system voices...</option>
+                  <option>Loading system voices... (आवाजें लोड हो रही हैं...)</option>
                 ) : (
                   voices.map((voice) => (
                     <option key={voice.name} value={voice.name}>
@@ -437,14 +437,14 @@ export default function Chat() {
                     setSpeakingIndex(null);
                   }
                 }}
-                title={autoSpeak ? "Disable auto vocal read-out" : "Enable auto vocal read-out"}
+                title={autoSpeak ? "Disable auto vocal read-out (ऑटो वाचन बंद करें)" : "Enable auto vocal read-out (ऑटो वाचन चालू करें)"}
               >
                 <svg className="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M11 5L6 9H2v6h4l5 4V5z" />
                   <path className="sound-wave-1" d="M15.54 8.46a5 5 0 0 1 0 7.07" />
                   <path className="sound-wave-2" d="M19.07 4.93a10 10 0 0 1 0 14.14" />
                 </svg>
-                <span>{autoSpeak ? "Auto Read: On" : "Auto Read: Off"}</span>
+                <span>{autoSpeak ? "Auto Read: On (ऑटो वाचन: चालू)" : "Auto Read: Off (ऑटो वाचन: बंद)"}</span>
               </button>
             </div>
           </div>
@@ -453,13 +453,13 @@ export default function Chat() {
             {messages.map((message, index) => (
               <div key={`${message.role}-${index}`} className={`chat-bubble chat-${message.role}`}>
                 <div className="chat-bubble-header">
-                  <span className="chat-role">{message.role === 'user' ? 'You' : 'KrishiAI'}</span>
+                  <span className="chat-role">{message.role === 'user' ? 'You (आप)' : 'KrishiAI Doctor (कृषि डॉक्टर)'}</span>
                   {message.role === 'assistant' && (
                     <button
                       type="button"
                       className={`bubble-voice-btn ${speakingIndex === index ? 'speaking' : ''}`}
                       onClick={() => speak(message.content, index)}
-                      title={speakingIndex === index ? "Stop speaking" : "Read aloud"}
+                      title={speakingIndex === index ? "Stop speaking (बोलना रोकें)" : "Read aloud (बोलकर सुनाएं)"}
                     >
                       <svg className="speak-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         {speakingIndex === index ? (
@@ -489,7 +489,7 @@ export default function Chat() {
             {loading && (
               <div className="chat-bubble chat-assistant">
                 <div className="chat-bubble-header">
-                  <span className="chat-role">KrishiAI</span>
+                  <span className="chat-role">KrishiAI Doctor (कृषि डॉक्टर)</span>
                 </div>
                 <div className="typing-indicator">
                   <span></span>
@@ -503,11 +503,11 @@ export default function Chat() {
           {/* Quick Prompt Suggestions */}
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', padding: '0 4px 12px' }}>
             {[
-              "📸 Identify leaf disease from photo",
-              "🌾 Wheat yellow rust treatment",
-              "📊 Today's Mandi Bhav & trends",
-              "🧪 Fertilizer dose for 2 acres",
-              "🌧️ Weather alert for spraying"
+              "📸 Identify leaf disease from photo (पत्ती के फोटो से रोग पहचानें)",
+              "🌾 Wheat yellow rust treatment (गेहूं का पीला रतुआ उपचार)",
+              "📊 Today's Mandi Bhav & trends (आज के मंडी भाव व रुझान)",
+              "🧪 Fertilizer dose for 2 acres (2 एकड़ के लिए खाद की मात्रा)",
+              "🌧️ Weather alert for spraying (छिड़काव के लिए मौसम सलाह)"
             ].map((promptText, i) => (
               <button
                 key={i}
@@ -552,7 +552,7 @@ export default function Chat() {
                 type="button"
                 className="chat-image-btn"
                 onClick={() => fileInputRef.current?.click()}
-                title="Upload image"
+                title="Upload leaf photo (पत्ती का फोटो अपलोड करें)"
               >
                 <svg className="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
@@ -564,7 +564,7 @@ export default function Chat() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 className="has-image-btn"
-                placeholder="Ask about your crop, soil, attach leaf photo for disease detection..."
+                placeholder="Ask about crop, soil, attach leaf photo... (फसल, खाद या कीट के बारे में पूछें, अथवा पत्ती का फोटो लगाएं...)"
                 rows={2}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' && !e.shiftKey) {
@@ -577,7 +577,7 @@ export default function Chat() {
                 type="button"
                 className={`chat-mic-btn ${isListening ? 'listening' : ''}`}
                 onClick={toggleListening}
-                title={isListening ? "Listening... click to stop" : "Use voice input"}
+                title={isListening ? "Listening... click to stop (सुन रहा है... रोकने के लिए क्लिक करें)" : "Use voice input (बोलकर पूछें)"}
               >
                 <svg className="mic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
@@ -590,10 +590,10 @@ export default function Chat() {
             </div>
             <button type="submit" className="chat-send" disabled={!canSend}>
               {loading ? (
-                <span className="loader-dots">Thinking</span>
+                <span className="loader-dots">Thinking... (सोच रहे हैं...)</span>
               ) : (
                 <>
-                  <span>Send</span>
+                  <span>Send (पूछें)</span>
                   <svg className="send-arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <line x1="22" y1="2" x2="11" y2="13" />
                     <polygon points="22 2 15 22 11 13 2 9 22 2" />

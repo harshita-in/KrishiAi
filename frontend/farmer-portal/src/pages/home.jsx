@@ -4,44 +4,44 @@ import { apiFetch } from '../config';
 import './home.css';
 
 const navItems = [
-  { label: 'Home', to: '/home', exact: true },
-  { label: 'Marketplace', to: '/portal' },
-  { label: 'Kisan Chopal', to: '/chopal' },
-  { label: 'Services', to: '/services' },
-  { label: 'AI Chat', to: '/chat' },
-  { label: 'Profile', to: '/profile' },
+  { label: 'Home (होम)', to: '/home', exact: true },
+  { label: 'Marketplace (बाजार / फसल बेचें)', to: '/portal' },
+  { label: 'Kisan Chopal (किसान चौपाल)', to: '/chopal' },
+  { label: 'Services (सेवाएं व योजनाएं)', to: '/services' },
+  { label: 'AI Crop Doctor (फसल डॉक्टर)', to: '/chat' },
+  { label: 'Profile (प्रोफाइल)', to: '/profile' },
 ];
 
 const features = [
   {
-    title: 'AI Crop Doctor & Chatbot',
-    description: 'Upload leaf photos for instant crop disease detection & doctor advice. Speak in Hindi or English for voice assistance.',
+    title: 'AI Crop Doctor & Chatbot (फसल डॉक्टर व सलाह)',
+    description: 'Upload leaf photos for instant crop disease diagnosis. Speak in Hindi or English for audio advice. (पत्ती के फोटो से रोग पहचानें व समाधान पाएं)',
     to: '/chat',
-    badge: 'Vision Doctor + Voice'
+    badge: 'AI Vision + Voice (एआई डॉक्टर)'
   },
   {
-    title: 'Kisan Chopal Community',
-    description: 'Ask farming questions, get verified advice from KVK agronomists, and share organic desi formulations.',
+    title: 'Kisan Chopal Community (किसान चौपाल चर्चा मंच)',
+    description: 'Ask farming questions, share experiences, and get expert advice from scientists. (कृषि प्रश्न पूछें और किसानों व वैज्ञानिकों से सलाह लें)',
     to: '/chopal',
-    badge: 'Kisan Forum'
+    badge: 'Kisan Forum (किसान चौपाल)'
   },
   {
-    title: 'Produce Marketplace',
-    description: 'Sell harvested crops directly to verified wholesalers at your price with 0% middleman commission.',
+    title: 'Produce Marketplace (फसल बिक्री बाजार)',
+    description: 'Sell harvested crops directly to verified wholesalers at your price with 0% middleman commission. (बिना दलाल सीधे व्यापारियों को फसल बेचें)',
     to: '/portal',
-    badge: 'Direct B2B'
+    badge: 'Direct B2B (सीधा व्यापार)'
   },
   {
-    title: 'Kisan Bahi-Khata & Schemes',
-    description: 'Record seasonal farm expenses, calculate net profit, and explore central agricultural subsidies.',
+    title: 'Kisan Bahi-Khata & Calculator (बही-खाता व खाद गणक)',
+    description: 'Calculate fertilizer bags (Urea, DAP), track seasonal farm expenses, and explore central subsidies. (खाद की मात्रा व लागत-मुनाफे का हिसाब रखें)',
     to: '/services',
-    badge: 'Financial & Welfare'
+    badge: 'Financial & Schemes (योजनाएं)'
   },
   {
-    title: 'Farmer Profile & Field Setup',
-    description: 'Update your registered crops, view saved field coordinates, and manage account credentials.',
+    title: 'Farmer Profile & Field Setup (किसान प्रोफाइल व खेत)',
+    description: 'Update your registered crops, view saved field coordinates, and manage account details. (अपनी खेत लोकेशन, फसलें व खाता विवरण देखें)',
     to: '/profile',
-    badge: 'My Farm'
+    badge: 'My Farm (मेरा खेत)'
   }
 ];
 
@@ -460,8 +460,8 @@ export default function Home({ portalLabel, storageKeyPrefix }) {
       {/* Navigation */}
       <header className="farmer-nav">
         <div className="brand-lockup">
-          <span className="brand-kicker">KrishiAI Ecosystem</span>
-          <span className="brand-title">{portalLabel || 'Farmer'} Portal</span>
+          <span className="brand-kicker">KrishiAI Ecosystem (कृषि एआई मंच)</span>
+          <span className="brand-title">{portalLabel || 'Farmer (किसान)'} Portal</span>
         </div>
 
         <nav className="nav-links" aria-label="Farmer navigation">
@@ -478,7 +478,7 @@ export default function Home({ portalLabel, storageKeyPrefix }) {
         </nav>
 
         <button className="nav-logout" type="button" onClick={logout}>
-          Logout
+          Logout (लॉगआउट)
         </button>
       </header>
 
@@ -486,7 +486,7 @@ export default function Home({ portalLabel, storageKeyPrefix }) {
       <div className="mandi-ticker-strip">
         <div className="mandi-ticker-header">
           <span className="mandi-pulse-dot" aria-hidden="true" />
-          <span className="mandi-ticker-title">Live APMC Mandi Bhav</span>
+          <span className="mandi-ticker-title">Live APMC Mandi Bhav (लाइव मंडी भाव)</span>
         </div>
 
         <div className="mandi-ticker-scroll" aria-label="Live Mandi Price Ticker">
@@ -508,11 +508,12 @@ export default function Home({ portalLabel, storageKeyPrefix }) {
         {/* Hero Section */}
         <section className="hero-panel">
           <div className="hero-copy">
-            <span className="hero-badge">Welcome back, {welcomeName} 👋</span>
-            <h1>Grow smarter with KrishiAI Precision Agricultural Suite</h1>
+            <span className="hero-badge">Welcome back (स्वागत है), {welcomeName} 👋</span>
+            <h1>Grow Smarter with KrishiAI (कृषि एआई - आधुनिक किसान मंच)</h1>
             <p>
-              Consult our AI Crop Doctor with leaf photos for instant diagnosis, track live mandi rates,
+              Consult our AI Crop Doctor with leaf photos, track live mandi rates,
               and trade directly with regional wholesalers without middlemen.
+              (पत्ती की फोटो से रोग पहचानें, लाइव मंडी भाव देखें और बिना दलाल सीधे फसल बेचें।)
             </p>
 
             {/* Live Farm Location Display Card */}
@@ -520,14 +521,14 @@ export default function Home({ portalLabel, storageKeyPrefix }) {
               <div className="location-left-group">
                 <div className="location-pin-circle">📍</div>
                 <div className="location-meta">
-                  <span className="location-meta-title">Live Farm Location (GPS)</span>
+                  <span className="location-meta-title">Live Farm Location (GPS) (खेत की लाइव लोकेशन)</span>
                   <div className="location-meta-address">
                     {farmLocation.status === 'connected' && (
                       farmLocation.placeName || `${farmLocation.latitude?.toFixed(4)}° N, ${farmLocation.longitude?.toFixed(4)}° E`
                     )}
-                    {farmLocation.status === 'detecting' && '📡 Detecting farm GPS coordinates...'}
-                    {farmLocation.status === 'denied' && '⚠️ Location Permission Needed for Localized Weather'}
-                    {farmLocation.status === 'unsupported' && 'Geolocation not supported by this browser'}
+                    {farmLocation.status === 'detecting' && '📡 Detecting farm GPS coordinates... (खेत की लोकेशन पहचानी जा रही है...)'}
+                    {farmLocation.status === 'denied' && '⚠️ Location Permission Needed for Localized Weather (मौसम के लिए लोकेशन की अनुमति दें)'}
+                    {farmLocation.status === 'unsupported' && 'Geolocation not supported by this browser (ब्राउज़र में लोकेशन सपोर्ट नहीं है)'}
                   </div>
                   {farmLocation.status === 'connected' && farmLocation.latitude && (
                     <span className="location-meta-coords">
@@ -545,7 +546,7 @@ export default function Home({ portalLabel, storageKeyPrefix }) {
                     onClick={requestLiveLocation}
                     title="Refresh current GPS coordinates"
                   >
-                    🔄 Update GPS
+                    🔄 Update GPS (लोकेशन रिफ्रेश)
                   </button>
                 ) : (
                   <button
@@ -554,7 +555,7 @@ export default function Home({ portalLabel, storageKeyPrefix }) {
                     style={{ background: '#047857', color: '#ffffff' }}
                     onClick={requestLiveLocation}
                   >
-                    📍 Enable Location
+                    📍 Enable Location (लोकेशन चालू करें)
                   </button>
                 )}
               </div>
@@ -564,7 +565,7 @@ export default function Home({ portalLabel, storageKeyPrefix }) {
           {/* Live Weather & Farm Advisory Card */}
           <div className="hero-stat-card" style={{ background: 'rgba(255,255,255,0.85)' }}>
             <div>
-              <span className="stat-label">🌦️ Smart Agro-Weather</span>
+              <span className="stat-label">🌦️ Smart Agro-Weather (मौसम व कृषि सलाह)</span>
               <strong style={{ display: 'block', marginTop: 4 }}>
                 {weatherData ? `${weatherData.currentWeather.tempCelsius}°C • ${weatherData.currentWeather.condition}` : '28°C • Partly Sunny'}
               </strong>
@@ -592,25 +593,35 @@ export default function Home({ portalLabel, storageKeyPrefix }) {
             <div className="prediction-header-row">
               <div>
                 <span className="hero-badge" style={{ marginBottom: 6 }}>
-                  📈 Machine Learning Price Forecast • APMC Mandi Intel
+                  📈 Machine Learning Price Forecast • APMC Mandi Intel (मशीन लर्निंग भाव पूर्वानुमान)
                 </span>
                 <h2 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#064e3b', margin: '4px 0' }}>
-                  AI Mandi Price Prediction & "HOLD vs SELL" Advisor
+                  AI Mandi Price Prediction & "HOLD vs SELL" Advisor (एआई मंडी भाव पूर्वानुमान व सलाह)
                 </h2>
                 <p style={{ color: '#64748b', fontSize: '0.92rem', margin: 0 }}>
                   Real-time price trajectory modeling across 14 days based on arrival volumes, export mandates, and seasonality.
+                  (मंडी आवक और मौसमी मांग के आधार पर आगामी दिनों का सटीक मूल्य अनुमान।)
                 </p>
               </div>
 
               <div className="commodity-selector" style={{ alignItems: 'center' }}>
-                {['Wheat', 'Paddy', 'Soybean', 'Mustard', 'Cotton', 'Chana', 'Onion', 'Potato'].map(c => (
+                {[
+                  { id: 'Wheat', label: 'Wheat (गेहूं)' },
+                  { id: 'Paddy', label: 'Paddy (धान)' },
+                  { id: 'Soybean', label: 'Soybean (सोयाबीन)' },
+                  { id: 'Mustard', label: 'Mustard (सरसों)' },
+                  { id: 'Cotton', label: 'Cotton (कपास)' },
+                  { id: 'Chana', label: 'Chana (चना)' },
+                  { id: 'Onion', label: 'Onion (प्याज)' },
+                  { id: 'Potato', label: 'Potato (आलू)' }
+                ].map(c => (
                   <button
-                    key={c}
+                    key={c.id}
                     type="button"
-                    className={`commodity-btn ${selectedCommodity === c ? 'active' : ''}`}
-                    onClick={() => setSelectedCommodity(c)}
+                    className={`commodity-btn ${selectedCommodity === c.id ? 'active' : ''}`}
+                    onClick={() => setSelectedCommodity(c.id)}
                   >
-                    {c}
+                    {c.label}
                   </button>
                 ))}
 
@@ -632,7 +643,7 @@ export default function Home({ portalLabel, storageKeyPrefix }) {
                   }}
                   title="Choose from all major Indian agricultural commodities"
                 >
-                  <option value="" disabled>🌾 All Indian Crops (30+)...</option>
+                  <option value="" disabled>🌾 All Indian Crops (सभी भारतीय फसलें 30+)...</option>
                   {INDIAN_CROP_CATEGORIES.map(group => (
                     <optgroup key={group.category} label={group.category}>
                       {group.crops.map(crop => (
@@ -653,33 +664,33 @@ export default function Home({ portalLabel, storageKeyPrefix }) {
                   <div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
                       <span style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 700, textTransform: 'uppercase' }}>
-                        AI Model Recommendation
+                        AI Model Recommendation (एआई मॉडल सलाह)
                       </span>
                       <span className={predictionData.recommendation === 'HOLD_PRODUCE' ? 'recommendation-badge-hold' : 'recommendation-badge-sell'}>
-                        {predictionData.recommendation === 'HOLD_PRODUCE' ? '📈 HOLD PRODUCE' : '⚡ SELL NOW'}
+                        {predictionData.recommendation === 'HOLD_PRODUCE' ? '📈 HOLD PRODUCE (फसल रोकें)' : '⚡ SELL NOW (तुरंत बेचें)'}
                       </span>
                     </div>
 
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 16 }}>
                       <div style={{ background: '#ffffff', padding: '14px', borderRadius: 16, border: '1px solid #e2e8f0' }}>
                         <span style={{ fontSize: '0.74rem', color: '#64748b', fontWeight: 700, display: 'block' }}>
-                          Current APMC Modal Price
+                          Current APMC Modal Price (वर्तमान मंडी भाव)
                         </span>
                         <strong style={{ fontSize: '1.45rem', color: '#0f172a', display: 'block', marginTop: 2 }}>
                           ₹{predictionData.currentPrice}
                         </strong>
-                        <span style={{ fontSize: '0.72rem', color: '#64748b' }}>per Quintal (Today)</span>
+                        <span style={{ fontSize: '0.72rem', color: '#64748b' }}>per Quintal - Today (प्रति क्विंटल - आज)</span>
                       </div>
 
                       <div style={{ background: '#ffffff', padding: '14px', borderRadius: 16, border: '1px solid #e2e8f0' }}>
                         <span style={{ fontSize: '0.74rem', color: '#64748b', fontWeight: 700, display: 'block' }}>
-                          Projected 10-Day Peak
+                          Projected 10-Day Peak (संभावित उच्चतम भाव)
                         </span>
                         <strong style={{ fontSize: '1.45rem', color: '#047857', display: 'block', marginTop: 2 }}>
                           ₹{predictionData.peakPrice}
                         </strong>
                         <span style={{ fontSize: '0.74rem', color: predictionData.projectedChange?.startsWith('+') ? '#059669' : '#dc2626', fontWeight: 700 }}>
-                          {predictionData.projectedChange} expected
+                          {predictionData.projectedChange} expected (अनुमानित बदलाव)
                         </span>
                       </div>
                     </div>
@@ -717,7 +728,7 @@ export default function Home({ portalLabel, storageKeyPrefix }) {
                         boxShadow: '0 4px 12px rgba(4, 120, 87, 0.25)'
                       }}
                     >
-                      List at ₹{predictionData.peakPrice} in Marketplace &rarr;
+                      List at ₹{predictionData.peakPrice} in Marketplace (बाजार में बेचें) &rarr;
                     </button>
                     <button
                       type="button"
@@ -736,7 +747,7 @@ export default function Home({ portalLabel, storageKeyPrefix }) {
                         cursor: 'pointer'
                       }}
                     >
-                      Ask AI &rarr;
+                      Ask AI Doctor (सलाह लें) &rarr;
                     </button>
                   </div>
                 </div>
@@ -745,14 +756,14 @@ export default function Home({ portalLabel, storageKeyPrefix }) {
                 <div className="prediction-chart-box">
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
                     <span style={{ fontSize: '0.84rem', fontWeight: 800, color: '#0f172a' }}>
-                      17-Day Price Trajectory (7 Days Past + 10 Days Projected)
+                      17-Day Price Trajectory (17-दिन का भाव ग्राफ)
                     </span>
                     <div style={{ display: 'flex', gap: 12, fontSize: '0.74rem' }}>
                       <span style={{ display: 'flex', alignItems: 'center', gap: 4, color: '#475569' }}>
-                        <span style={{ width: 14, height: 3, background: '#047857', display: 'inline-block' }} /> Historical
+                        <span style={{ width: 14, height: 3, background: '#047857', display: 'inline-block' }} /> Historical (पिछला भाव)
                       </span>
                       <span style={{ display: 'flex', alignItems: 'center', gap: 4, color: '#047857', fontWeight: 700 }}>
-                        <span style={{ width: 14, height: 3, borderTop: '2px dashed #10b981', display: 'inline-block' }} /> Forecast
+                        <span style={{ width: 14, height: 3, borderTop: '2px dashed #10b981', display: 'inline-block' }} /> Forecast (अनुमानित)
                       </span>
                     </div>
                   </div>
@@ -775,7 +786,7 @@ export default function Home({ portalLabel, storageKeyPrefix }) {
                       {/* Transition Divider (Today) */}
                       <line x1="225" y1="10" x2="225" y2="170" stroke="#94a3b8" strokeWidth="1" strokeDasharray="3 3" />
                       <text x="225" y="192" fill="#047857" fontSize="10" fontWeight="800" textAnchor="middle">
-                        TODAY
+                        TODAY (आज)
                       </text>
 
                       {/* Render historical & forecast polylines */}
@@ -846,8 +857,8 @@ export default function Home({ portalLabel, storageKeyPrefix }) {
                   </div>
 
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.74rem', color: '#64748b', marginTop: 10 }}>
-                    <span>← Past 7 Days (Mandi Arrivals)</span>
-                    <span>Next 10 Days (Projected Forecast) →</span>
+                    <span>← Past 7 Days - Mandi Arrivals (पिछले 7 दिन - मंडी आवक)</span>
+                    <span>Next 10 Days - Projected Forecast (अगले 10 दिन - भाव अनुमान) →</span>
                   </div>
                 </div>
               </div>
@@ -858,8 +869,8 @@ export default function Home({ portalLabel, storageKeyPrefix }) {
         {/* Features Dashboard */}
         <section className="dashboard-section">
           <div className="section-heading">
-            <span>Enterprise Suite</span>
-            <h2>Integrated Farming & Trade Tools</h2>
+            <span>Enterprise Suite (किसान सुविधाएं)</span>
+            <h2>Integrated Farming & Trade Tools (खेती व व्यापार की आधुनिक सुविधाएं)</h2>
           </div>
 
           <div className="feature-grid">
@@ -882,7 +893,7 @@ export default function Home({ portalLabel, storageKeyPrefix }) {
                 </div>
                 <h3>{feature.title}</h3>
                 <p>{feature.description}</p>
-                <span className="feature-link">Open Tool &rarr;</span>
+                <span className="feature-link">Open Tool (शुरू करें) &rarr;</span>
               </NavLink>
             ))}
           </div>

@@ -25,7 +25,7 @@ export default function Auth({ portal: defaultPortal, apiBase: defaultApiBase, h
   const activeApiBase = role === 'wholesaler' ? '/api/wholesaler' : '/api/farmer';
   const activeHomePath = role === 'wholesaler' ? '/wholesaler/home' : '/home';
 
-  const title = useMemo(() => (mode === 'signup' ? 'Create account' : 'Welcome back'), [mode]);
+  const title = useMemo(() => (mode === 'signup' ? 'Create Account (खाता बनाएं)' : 'Welcome Back (लॉगिन करें)'), [mode]);
 
   const storage = keepLoggedIn ? localStorage : sessionStorage;
 
@@ -54,7 +54,7 @@ export default function Auth({ portal: defaultPortal, apiBase: defaultApiBase, h
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.error || 'Authentication failed');
+        throw new Error(data.error || 'Authentication failed (प्रमाणीकरण विफल)');
       }
 
       if (mode === 'login') {
@@ -95,7 +95,7 @@ export default function Auth({ portal: defaultPortal, apiBase: defaultApiBase, h
             onClick={() => { setRole('farmer'); setStatus(''); }}
           >
             <span>👨‍🌾</span>
-            <span>किसान (Farmer)</span>
+            <span>Farmer (किसान)</span>
           </button>
           <button
             type="button"
@@ -103,16 +103,16 @@ export default function Auth({ portal: defaultPortal, apiBase: defaultApiBase, h
             onClick={() => { setRole('wholesaler'); setStatus(''); }}
           >
             <span>🏢</span>
-            <span>व्यापारी (Wholesaler)</span>
+            <span>Wholesaler (व्यापारी)</span>
           </button>
         </div>
 
         <div className="auth-toggle" role="tablist" aria-label="Authentication mode">
           <button type="button" className={mode === 'login' ? 'auth-toggle-active' : ''} onClick={() => setMode('login')}>
-            Login
+            Login (लॉगिन)
           </button>
           <button type="button" className={mode === 'signup' ? 'auth-toggle-active' : ''} onClick={() => setMode('signup')}>
-            Sign up
+            Sign Up (नया खाता)
           </button>
         </div>
 
@@ -130,15 +130,15 @@ export default function Auth({ portal: defaultPortal, apiBase: defaultApiBase, h
           {mode === 'signup' && (
             <>
               <label>
-                Name
+                Name (नाम)
                 <input name="name" value={form.name} onChange={onChange} required />
               </label>
               <label>
-                Create ID
+                Create ID (यूजर आईडी बनाएं)
                 <input name="user_id" value={form.user_id} onChange={onChange} required />
               </label>
               <label>
-                Email
+                Email (ईमेल)
                 <input name="email" type="email" value={form.email} onChange={onChange} required />
               </label>
             </>
@@ -146,13 +146,13 @@ export default function Auth({ portal: defaultPortal, apiBase: defaultApiBase, h
 
           {mode === 'login' && (
             <label>
-              ID
+              User ID / Mobile (यूजर आईडी / मोबाइल)
               <input name="user_id" value={form.user_id} onChange={onChange} required />
             </label>
           )}
 
           <label>
-            Password
+            Password (पासवर्ड)
             <input name="password" type="password" value={form.password} onChange={onChange} required />
           </label>
 
@@ -163,12 +163,12 @@ export default function Auth({ portal: defaultPortal, apiBase: defaultApiBase, h
                 checked={keepLoggedIn}
                 onChange={(e) => setKeepLoggedIn(e.target.checked)}
               />
-              <span>Keep me logged in</span>
+              <span>Keep me logged in (लॉग इन रखें)</span>
             </label>
           )}
 
           <button className="auth-submit" type="submit" disabled={loading}>
-            {loading ? 'Please wait...' : mode === 'signup' ? 'Create account' : 'Login'}
+            {loading ? 'Please wait... (कृपया प्रतीक्षा करें...)' : mode === 'signup' ? 'Create Account (खाता बनाएं)' : 'Login (लॉगिन करें)'}
           </button>
 
           {status && <p className="auth-status">{status}</p>}

@@ -4,12 +4,12 @@ import { apiFetch } from '../config';
 import './portal.css';
 
 const navItems = [
-  { label: 'Home', to: '/home', exact: true },
-  { label: 'Marketplace', to: '/portal' },
-  { label: 'Kisan Chopal', to: '/chopal' },
-  { label: 'Services', to: '/services' },
-  { label: 'AI Chat', to: '/chat' },
-  { label: 'Profile', to: '/profile' },
+  { label: 'Home (होम)', to: '/home', exact: true },
+  { label: 'Marketplace (बाजार / फसल बेचें)', to: '/portal' },
+  { label: 'Kisan Chopal (किसान चौपाल)', to: '/chopal' },
+  { label: 'Services (सेवाएं व योजनाएं)', to: '/services' },
+  { label: 'AI Crop Doctor (फसल डॉक्टर)', to: '/chat' },
+  { label: 'Profile (प्रोफाइल)', to: '/profile' },
 ];
 
 export default function Portal() {
@@ -77,7 +77,7 @@ export default function Portal() {
   const handleSellSubmit = async (e) => {
     e.preventDefault();
     if (!cropName || !quantityQuintals || !expectedPricePerQuintal) {
-      setErr('Please fill in crop name, quantity, and expected price.');
+      setErr('Please fill in crop name, quantity, and expected price. (कृपया फसल का नाम, मात्रा और अपेक्षित भाव दर्ज करें।)');
       return;
     }
 
@@ -106,7 +106,7 @@ export default function Portal() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Failed to list produce');
 
-      setMsg('🎉 Produce listed successfully on Wholesaler Marketplace!');
+      setMsg('🎉 Produce listed successfully on Wholesaler Marketplace! (फसल सफलतापूर्वक थोक बाजार में लिस्ट हो गई!)');
       setQuantityQuintals('');
       setExpectedPricePerQuintal('');
       setDescription('');
@@ -122,7 +122,7 @@ export default function Portal() {
   };
 
   const handleDeleteListing = async (id) => {
-    if (!window.confirm('Are you sure you want to remove this listing?')) return;
+    if (!window.confirm('Are you sure you want to remove this listing? (क्या आप इस फसल लिस्टिंग को हटाना चाहते हैं?)')) return;
     try {
       const res = await apiFetch(`/api/marketplace/farmer/listings/${id}`, {
         method: 'DELETE',
@@ -163,8 +163,8 @@ export default function Portal() {
       {/* Navigation */}
       <header className="farmer-nav">
         <div className="brand-lockup">
-          <span className="brand-kicker">KrishiAI B2B Connect</span>
-          <span className="brand-title">Produce Marketplace</span>
+          <span className="brand-kicker">KrishiAI B2B Connect (कृषि एआई सीधा व्यापार)</span>
+          <span className="brand-title">Produce Marketplace (फसल बिक्री बाजार)</span>
         </div>
 
         <nav className="nav-links" aria-label="Farmer Navigation">
@@ -189,18 +189,18 @@ export default function Portal() {
             navigate('/');
           }}
         >
-          Logout
+          Logout (लॉगआउट)
         </button>
       </header>
 
       {/* Main Container */}
       <main className="portal-main">
         <div className="portal-header">
-          <span className="portal-kicker">🤝 Direct Farmer & Wholesaler Trade</span>
-          <h1>Sell Produce Directly Without Middlemen</h1>
+          <span className="portal-kicker">🤝 Direct Farmer & Wholesaler Trade (सीधा किसान-व्यापारी व्यापार)</span>
+          <h1>Sell Produce Directly Without Middlemen (बिना बिचौलियों के सीधे फसल बेचें)</h1>
           <p>
             List your harvest, set your price, receive bids directly from verified regional wholesalers,
-            and lock deals with zero middleman commissions.
+            and lock deals with zero middleman commissions. (अपनी फसल लिस्ट करें, अपना भाव तय करें, सीधे व्यापारियों से ऑफर पाएं और बिना दलाली 100% मुनाफा कमाएं।)
           </p>
         </div>
 
@@ -211,14 +211,14 @@ export default function Portal() {
             className={`portal-tab-btn ${activeTab === 'sell' ? 'active' : ''}`}
             onClick={() => setActiveTab('sell')}
           >
-            <span>➕ List New Produce</span>
+            <span>➕ List New Produce (फसल बेचें)</span>
           </button>
           <button
             type="button"
             className={`portal-tab-btn ${activeTab === 'myListings' ? 'active' : ''}`}
             onClick={() => setActiveTab('myListings')}
           >
-            <span>📦 My Active Listings</span>
+            <span>📦 My Active Listings (मेरी फसलें)</span>
             {myListings.length > 0 && <span className="tab-badge">{myListings.length}</span>}
           </button>
           <button
@@ -226,10 +226,10 @@ export default function Portal() {
             className={`portal-tab-btn ${activeTab === 'offers' ? 'active' : ''}`}
             onClick={() => setActiveTab('offers')}
           >
-            <span>💬 Wholesaler Bids & Offers</span>
+            <span>💬 Wholesaler Bids & Offers (व्यापारियों के ऑफर)</span>
             {offers.filter(o => o.status === 'pending').length > 0 && (
               <span className="tab-badge" style={{ background: '#d97706', color: '#fff' }}>
-                {offers.filter(o => o.status === 'pending').length} New
+                {offers.filter(o => o.status === 'pending').length} New (नए)
               </span>
             )}
           </button>
@@ -250,19 +250,19 @@ export default function Portal() {
         {activeTab === 'sell' && (
           <div className="sell-form-card">
             <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#064e3b', marginBottom: 6 }}>
-              Publish Crop for Sale
+              Publish Crop for Sale (बिक्री के लिए फसल लिस्ट करें)
             </h2>
             <p style={{ fontSize: '0.9rem', color: '#64748b', marginBottom: 22 }}>
-              Verified wholesalers on the KrishiAI Wholesaler Portal will be able to see and bid on this produce.
+              Verified wholesalers on the KrishiAI Wholesaler Portal will be able to see and bid on this produce. (कृषि एआई से जुड़े सत्यापित व्यापारी आपकी इस फसल पर सीधे बोली लगा सकेंगे।)
             </p>
 
             <form onSubmit={handleSellSubmit} className="sell-form-grid">
               <div className="sell-input-group" style={{ gridColumn: 'span 2' }}>
-                <label htmlFor="cropInput">Crop Name / फसल का नाम</label>
+                <label htmlFor="cropInput">Crop Name (फसल का नाम)</label>
                 <input
                   id="cropInput"
                   className="sell-input"
-                  placeholder="e.g. Wheat, Soybean, Mustard, Cotton, Chana, Onion, Garlic..."
+                  placeholder="e.g. Wheat, Soybean, Mustard, Cotton, Chana, Onion, Garlic... (जैसे गेहूं, सोयाबीन, सरसों, चना, प्याज...)"
                   value={cropName}
                   onChange={(e) => setCropName(e.target.value)}
                   list="indianCropsList"
@@ -330,24 +330,24 @@ export default function Portal() {
               </div>
 
               <div className="sell-input-group">
-                <label htmlFor="varietyInput">Variety / Grade</label>
+                <label htmlFor="varietyInput">Variety / Grade (किस्म / ग्रेड)</label>
                 <input
                   id="varietyInput"
                   className="sell-input"
-                  placeholder="e.g. Sharbati, Lokwan, Pusa-1121, Grade A"
+                  placeholder="e.g. Sharbati, Lokwan, Pusa-1121, Grade A (जैसे शरबती, लोकवान)"
                   value={variety}
                   onChange={(e) => setVariety(e.target.value)}
                 />
               </div>
 
               <div className="sell-input-group">
-                <label htmlFor="qtyInput">Available Quantity (Quintals)</label>
+                <label htmlFor="qtyInput">Available Quantity (उपलब्ध मात्रा - क्विंटल)</label>
                 <input
                   id="qtyInput"
                   type="number"
                   step="0.5"
                   className="sell-input"
-                  placeholder="e.g. 50"
+                  placeholder="e.g. 50 (क्विंटल में)"
                   value={quantityQuintals}
                   onChange={(e) => setQuantityQuintals(e.target.value)}
                   required
@@ -355,12 +355,12 @@ export default function Portal() {
               </div>
 
               <div className="sell-input-group">
-                <label htmlFor="priceInput">Expected Price (₹ / Quintal)</label>
+                <label htmlFor="priceInput">Expected Price (अपेक्षित भाव - ₹ / क्विंटल)</label>
                 <input
                   id="priceInput"
                   type="number"
                   className="sell-input"
-                  placeholder="e.g. 2600"
+                  placeholder="e.g. 2600 (प्रति क्विंटल)"
                   value={expectedPricePerQuintal}
                   onChange={(e) => setExpectedPricePerQuintal(e.target.value)}
                   required
@@ -368,44 +368,44 @@ export default function Portal() {
               </div>
 
               <div className="sell-input-group">
-                <label htmlFor="harvestInput">Harvest / Dispatch Status</label>
+                <label htmlFor="harvestInput">Harvest / Dispatch Status (कटाई व प्रेषण स्थिति)</label>
                 <select
                   id="harvestInput"
                   className="sell-select"
                   value={harvestDate}
                   onChange={(e) => setHarvestDate(e.target.value)}
                 >
-                  <option value="Ready for Dispatch">Ready for Immediate Dispatch</option>
-                  <option value="Harvesting in 1-2 Weeks">Harvesting in 1-2 Weeks</option>
-                  <option value="Stored in Farm Godown">Stored in Farm Godown</option>
+                  <option value="Ready for Dispatch">Ready for Immediate Dispatch (तुरंत भेजने के लिए तैयार)</option>
+                  <option value="Harvesting in 1-2 Weeks">Harvesting in 1-2 Weeks (1-2 सप्ताह में कटाई)</option>
+                  <option value="Stored in Farm Godown">Stored in Farm Godown (खेत या गोदाम में भंडारित)</option>
                 </select>
               </div>
 
               <div className="sell-input-group">
-                <label htmlFor="distInput">Farm Location / Mandi District</label>
+                <label htmlFor="distInput">Farm Location / Mandi District (खेत का स्थान / जिला)</label>
                 <input
                   id="distInput"
                   className="sell-input"
-                  placeholder="e.g. Indore, MP"
+                  placeholder="e.g. Indore, MP (जैसे इंदौर, म.प्र.)"
                   value={district}
                   onChange={(e) => setDistrict(e.target.value)}
                 />
               </div>
 
               <div className="sell-input-group full-width">
-                <label htmlFor="descInput">Produce Description & Quality Highlights</label>
+                <label htmlFor="descInput">Produce Description & Quality Highlights (फसल विवरण व गुणवत्ता)</label>
                 <textarea
                   id="descInput"
                   rows="3"
                   className="sell-textarea"
-                  placeholder="e.g. Cleaned grain, moisture < 11%, zero pest damage, organic certified."
+                  placeholder="e.g. Cleaned grain, moisture < 11%, zero pest damage, organic certified. (जैसे साफ दाना, 11% से कम नमी, बिना कीड़े वाला, जैविक प्रमाण पत्र)"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                 />
               </div>
 
               <button type="submit" className="submit-listing-btn" disabled={submitting}>
-                {submitting ? 'Publishing...' : '🚀 Publish Produce to Wholesalers'}
+                {submitting ? 'Publishing... (लिस्ट हो रहा है...)' : '🚀 Publish Produce to Wholesalers (व्यापारियों को फसल भेजें)'}
               </button>
             </form>
           </div>
@@ -415,16 +415,16 @@ export default function Portal() {
         {activeTab === 'myListings' && (
           <div>
             {loading ? (
-              <div style={{ textAlign: 'center', padding: 40 }}>Loading your produce listings...</div>
+              <div style={{ textAlign: 'center', padding: 40, color: '#64748b' }}>Loading your produce listings... (आपकी फसल लिस्टिंग लोड हो रही है...)</div>
             ) : myListings.length === 0 ? (
               <div className="sell-form-card" style={{ textAlign: 'center', padding: 40 }}>
                 <div style={{ fontSize: '2.5rem', marginBottom: 10 }}>🌾</div>
-                <h3>No active crop listings yet</h3>
+                <h3>No active crop listings yet (अभी कोई फसल लिस्ट नहीं है)</h3>
                 <p style={{ color: '#64748b', marginBottom: 18 }}>
-                  Post your first crop listing to start receiving purchase offers from regional wholesalers.
+                  Post your first crop listing to start receiving purchase offers from regional wholesalers. (अपनी पहली फसल लिस्ट करें ताकि क्षेत्रीय व्यापारी आपको खरीद ऑफर भेज सकें।)
                 </p>
                 <button type="button" className="portal-tab-btn active" onClick={() => setActiveTab('sell')}>
-                  ➕ Post Your First Produce
+                  ➕ Post Your First Produce (अपनी फसल लिस्ट करें)
                 </button>
               </div>
             ) : (
@@ -437,25 +437,25 @@ export default function Portal() {
                         <div className="listing-variety">{item.variety}</div>
                       </div>
                       <span className={`listing-status-tag status-${item.status}`}>
-                        {item.status.replace('_', ' ')}
+                        {item.status === 'available' ? 'Available (उपलब्ध)' : item.status === 'in_deal' ? 'In Deal (सौदा जारी)' : item.status === 'sold' ? 'Sold (बिक चुका)' : item.status.replace('_', ' ')}
                       </span>
                     </div>
 
                     <div className="listing-info-grid">
                       <div className="listing-info-item">
-                        <span>Quantity</span>
-                        <strong>{item.quantityQuintals} Quintals</strong>
+                        <span>Quantity (मात्रा)</span>
+                        <strong>{item.quantityQuintals} Quintals (क्विंटल)</strong>
                       </div>
                       <div className="listing-info-item">
-                        <span>Asking Price</span>
+                        <span>Asking Price (मांग भाव)</span>
                         <strong style={{ color: '#047857' }}>₹{item.expectedPricePerQuintal} / Qtl</strong>
                       </div>
                       <div className="listing-info-item">
-                        <span>Location</span>
+                        <span>Location (स्थान)</span>
                         <strong>{item.location?.district || 'Local'}</strong>
                       </div>
                       <div className="listing-info-item">
-                        <span>Readiness</span>
+                        <span>Readiness (उपलब्धता)</span>
                         <strong>{item.harvestDate}</strong>
                       </div>
                     </div>
@@ -468,14 +468,14 @@ export default function Portal() {
 
                     <div className="listing-footer">
                       <span className="pending-bids-badge">
-                        💬 {item.pendingOffersCount || 0} Offers received
+                        💬 {item.pendingOffersCount || 0} Offers received (ऑफर प्राप्त हुए)
                       </span>
                       <button
                         type="button"
                         className="delete-listing-btn"
                         onClick={() => handleDeleteListing(item._id)}
                       >
-                        Remove
+                        Remove (हटाएं)
                       </button>
                     </div>
                   </div>
@@ -489,13 +489,13 @@ export default function Portal() {
         {activeTab === 'offers' && (
           <div>
             {loading ? (
-              <div style={{ textAlign: 'center', padding: 40 }}>Checking incoming offers...</div>
+              <div style={{ textAlign: 'center', padding: 40, color: '#64748b' }}>Checking incoming offers... (आए हुए ऑफर चेक हो रहे हैं...)</div>
             ) : offers.length === 0 ? (
               <div className="sell-form-card" style={{ textAlign: 'center', padding: 40 }}>
                 <div style={{ fontSize: '2.5rem', marginBottom: 10 }}>📬</div>
-                <h3>No bids received yet</h3>
+                <h3>No bids received yet (अभी कोई बोली नहीं आई है)</h3>
                 <p style={{ color: '#64748b' }}>
-                  When wholesalers place offers on your produce, they will show up here for you to accept or decline.
+                  When wholesalers place offers on your produce, they will show up here for you to accept or decline. (जब व्यापारी आपकी फसल पर बोली लगाएंगे, वे यहां दिखेंगे जिन्हें आप स्वीकार या अस्वीकार कर सकते हैं।)
                 </p>
               </div>
             ) : (
@@ -504,36 +504,36 @@ export default function Portal() {
                   <div key={offer._id} className="offer-card">
                     <div>
                       <div className="offer-wholesaler-name">
-                        🏢 Wholesaler: {offer.wholesalerName}
+                        🏢 Wholesaler (व्यापारी): {offer.wholesalerName}
                       </div>
                       <div className="offer-crop-subtitle">
-                        Produce: <strong>{offer.cropName}</strong> • Contact: {offer.wholesalerContact}
+                        Produce (फसल): <strong>{offer.cropName}</strong> • Contact (संपर्क): {offer.wholesalerContact}
                       </div>
 
                       <div className="offer-deal-stats">
                         <div className="offer-stat-box">
-                          <span className="offer-stat-label">Offered Price</span>
+                          <span className="offer-stat-label">Offered Price (व्यापारी का भाव)</span>
                           <span className="offer-stat-value">₹{offer.offeredPricePerQuintal} / Quintal</span>
                         </div>
                         <div className="offer-stat-box">
-                          <span className="offer-stat-label">Quantity Demanded</span>
-                          <span className="offer-stat-value">{offer.quantityQuintals} Quintals</span>
+                          <span className="offer-stat-label">Quantity Demanded (मात्रा)</span>
+                          <span className="offer-stat-value">{offer.quantityQuintals} Quintals (क्विंटल)</span>
                         </div>
                         <div className="offer-stat-box">
-                          <span className="offer-stat-label">Total Deal Value</span>
+                          <span className="offer-stat-label">Total Deal Value (कुल सौदा)</span>
                           <span className="offer-stat-value">₹{offer.totalAmount.toLocaleString('en-IN')}</span>
                         </div>
                       </div>
 
                       {offer.message && (
                         <p style={{ fontSize: '0.88rem', color: '#334155', marginTop: 8 }}>
-                          <strong>Wholesaler Note:</strong> "{offer.message}"
+                          <strong>Wholesaler Note (व्यापारी संदेश):</strong> "{offer.message}"
                         </p>
                       )}
 
                       {offer.farmerRemark && (
                         <p style={{ fontSize: '0.84rem', color: '#047857', marginTop: 4 }}>
-                          <strong>Your response:</strong> {offer.farmerRemark}
+                          <strong>Your response (आपका उत्तर):</strong> {offer.farmerRemark}
                         </p>
                       )}
                     </div>
@@ -546,19 +546,19 @@ export default function Portal() {
                             className="accept-bid-btn"
                             onClick={() => handleOfferResponse(offer._id, 'accept')}
                           >
-                            ✓ Accept Deal
+                            ✓ Accept Deal (सौदा स्वीकार करें)
                           </button>
                           <button
                             type="button"
                             className="reject-bid-btn"
                             onClick={() => handleOfferResponse(offer._id, 'reject')}
                           >
-                            ✕ Decline
+                            ✕ Decline (अस्वीकार करें)
                           </button>
                         </>
                       ) : (
                         <span className={`listing-status-tag status-${offer.status}`}>
-                          {offer.status.toUpperCase()}
+                          {offer.status === 'accepted' ? 'ACCEPTED (स्वीकृत)' : offer.status === 'rejected' ? 'REJECTED (अस्वीकृत)' : offer.status.toUpperCase()}
                         </span>
                       )}
                     </div>
