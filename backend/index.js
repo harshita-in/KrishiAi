@@ -10,11 +10,7 @@ const expectedApiKey = process.env.BACKEND_API_KEY || '';
 app.use(express.json({ limit: '15mb' }));
 app.use(express.urlencoded({ limit: '15mb', extended: true }));
 app.use(cors({
-  origin: [
-    'http://localhost:3000',
-    'http://localhost:3001',
-    process.env.FRONTEND_URL
-  ],
+  origin: true,
   credentials: true,
 }));
 
@@ -53,6 +49,11 @@ app.use('/api/agro', require('./routes/agroRoutes'));
 
 // Kisan Chopal (Community Discussion Forum)
 app.use('/api/community', require('./routes/communityRoutes'));
+
+// Catch-all for undefined /api routes so they return JSON instead of HTML
+app.use('/api', (req, res) => {
+  res.status(404).json({ error: `Route ${req.method} ${req.originalUrl} not found` });
+});
 
 app.get('/', (req, res) => {
   res.send('Backend is running');
