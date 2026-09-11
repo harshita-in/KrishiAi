@@ -9,7 +9,6 @@ import AboutUs from './pages/aboutus';
 import Profile from './pages/profile';
 import Chat from './pages/chat';
 import Recommendation from './pages/recommendation';
-import Detection from './pages/detection';
 import Portal from './pages/portal';
 import Satellite from './pages/satellite';
 import Chopal from './pages/chopal';
@@ -76,7 +75,7 @@ function App() {
       <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
       <Route path="/chat" element={<RequireAuth><Chat /></RequireAuth>} />
       <Route path="/recommendation" element={<RequireAuth><Recommendation /></RequireAuth>} />
-      <Route path="/detection" element={<RequireAuth><Detection /></RequireAuth>} />
+      <Route path="/detection" element={<Navigate to="/chat" replace />} />
       <Route path="/portal" element={<RequireAuth><Portal /></RequireAuth>} />
       <Route path="/satellite" element={<RequireAuth><Satellite /></RequireAuth>} />
       <Route path="/chopal" element={<RequireAuth><Chopal /></RequireAuth>} />

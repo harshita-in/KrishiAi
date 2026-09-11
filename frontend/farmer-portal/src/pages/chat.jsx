@@ -7,7 +7,6 @@ import './chat.css';
 
 const navItems = [
   { label: 'Home', to: '/home', exact: true },
-  { label: 'Disease Detection', to: '/detection' },
   { label: 'Crop Recommendation', to: '/recommendation' },
   { label: 'Marketplace', to: '/portal' },
   { label: 'Satellite NDVI', to: '/satellite' },
@@ -18,10 +17,11 @@ const navItems = [
 ];
 
 const baseSystemPrompt = `
-You are KrishiAI, a helpful farming assistant for farmers in India.
+You are KrishiAI, a helpful AI farming assistant & crop doctor for farmers in India.
 Keep answers practical, concise, and friendly.
+When provided with crop leaf photos, identify any fungal, bacterial, viral diseases or pest damage, and give immediate organic remedies and chemical treatment dosages.
 Focus on crops, soil, irrigation, pest control, weather impact, fertilizer usage, and farm planning.
-If the user asks for medical, legal, or emergency advice, recommend a qualified professional.
+If the user asks for human medical, legal, or emergency advice, recommend a qualified professional.
 `;
 
 const buildSystemPrompt = (location) => {
@@ -394,10 +394,10 @@ export default function Chat() {
       <main className="chat-main">
         <section className="chat-panel">
           <div className="chat-header-card">
-            <span className="hero-badge">AI Assistant</span>
-            <h1>Ask farming questions & get practical guidance.</h1>
+            <span className="hero-badge">🌱 AI Assistant & Crop Doctor</span>
+            <h1>Ask farming questions & diagnose crop diseases.</h1>
             <p>
-              The assistant can help with crop choices, soil health, irrigation, pests, fertilizer planning, and more.
+              Upload diseased leaf photos for instant AI disease detection & treatment, or ask anything about soil, pests, irrigation, and mandi rates.
             </p>
             {error && <div className="status-chip status-chip-error">{error}</div>}
           </div>
@@ -505,6 +505,7 @@ export default function Chat() {
           {/* Quick Prompt Suggestions */}
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', padding: '0 4px 12px' }}>
             {[
+              "📸 Identify leaf disease from photo",
               "🌾 Wheat yellow rust treatment",
               "📊 Today's Mandi Bhav & trends",
               "🧪 Fertilizer dose for 2 acres",
@@ -565,7 +566,7 @@ export default function Chat() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 className="has-image-btn"
-                placeholder="Ask about your crop, soil, disease symptoms, or farm planning..."
+                placeholder="Ask about your crop, soil, attach leaf photo for disease detection..."
                 rows={2}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' && !e.shiftKey) {

@@ -5,7 +5,6 @@ import './home.css';
 
 const navItems = [
   { label: 'Home', to: '/home', exact: true },
-  { label: 'Disease Detection', to: '/detection' },
   { label: 'Crop Recommendation', to: '/recommendation' },
   { label: 'Marketplace', to: '/portal' },
   { label: 'Satellite NDVI', to: '/satellite' },
@@ -17,10 +16,10 @@ const navItems = [
 
 const features = [
   {
-    title: 'Crop Disease Detection',
-    description: 'Instant leaf scanning for fungal & bacterial diseases, severity scoring, organic desi remedies & chemical dosages.',
-    to: '/detection',
-    badge: 'AI Vision'
+    title: 'AI Crop Doctor & Chatbot',
+    description: 'Upload leaf photos for instant crop disease detection & doctor advice. Speak in Hindi or English for voice assistance.',
+    to: '/chat',
+    badge: 'Vision Doctor + Voice'
   },
   {
     title: 'Crop Recommendation',
@@ -45,12 +44,6 @@ const features = [
     description: 'Sell harvested crops directly to verified wholesalers at your price with 0% middleman commission.',
     to: '/portal',
     badge: 'Direct B2B'
-  },
-  {
-    title: 'Voice-Enabled AI Chatbot',
-    description: 'Speak in Hindi or English using your microphone, receive instant farming guidance and audio read-aloud.',
-    to: '/chat',
-    badge: 'Voice + Multimodal'
   },
   {
     title: 'Kisan Bahi-Khata & Schemes',
@@ -383,7 +376,7 @@ export default function Home({ portalLabel, storageKeyPrefix }) {
             <span className="hero-badge">Welcome back, {welcomeName} 👋</span>
             <h1>Grow smarter with KrishiAI Precision Agricultural Suite</h1>
             <p>
-              Diagnose crop diseases instantly with AI vision, match optimal crops to your soil fertility,
+              Consult our AI Crop Doctor with leaf photos for instant diagnosis, match optimal crops to your soil fertility,
               track live mandi rates, and trade directly with regional wholesalers without middlemen.
             </p>
 

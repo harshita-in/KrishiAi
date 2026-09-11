@@ -5,7 +5,6 @@ import './recommendation.css';
 
 const navItems = [
   { label: 'Home', to: '/home', exact: true },
-  { label: 'Disease Detection', to: '/detection' },
   { label: 'Crop Recommendation', to: '/recommendation' },
   { label: 'Marketplace', to: '/portal' },
   { label: 'Satellite NDVI', to: '/satellite' },
