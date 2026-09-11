@@ -9,7 +9,6 @@ import AboutUs from './pages/aboutus';
 import Profile from './pages/profile';
 import Chat from './pages/chat';
 import Portal from './pages/portal';
-import Satellite from './pages/satellite';
 import Chopal from './pages/chopal';
 import WholesalerHome from './pages/wholesalerHome';
 
@@ -89,7 +88,7 @@ function App() {
       <Route path="/recommendation" element={<Navigate to="/chat" replace />} />
       <Route path="/detection" element={<Navigate to="/chat" replace />} />
       <Route path="/portal" element={<RequireAuth><Portal /></RequireAuth>} />
-      <Route path="/satellite" element={<RequireAuth><Satellite /></RequireAuth>} />
+      <Route path="/satellite" element={<Navigate to="/chat" replace />} />
       <Route path="/chopal" element={<RequireAuth><Chopal /></RequireAuth>} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

@@ -6,7 +6,6 @@ import './home.css';
 const navItems = [
   { label: 'Home', to: '/home', exact: true },
   { label: 'Marketplace', to: '/portal' },
-  { label: 'Satellite NDVI', to: '/satellite' },
   { label: 'Kisan Chopal', to: '/chopal' },
   { label: 'Services', to: '/services' },
   { label: 'AI Chat', to: '/chat' },
@@ -19,12 +18,6 @@ const features = [
     description: 'Upload leaf photos for instant crop disease detection & doctor advice. Speak in Hindi or English for voice assistance.',
     to: '/chat',
     badge: 'Vision Doctor + Voice'
-  },
-  {
-    title: 'Satellite NDVI Farm Mapping',
-    description: 'Track vegetation vigor, soil moisture stress, and chlorophyll index from Sentinel-2 satellite orbit.',
-    to: '/satellite',
-    badge: 'Space GIS'
   },
   {
     title: 'Kisan Chopal Community',
