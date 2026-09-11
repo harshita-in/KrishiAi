@@ -79,7 +79,7 @@ export default function LandingPage() {
             </div>
             <h3 className="card-title">Direct B2B Wholesale Trading</h3>
             <p className="card-description">
-              Connect institutional buyers directly with local farmers. Zero middleman commission, transparent bidding, farm-gate pickup, and WhatsApp deal alerts.
+              Connect institutional buyers directly with local farmers. Zero middleman commission, transparent bidding, and farm-gate pickup.
             </p>
           </div>
         </div>
