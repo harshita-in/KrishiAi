@@ -714,3 +714,134 @@
   gap: 8px;
 }
 
+/* =========================================================================
+   Live Mandi Bhav Ticker Strip
+   ========================================================================= */
+.mandi-ticker-strip {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(16, 185, 129, 0.22);
+  border-bottom: 1px solid rgba(16, 185, 129, 0.22);
+  padding: 10px clamp(16px, 3vw, 36px);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 4px 16px rgba(4, 120, 87, 0.05);
+}
+
+.mandi-ticker-header {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: #ecfdf5;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 999px;
+  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.1);
+}
+
+.mandi-pulse-dot {
+  width: 9px;
+  height: 9px;
+  background: #ef4444;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 0 rgba(239, 68, 68, 0.4);
+  animation: mandi-pulse-red 1.6s infinite ease-in-out;
+}
+
+@keyframes mandi-pulse-red {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+  70% { transform: scale(1.05); box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+.mandi-ticker-title {
+  font-weight: 800;
+  font-size: 0.8rem;
+  color: #047857;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.mandi-ticker-scroll {
+  flex: 1;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(16, 185, 129, 0.35) transparent;
+  white-space: nowrap;
+  padding: 4px 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mandi-ticker-scroll::-webkit-scrollbar {
+  height: 4px;
+}
+.mandi-ticker-scroll::-webkit-scrollbar-thumb {
+  background: rgba(16, 185, 129, 0.35);
+  border-radius: 4px;
+}
+
+.mandi-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
+  transition: transform 140ms ease, border-color 140ms ease, box-shadow 140ms ease;
+  flex-shrink: 0;
+}
+
+.mandi-chip:hover {
+  transform: translateY(-1px);
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+.mandi-chip-crop {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.mandi-chip-market {
+  color: #64748b;
+  font-size: 0.76rem;
+}
+
+.mandi-chip-price {
+  font-weight: 800;
+  color: #047857;
+}
+
+.mandi-chip-unit {
+  font-size: 0.74rem;
+  color: #64748b;
+  margin-left: -4px;
+}
+
+.mandi-chip-trend {
+  font-weight: 700;
+  font-size: 0.74rem;
+  padding: 2px 7px;
+  border-radius: 6px;
+}
+.mandi-trend-up {
+  background: #dcfce7;
+  color: #15803d;
+}
+.mandi-trend-down {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+
