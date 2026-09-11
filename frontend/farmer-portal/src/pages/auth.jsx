@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { apiFetch } from '../config';
 import './auth.css';
 
@@ -10,13 +10,20 @@ const initialForm = {
   password: '',
 };
 
-export default function Auth({ portal, apiBase, homePath }) {
+export default function Auth({ portal: defaultPortal, apiBase: defaultApiBase, homePath: defaultHomePath }) {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const [role, setRole] = useState(location.state?.role || defaultPortal || 'farmer');
   const [mode, setMode] = useState('login');
   const [keepLoggedIn, setKeepLoggedIn] = useState(false);
   const [form, setForm] = useState(initialForm);
   const [status, setStatus] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const activePortal = role;
+  const activeApiBase = role === 'wholesaler' ? '/api/wholesaler' : '/api/farmer';
+  const activeHomePath = role === 'wholesaler' ? '/wholesaler/home' : '/home';
 
   const title = useMemo(() => (mode === 'signup' ? 'Create account' : 'Welcome back'), [mode]);
 
@@ -38,7 +45,7 @@ export default function Auth({ portal, apiBase, homePath }) {
       : { user_id: form.user_id, password: form.password };
 
     try {
-      const res = await apiFetch(`${apiBase}${endpoint}`, {
+      const res = await apiFetch(`${activeApiBase}${endpoint}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -51,20 +58,20 @@ export default function Auth({ portal, apiBase, homePath }) {
       }
 
       if (mode === 'login') {
-        storage.setItem(`${portal}_token`, data.token);
-        storage.setItem(`${portal}_user`, JSON.stringify(data.user));
-        navigate(homePath, { replace: true });
+        storage.setItem(`${activePortal}_token`, data.token);
+        storage.setItem(`${activePortal}_user`, JSON.stringify(data.user));
+        navigate(activeHomePath, { replace: true });
       } else {
         if (data.token) {
-          storage.setItem(`${portal}_token`, data.token);
+          storage.setItem(`${activePortal}_token`, data.token);
         }
-        storage.setItem(`${portal}_user`, JSON.stringify({
+        storage.setItem(`${activePortal}_user`, JSON.stringify({
           ...(data.user || {}),
           name: data.user?.name || form.name,
           user_id: data.user?.user_id || form.user_id,
           email: data.user?.email || form.email,
         }));
-        navigate(homePath, { replace: true });
+        navigate(activeHomePath, { replace: true });
       }
 
     } catch (err) {
@@ -80,6 +87,26 @@ export default function Auth({ portal, apiBase, homePath }) {
     <div className="auth-shell">
       <div className="auth-backdrop"></div>
       <div className="auth-card">
+        {/* Account Role Selector: Farmer vs Wholesaler */}
+        <div className="role-selector" role="tablist" aria-label="Select Account Type">
+          <button
+            type="button"
+            className={`role-tab-btn ${role === 'farmer' ? 'active' : ''}`}
+            onClick={() => { setRole('farmer'); setStatus(''); }}
+          >
+            <span>👨‍🌾</span>
+            <span>किसान (Farmer)</span>
+          </button>
+          <button
+            type="button"
+            className={`role-tab-btn ${role === 'wholesaler' ? 'active' : ''}`}
+            onClick={() => { setRole('wholesaler'); setStatus(''); }}
+          >
+            <span>🏢</span>
+            <span>व्यापारी (Wholesaler)</span>
+          </button>
+        </div>
+
         <div className="auth-toggle" role="tablist" aria-label="Authentication mode">
           <button type="button" className={mode === 'login' ? 'auth-toggle-active' : ''} onClick={() => setMode('login')}>
             Login
@@ -92,7 +119,11 @@ export default function Auth({ portal, apiBase, homePath }) {
         <div className="auth-header">
           <div className="auth-mark">Krishi<span>AI</span></div>
           <h1>{title}</h1>
-          <p>{portal === 'farmer' ? 'Farmer Portal' : 'Wholesaler Portal'} access</p>
+          <p>
+            {role === 'farmer'
+              ? '🌾 Farmer Portal • फसल बिक्री, लाइव भाव व AI सहायता'
+              : '🏢 Wholesaler Portal • किसानों से डायरेक्ट थोक ख़रीद व बिडिंग'}
+          </p>
         </div>
 
         <form className="auth-form" onSubmit={submit}>

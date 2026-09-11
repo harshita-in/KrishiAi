@@ -184,3 +184,42 @@
   font-size: 0.92rem;
   line-height: 1.5;
 }
+
+/* Role Selector Tabs */
+.role-selector {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 6px;
+  border-radius: 16px;
+  background: rgba(15, 23, 42, 0.05);
+  border: 1px solid rgba(4, 120, 87, 0.12);
+}
+
+.role-tab-btn {
+  border: none;
+  border-radius: 12px;
+  padding: 10px 14px;
+  background: transparent;
+  color: #475569;
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 180ms ease;
+}
+
+.role-tab-btn:hover {
+  color: #064e3b;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.role-tab-btn.active {
+  background: #ffffff;
+  color: #047857;
+  box-shadow: 0 4px 14px rgba(4, 120, 87, 0.16);
+}

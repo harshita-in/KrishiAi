@@ -11,12 +11,24 @@ import Chat from './pages/chat';
 import Portal from './pages/portal';
 import Satellite from './pages/satellite';
 import Chopal from './pages/chopal';
+import WholesalerHome from './pages/wholesalerHome';
 
 function clearFarmerSession() {
   localStorage.removeItem('farmer_token');
   localStorage.removeItem('farmer_user');
   sessionStorage.removeItem('farmer_token');
   sessionStorage.removeItem('farmer_user');
+}
+
+function RequireWholesalerAuth({ children }) {
+  const location = useLocation();
+  const token = localStorage.getItem('wholesaler_token') || sessionStorage.getItem('wholesaler_token');
+
+  if (!token) {
+    return <Navigate to="/auth" replace state={{ from: location.pathname, role: 'wholesaler' }} />;
+  }
+
+  return children;
 }
 
 function RequireAuth({ children }) {
@@ -67,8 +79,9 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
-      <Route path="/auth" element={<Auth portal="farmer" apiBase="/api/farmer" homePath="/home" />} />
+      <Route path="/auth" element={<Auth />} />
       <Route path="/home" element={<RequireAuth><Home portalLabel="Farmer" storageKeyPrefix="farmer" /></RequireAuth>} />
+      <Route path="/wholesaler/home" element={<RequireWholesalerAuth><WholesalerHome portalLabel="Wholesaler" storageKeyPrefix="wholesaler" /></RequireWholesalerAuth>} />
       <Route path="/services" element={<RequireAuth><Services /></RequireAuth>} />
       <Route path="/about-us" element={<RequireAuth><AboutUs /></RequireAuth>} />
       <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
